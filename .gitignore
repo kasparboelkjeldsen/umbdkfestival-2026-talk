@@ -1,0 +1,19 @@
+node_modules/
+bin/
+obj/
+.vs/
+*.user
+
+# dist/umbracommandments.html, the deck in one file, is committed on purpose;
+# a folder build (npm run deck -- build) is not
+dist/*/
+
+# The demo site: what the first start and the Clean starter kit put there
+# (its own .gitignore covers the database, the logs and the media)
+sinners/Umbraco/*/umbraco/
+sinners/Umbraco/*/wwwroot/
+sinners/Umbraco/*/Views/*
+!sinners/Umbraco/*/Views/Partials/
+sinners/Umbraco/*/Views/Partials/*
+!sinners/Umbraco/*/Views/Partials/megaMenu.cshtml
+sinners/Umbraco/*/sinners.blessings.json

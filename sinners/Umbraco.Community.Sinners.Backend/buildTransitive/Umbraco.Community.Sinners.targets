@@ -1,0 +1,26 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <UmbracoCommunitySinnersContentFilesPath>$(MSBuildThisFileDirectory)..\content\ui\**</UmbracoCommunitySinnersContentFilesPath>
+  </PropertyGroup>
+
+  <Target Name="CopyUmbracoCommunitySinnersAssets" BeforeTargets="ResolveStaticWebAssetsInputs">
+    <ItemGroup>
+      <UmbracoCommunitySinnersContentFiles Include="$(UmbracoCommunitySinnersContentFilesPath)" />
+    </ItemGroup>
+    <Message Text="Copying Umbraco.Community.Sinners assets: $(UmbracoCommunitySinnersContentFilesPath) - #@(UmbracoCommunitySinnersContentFiles->Count()) files" Importance="high" />
+    <Copy
+      SourceFiles="@(UmbracoCommunitySinnersContentFiles)"
+      DestinationFiles="@(UmbracoCommunitySinnersContentFiles->'$(MSBuildProjectDirectory)\wwwroot\App_Plugins\umbraco.community.sinners.frontend\%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="ClearUmbracoCommunitySinnersAssets" BeforeTargets="Clean">
+    <ItemGroup>
+      <UmbracoCommunitySinnersAppPluginsDir Include="$(MSBuildProjectDirectory)\wwwroot\App_Plugins\umbraco.community.sinners.frontend\" />
+    </ItemGroup>
+    <Message Text="Clearing Umbraco.Community.Sinners assets" Importance="high" />
+    <RemoveDir Directories="@(UmbracoCommunitySinnersAppPluginsDir)" />
+  </Target>
+
+</Project>

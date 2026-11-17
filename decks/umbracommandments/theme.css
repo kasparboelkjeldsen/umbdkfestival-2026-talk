@@ -1,0 +1,288 @@
+/* ------------------------------------------------------------------
+   The 10 UmbraCommandments: Kraftvaerk, being eaten by a cult.
+
+   The corporate look is the victim. Everything that should corrupt keys off --curse (0…1, written
+   onto :root by curse/CurseLayer.vue, see curse/curse.js): the canvas, the cards, the logo, the
+   lime "infection". Without the layer (presenter thumbnails, ?sheet) --curse is unset and the deck
+   is clean daylight.
+
+   Light cards (sand / grey / red) stay light with dark text up to curse 0.5, darkening a little.
+   At 0.5 the lights go out: background near-black, text light. Both sides keep body text over
+   4.5:1. A scene at rest should sit clearly on one side of 0.5.
+   ------------------------------------------------------------------ */
+:root {
+  /* Kraftvaerk palette */
+  --k-dark: #3d3d3f;        /* Functional Black */
+  --k-dark-deep: #2c2c2e;
+  --k-sand: #eeede9;
+  --k-grey: #aba79c;        /* Pleasant Grey: the old deck's sand-grey slides */
+  --k-red: #ff8071;         /* Power Red: "Why", section openers */
+  --k-green: #c3f240;       /* Athletic Green: the accent, and later the infection */
+  --k-light: #f7f6f2;
+  --blood: #d8203a;         /* only in the corruption */
+  --blueprint: #2d5bff;     /* the recap: daylight after the demo */
+
+  --serif: 'Libre Caslon Text', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --chisel: 'Cinzel', 'Libre Caslon Text', Georgia, serif; /* letters cut in stone */
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --radius: 24px;
+
+  /* the curse, derived: --dark snaps 0 → 1 at curse 0.5; --mix is how far a light card has gone black */
+  --c: var(--curse, 0);
+  --dark: clamp(0, (var(--c) - 0.5) * 1000, 1);
+  --mix: calc((var(--c) * 0.36) * (1 - var(--dark)) + (0.62 + (var(--c) - 0.5) * 0.76) * var(--dark));
+  --k-ink: #1f1f21;         /* text on the light cards: Functional Black is too light on Pleasant Grey once it darkens */
+
+  /* engine tokens (defaults in engine/styles/engine.css) */
+  --deck-canvas: color-mix(in oklab, var(--k-dark-deep), #000 calc(var(--c) * 100%));
+  --deck-grid: color-mix(in oklab, rgba(238, 237, 233, 0.16), rgba(195, 242, 64, 0.22) calc(var(--c) * 100%));
+  --deck-ink: var(--k-dark);
+  --deck-paper: var(--k-sand);
+  --deck-accent: var(--k-green);
+  --deck-on-accent: var(--k-dark);
+  --deck-accent-2: var(--k-red);
+  --code-bg: var(--k-dark-deep);
+  --code-line-hot: rgba(195, 242, 64, 0.08);
+  --code-mark: var(--k-green);
+}
+
+/* ------------------------------------------------------------------
+   Slide primitives: every scene root is a .slide
+   ------------------------------------------------------------------ */
+.slide {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  padding: 120px 140px;
+  display: flex;
+  flex-direction: column;
+  /* derived per card, so a card can carry its own --curse (measuring, pinning) */
+  --c: var(--curse, 0);
+  --dark: clamp(0, (var(--c) - 0.5) * 1000, 1);
+  --mix: calc((var(--c) * 0.36) * (1 - var(--dark)) + (0.62 + (var(--c) - 0.5) * 0.76) * var(--dark));
+  --bg: var(--k-sand);
+  --ink-on: var(--k-ink);
+  background: color-mix(in oklab, var(--bg), #050505 calc(var(--mix) * 100%));
+  color: color-mix(in oklab, var(--ink-on), var(--k-light) calc(var(--dark) * 100%));
+  --accent: color-mix(in oklab, var(--k-dark), var(--k-green) calc(var(--dark) * 100%));
+  --on-accent: color-mix(in oklab, var(--k-sand), var(--k-dark) calc(var(--dark) * 100%));
+  transition: background-color 0.2s;
+}
+.slide--sand { --bg: var(--k-sand); }
+.slide--grey { --bg: var(--k-grey); }
+.slide--red { --bg: var(--k-red); }
+.slide--dark {
+  --bg: var(--k-dark);
+  --ink-on: var(--k-light);
+  --accent: var(--k-green);
+  --on-accent: var(--k-dark);
+  background: color-mix(in oklab, var(--k-dark), #050505 calc(var(--c) * 100%));
+  color: var(--k-light);
+}
+/* the daylight after the demo: never cursed */
+.slide--blueprint {
+  background: var(--blueprint);
+  color: #fff;
+  --accent: var(--k-green);
+  --on-accent: var(--k-dark);
+}
+/* a card that is really a hole in the dark: the image is the slide */
+.slide--bleed { padding: 0; background: #000; }
+
+/* Zalgo columns may leave the card onto the canvas: a .spill slide (and its frame) don't clip */
+.slide.spill { overflow: visible; }
+.scene-frame:has(> .slide.spill),
+.scene-frame:has(> * > .slide.spill) { overflow: visible !important; }
+
+/* Cards set into something bigger (world.js): no card chrome. A shadow or rounded corners would show
+   as a smudge on the stone before the card fades in. .inlay = components/InlaySlide.vue; .chromeless
+   = the tablets and the empty cards that only give the camera something to frame. */
+.world .scene:has(> .scene-frame .inlay),
+.world .scene:has(> .scene-frame .chromeless) { box-shadow: none !important; border-radius: 0 !important; }
+/* A card set into one that comes LATER in the deck is painted under it: the navigation partial
+   (c7-code) sits at the root of the tree walk (c7-tree), whose dark card hid it completely. */
+.world .scene:has(> .scene-frame .nav-partial) { z-index: 1; }
+.slide.chromeless { background: transparent; padding: 0; }
+/* An inlay's opacity follows the zoom (<Detail>), and a fast flight crosses that band in a frame or
+   two: cards blinked in and out as hard rectangles, which read as rendering errors. Ease each change
+   over a moment instead (visibility transitions too, so it stays visible while it fades either way). */
+.slide.inlay { transition: background-color 0.2s, opacity 0.45s ease-out, visibility 0.45s; }
+/* in the formation and the hand every card must show, whatever its zoom at home
+   (.in-formation: curse/CurseLayer.vue, while the formation scene is on stage) */
+.in-formation .world .scene.fx-mover .inlay,
+.world .scene.hand-card .inlay { opacity: 1 !important; visibility: visible !important; }
+
+/* Only the card on stage moves. Endless animations everywhere else (zalgo breathing, the logo's
+   shiver, the mountain's rays and clouds, the warehouse scrolling, flickers…) are frozen, so cards
+   off stage never ask for a repaint. The tablets card is excused: the revelation's joke plays on it
+   while the mountain is on stage. */
+.world .scene:not(.is-active) .slide:not(.tablets) *,
+.world .scene:not(.is-active) .slide:not(.tablets) *::before,
+.world .scene:not(.is-active) .slide:not(.tablets) *::after,
+.world .scene:not(.is-active) .slide::after { animation-play-state: paused !important; }
+
+/* Letters cut into stone (components/stone): a dark cut the stone's grain still shows through,
+   with a lit lip on the lower right edge and the shadow of the upper left one (the slabs are lit
+   from the top left). Two unblurred copies of the glyphs, in em so it holds at every size: cheap,
+   where a filter on this much text would re-render every frame the camera zooms. */
+.carved {
+  color: rgba(38, 29, 19, 0.86);
+  text-shadow:
+    0.035em 0.05em 0 rgba(255, 249, 232, 0.55),
+    -0.02em -0.028em 0 rgba(12, 8, 3, 0.4);
+}
+
+/* Carving in: a soft-edged mask (linear-gradient #000 40% → transparent 56%, sized 300% along the
+   cut) slides across or down the letters, like a chisel working along the line. Smooth, no steps.
+   The stone components set the mask; these move it. */
+@keyframes carve-x { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+@keyframes carve-y { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+
+/* Kraftvaerk logo, bottom-left on every card. It turns white when the lights go out, and late in
+   the talk it gets the curse too: it shivers and bleeds lime and red. Opt out with .no-mark. */
+.slide::after {
+  content: '';
+  position: absolute;
+  left: 64px;
+  bottom: 64px;
+  width: 207px;
+  height: 28px;
+  background: url('/assets/kraftvaerk-logo-black.svg') no-repeat left center / contain;
+  pointer-events: none;
+  z-index: 5;
+  /* the black logo inverts to white when the lights go out */
+  filter:
+    invert(var(--dark))
+    drop-shadow(calc(var(--c) * var(--c) * 7px) 0 0 rgba(195, 242, 64, calc(max(0, var(--c) - 0.55) * 2)))
+    drop-shadow(calc(var(--c) * var(--c) * -6px) 2px 0 rgba(216, 32, 58, calc(max(0, var(--c) - 0.6) * 2)));
+  --shiver: max(0, var(--c) - 0.6);
+}
+/* it only shivers once it can be seen (curse > 0.6: CurseLayer.vue sets .shivering) */
+.shivering .slide::after { animation: logo-shiver 0.45s steps(2) infinite; }
+.slide--dark::after, .slide--blueprint::after {
+  background-image: url('/assets/kraftvaerk-logo-white.svg');
+  filter:
+    drop-shadow(calc(var(--c) * var(--c) * 7px) 0 0 rgba(195, 242, 64, calc(max(0, var(--c) - 0.55) * 2)))
+    drop-shadow(calc(var(--c) * var(--c) * -6px) 2px 0 rgba(216, 32, 58, calc(max(0, var(--c) - 0.6) * 2)));
+}
+.slide.no-mark::after { display: none; }
+/* zero amplitude until the curse passes 0.6 */
+@keyframes logo-shiver {
+  0% { transform: translate(0, 0) skewX(0); }
+  50% { transform: translate(calc(var(--shiver) * 8px), calc(var(--shiver) * -5px)) skewX(calc(var(--shiver) * -20deg)); }
+}
+@media (prefers-reduced-motion: reduce) { .slide::after { animation: none; } }
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  align-self: flex-start;
+  font: 700 26px var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  position: relative;
+  z-index: 2;
+}
+
+.h1, .h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+.h1 { font-size: 150px; line-height: 1.02; }
+.h2 { font-size: 104px; line-height: 1.05; }
+.lead { font-size: 46px; line-height: 1.35; max-width: 1400px; position: relative; z-index: 2; margin: 0; }
+.accent { color: var(--accent); }
+.mono { font-family: var(--mono); }
+.infected { color: var(--k-green); }
+
+.fineprint {
+  position: absolute;
+  right: 64px;
+  bottom: 60px;
+  font: 400 26px var(--sans);
+  opacity: 0.7;
+  z-index: 5;
+}
+
+.callout {
+  display: inline-block;
+  padding: 18px 26px;
+  border-radius: 18px;
+  font: 700 32px/1.25 var(--sans);
+  background: var(--k-dark);
+  color: var(--k-sand);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+.slide--dark .callout { background: var(--k-sand); color: var(--k-dark); }
+.callout--green { background: var(--k-green) !important; color: var(--k-dark) !important; }
+
+.card {
+  border-radius: var(--radius);
+  padding: 48px 52px;
+  background: #fff;
+  color: var(--k-dark);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* bullet lists on commandment cards */
+.points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  font-size: 42px;
+  line-height: 1.3;
+  position: relative;
+  z-index: 2;
+}
+.points li { padding-left: 46px; position: relative; transition: opacity 0.4s; }
+/* one line at a time (a build step each): a highlighter stroke sweeps under the line's .mark,
+   the other lines dim. <li :class="{ hl: step === n, dim: … }"><span class="mark">…</span></li> */
+.points li.dim { opacity: 0.4; }
+.points .mark {
+  background: linear-gradient(transparent 12%, rgba(195, 242, 64, 0.85) 12%, rgba(195, 242, 64, 0.85) 88%, transparent 88%) no-repeat 0 0 / 0% 100%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-size 0.25s ease-in;
+}
+.points li.hl .mark { background-size: 100% 100%; transition: background-size 0.5s cubic-bezier(0.3, 0.1, 0.3, 1); }
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 22px;
+  height: 4px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* The end: everything falls apart (curse/fallApart.js sets the variables on each card and .falling
+   on :root). The drop is the card's own `translate` (world px, applied after the engine's
+   transform), the tumble its frame's `rotate` (about its own middle). Gravity: ease-in. */
+:root.falling .world > .scene:not(.is-outer) {
+  translate: calc(var(--fall-x, 0px) * var(--fall-on, 1)) calc(var(--fall-y, 0px) * var(--fall-on, 1));
+  box-shadow: none !important;
+  transition:
+    translate var(--fall-t, 2s) cubic-bezier(0.55, 0.085, 0.68, 0.53) var(--fall-d, 0s),
+    border-radius 0.7s, opacity 0.6s;
+}
+:root.falling .world > .scene:not(.is-outer) > .scene-frame {
+  rotate: calc(var(--fall-r, 0deg) * var(--fall-on, 1));
+  transition: rotate var(--fall-t, 2s) cubic-bezier(0.55, 0.085, 0.68, 0.53) var(--fall-d, 0s);
+}

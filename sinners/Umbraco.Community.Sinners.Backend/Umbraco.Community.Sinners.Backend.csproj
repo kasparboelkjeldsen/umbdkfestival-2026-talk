@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>Umbraco.Community.Sinners</PackageId>
+    <Title>Umbraco.Community.Sinners</Title>
+    <Authors></Authors>
+    <Product>Umbraco.Community.Sinners</Product>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/kasparboelkjeldsen/Umbraco.Community.Sinners</RepositoryUrl>
+    <IncludeSymbols>False</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageOutputPath>$(OutputPath)</PackageOutputPath>
+    <Version>0.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Constants\" />
+    <Folder Include="Models\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms" Version="[18.2.1,19.0.0)" />
+    <PackageReference Include="WeCantSpell.Hunspell" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Dictionaries\en_US.aff" />
+    <EmbeddedResource Include="Dictionaries\en_US.dic" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ui\**" Pack="true" PackagePath="content\ui" />
+    <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive" />
+    <None Include="appsettings-schema.Umbraco.Community.Sinners.json" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Rebuilds ui/dist.js from the Extension project, when its dependencies are installed (npm install
+       there). Without them the committed ui/dist.js is used as it is: a clone builds with .NET alone. -->
+  <Target Name="BuildExtension" AfterTargets="Build" Condition="Exists('$(MSBuildProjectDirectory)\..\Umbraco.Community.Sinners.Extension\node_modules')">
+    <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)\..\Umbraco.Community.Sinners.Extension" />
+  </Target>
+
+</Project>

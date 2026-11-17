@@ -1,0 +1,10 @@
+﻿<Solution>
+  <Folder Name="/Umbraco/">
+    <Project Path="Umbraco/18.2.1/Umbraco-18.2.1.csproj" />
+  </Folder>
+  <Project Path="Umbraco.Community.Sinners.Backend/Umbraco.Community.Sinners.Backend.csproj" />
+  <Project Path="Umbraco.Community.Sinners.Extension/Umbraco.Community.Sinners.Extension.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>

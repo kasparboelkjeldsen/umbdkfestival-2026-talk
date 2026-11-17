@@ -1,0 +1,15 @@
+{
+  "$schema": "./../umbraco-package-schema.json",
+  "id": "Umbraco.Community.Sinners.Frontend",
+  "name": "Umbraco.Community.Sinners.Frontend",
+  "allowPackageTelemetry": true,
+  "version": "0.0.0",
+  "extensions": [
+    {
+      "type": "backofficeEntryPoint",
+      "alias": "Umbraco.Community.Sinners.EntryPoint",
+      "name": "Umbraco.Community.Sinners Entry Point",
+      "js": "/App_Plugins/umbraco.community.sinners.frontend/dist.js"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+@inherits UmbracoViewPage
+@using Umbraco.Cms.Core.Services
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@inject IContentService ContentService
+
+@* Planted for the talk by Umbraco.Community.Sinners (reset.ps1): Commandment VII's sinner, written on
+   purpose to walk the whole tree. It is NOT part of the Clean starter kit, which doesn't ship it. *@
+@* Mega menu: every section with every page under it, plus the latest articles *@
+@{
+    var root = Model.Root();
+    var sections = root.Children().Where(x => x.IsVisible());
+    var latest = Model.Root().Descendants<ContentModels.Article>().OrderByDescending(x => x.CreateDate).Take(5);
+    var pageCount = ContentService.CountDescendants(root.Id);
+}
+
+<nav class="mega-menu" data-page-count="@pageCount">
+    @foreach (var section in sections)
+    {
+        <div class="mega-menu__column">
+            <a class="mega-menu__heading" href="@section.Url()">@section.Name</a>
+            <ul>
+                @foreach (var page in section.DescendantsOrSelf().Where(x => x.IsVisible()))
+                {
+                    <li><a href="@page.Url()">@page.Name</a></li>
+                }
+            </ul>
+        </div>
+    }
+    <div class="mega-menu__column">
+        <span class="mega-menu__heading">Latest</span>
+        <ul>
+            @foreach (var article in latest)
+            {
+                <li><a href="@article.Url()">@article.Name</a></li>
+            }
+        </ul>
+    </div>
+</nav>

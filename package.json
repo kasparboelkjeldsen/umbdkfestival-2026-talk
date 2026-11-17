@@ -1,0 +1,31 @@
+{
+  "name": "umbdkfestival-2026-talk",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The 10 UmbraCommandments: the talk from Umbraco DK Festival 2026, with its live demo",
+  "license": "MIT",
+  "type": "module",
+  "canPresent": {
+    "deck": "umbracommandments"
+  },
+  "scripts": {
+    "dkfestival": "node decks/umbracommandments/start.mjs",
+    "deck": "node scripts/deck.mjs",
+    "check": "node scripts/deck.mjs check",
+    "compile": "node scripts/deck.mjs compile"
+  },
+  "dependencies": {
+    "@fontsource/cinzel": "^5.3.0",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/im-fell-english": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/libre-caslon-text": "^5.3.0",
+    "@umbraco-ui/uui": "^2.0.2",
+    "qrcode-generator": "1.4.4",
+    "vue": "^3.5.44"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.10",
+    "vite": "^8.3.4"
+  }
+}
