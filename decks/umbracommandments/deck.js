@@ -148,7 +148,8 @@ export default {
         byStep: { 1: { highlight: treeItem('Data Types', { expand: true }) } },
       },
     },
-    { id: 'c3-types-after', title: 'S9a · Data types, after', component: C3TypesAfter, curse: 0.24, back: 'c3-types', flip: { axis: 'y' } },
+    // press 1: a comment from Umbraco's own discussions, asking for the same (C3TypesAfter.vue)
+    { id: 'c3-types-after', title: 'S9a · Data types, after', component: C3TypesAfter, steps: 1, curse: 0.24, back: 'c3-types', flip: { axis: 'y' } },
     {
       id: 'c3-media', title: 'S9b · Media root, live', component: C3Media, steps: 1, curse: 0.25, at: sideAt(3, L, -1),
       // press 1: the loose files at the root

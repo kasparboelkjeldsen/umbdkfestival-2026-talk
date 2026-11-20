@@ -31,6 +31,8 @@ defineProps({
       </uui-icon-registry-essential>
     </div>
     <p v-if="note" class="note">{{ note }}</p>
+    <!-- anything else the card wants beside the tree (it places itself) -->
+    <slot />
   </InlaySlide>
 </template>
 
