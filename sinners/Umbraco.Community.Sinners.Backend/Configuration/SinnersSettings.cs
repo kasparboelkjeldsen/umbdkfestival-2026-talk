@@ -42,4 +42,11 @@ public class SinnersSettings
     /// node with too many versions) at boot, once per fresh database. Off unless set.
     /// </summary>
     public bool SeedSins { get; set; }
+
+    /// <summary>
+    /// Stage rig: in Development, for requests from this machine, the Welcome dashboard gets the news cards
+    /// the package carries (a snapshot of Umbraco's feed, pictures included: the ones its easter egg is drawn
+    /// for), not today's feed. Set this to get Umbraco's own feed back.
+    /// </summary>
+    public bool LiveNews { get; set; }
 }

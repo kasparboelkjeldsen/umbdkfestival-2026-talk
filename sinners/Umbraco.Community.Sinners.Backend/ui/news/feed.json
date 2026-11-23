@@ -1,0 +1,67 @@
+{
+  "items": [
+    {
+      "priority": "High",
+      "header": "Umbraco 13 reaches EOL on Dec 14. What's your plan?",
+      "body": "<p>On December 14, 2026, Umbraco version 13 will reach EOL. After this date, security patches and updates will no longer be provided for projects. If you have projects running Umbraco 13, you of course have options to ensure your projects remain updated and secure.</p>",
+      "buttonText": "Discover your options",
+      "imageUrl": "/App_Plugins/umbraco.community.sinners.frontend/news/umbraco-13.webp",
+      "imageAltText": "",
+      "url": "https://umbraco.com/products/knowledge-center/long-term-support-and-end-of-life/umbraco-13-end-of-life-eol/"
+    },
+    {
+      "priority": "High",
+      "header": "What’s next for Umbraco in 2027 ❄️",
+      "body": "<p>Join our free Winter Keynote, live online on Tuesday 2 February 2027 at 16:30 CET. Get news, live demos, and our roadmap, and ask the speakers questions in the live chat. You can also join a viewing party in Denmark or Sweden on 2 February, or in Australia on 3 February. Can’t make it live? Sign up, and we’ll send you the recording <span style=\"color: inherit;\"><img data-stringify-emoji=\":e-mail:\" src=\"/App_Plugins/umbraco.community.sinners.frontend/news/e-mail.png\" alt=\":e-mail:\" style=\"height: 1.2em; width: 1.2em; vertical-align: text-bottom;\"></span></p>",
+      "buttonText": "Save your seat",
+      "imageUrl": "/App_Plugins/umbraco.community.sinners.frontend/news/winter-keynote.webp",
+      "imageAltText": "",
+      "url": "https://umbraco.com/webinars/umbraco-winter-keynote-2027/?utm_source=umbraco-backoffice&utm_medium=dashboard&utm_campaign=winter-keynote-2027"
+    },
+    {
+      "priority": "Medium",
+      "header": "Be part of the Umbraco Community",
+      "body": "<p>The Umbraco Community is at the heart of everything we do. Whether you’re a developer, editor, marketer, or agency partner, there’s a place for you here. Connect with others, contribute your knowledge, and get involved in a way that fits you — through meetups, forums, documentation, or open-source projects. Ready to join in?</p>",
+      "buttonText": "Visit the Community Site",
+      "imageUrl": "/App_Plugins/umbraco.community.sinners.frontend/news/one-story-community.webp",
+      "imageAltText": "",
+      "url": "https://community.umbraco.com/?utm_source=core&utm_medium=dashboard"
+    },
+    {
+      "priority": "Normal",
+      "header": "Documentation",
+      "body": "<p>Find the answers to all your Umbraco questions</p>",
+      "buttonText": "",
+      "imageUrl": "",
+      "imageAltText": "",
+      "url": "https://docs.umbraco.com/welcome/?utm_source=core&utm_medium=dashboard&utm_campaign=docs"
+    },
+    {
+      "priority": "Normal",
+      "header": "Umbraco Forum",
+      "body": "<p>Get support and inspiration from other Umbraco experts</p>",
+      "buttonText": "",
+      "imageUrl": "",
+      "imageAltText": "",
+      "url": "https://forum.umbraco.com/?utm_source=core&utm_medium=dashboard"
+    },
+    {
+      "priority": "Normal",
+      "header": "Umbraco Learning Base",
+      "body": "<p>Free video tutorials to jumpstart your journey with the CMS</p>",
+      "buttonText": "",
+      "imageUrl": "",
+      "imageAltText": "",
+      "url": "https://www.youtube.com/channel/UCbGfwSAPflebnadyhEPw-wA?ybp=-gENTGVhcm5pbmcgQmFzZQ%253D%253D"
+    },
+    {
+      "priority": "Normal",
+      "header": "Training",
+      "body": "<p>Flexible, on-demand training for developers, editors, and teams</p>",
+      "buttonText": "",
+      "imageUrl": "",
+      "imageAltText": "",
+      "url": "https://umbraco.com/training/?utm_source=core&utm_medium=dashboard&utm_content=text&utm_campaign=training"
+    }
+  ]
+}

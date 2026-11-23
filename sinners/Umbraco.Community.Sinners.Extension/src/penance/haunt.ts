@@ -7,6 +7,9 @@
 //             webinar stage its speaker has walked off, the keynote with empty stools, the community
 //             photo with a rabbit that has seen things), and stay that way. Umbraco's news feed
 //             decides which cards there are; a picture card we have no version of goes dark and says so.
+//             On the stage rig the feed is a snapshot the package carries (public/news, served by the
+//             backend's FrozenNewsMiddleware): the pawn, the keynote and the photo, whatever the
+//             feed's editors do that week.
 //             With the talk's clicker driving, each card turns on a press that was meant to light the
 //             exhibit's spotlight: the page refuses ("NO", for a moment, where every word was) and
 //             turns a card instead. Three refusals, then the press gets its spotlight (refuse())
@@ -242,8 +245,10 @@ const STOOL = (x: number) => `
         <ellipse cx="0" cy="204" rx="24" ry="5"/>
     </g>`;
 
-// The order is the order they turn in. The feed changes (it did, two days before the talk): a card
-// that is no longer in it is simply never found, and a picture card we have never seen gets UNKNOWN.
+// The order is the order they turn in. The live feed changes (twice in the week of the talk: the
+// review card went, then the webinar card came and went): a card that is not in it is simply never
+// found, and a picture card we have never seen gets UNKNOWN. The snapshot (public/news) has the
+// pawn, the keynote and the photo, under file names these `match` on: rename neither without the other.
 const POSSESSIONS: Possession[] = [
     {
         match: 'g2',
@@ -593,9 +598,9 @@ let refusalsFor: Element | undefined;
 
 /**
  * The clicker pressed for the spotlight on the Welcome dashboard. While there is a card left to turn
- * the page refuses: it says NO, turns the next card (the pawn, then the stage its speaker has left,
- * then the rest at once: the keynote without its hosts, the photo and its rabbit), and this returns
- * true, so the press does nothing else. With no card left (or none to begin with: no news, no
+ * the page refuses: it says NO, turns the next card (with the snapshot's three: the pawn, then the
+ * keynote without its hosts, then the photo and its rabbit; with more cards the third press turns
+ * all that are left), and this returns true, so the press does nothing else. With no card left (or none to begin with: no news, no
  * pictures, eggs off, no sin) it returns false and the press lights the spotlight.
  */
 export function refuse(): boolean {

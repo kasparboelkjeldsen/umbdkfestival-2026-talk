@@ -9,8 +9,9 @@ namespace Umbraco.Community.Sinners.Backend.Composers;
 /// <summary>
 /// Adds the stage rig's middleware at the very start of Umbraco's pipeline, without touching Program.cs (that
 /// would be a sin against commandment IV): the auto-login (<see cref="AutoLoginMiddleware"/>, does nothing unless
-/// Sinners:AutoLoginEmail is set) and the deck's sin bridge (<see cref="SinStatusMiddleware"/>). Both only answer
-/// in Development, to requests from this machine.
+/// Sinners:AutoLoginEmail is set), the deck's sin bridge (<see cref="SinStatusMiddleware"/>) and the Welcome
+/// dashboard's frozen news cards (<see cref="FrozenNewsMiddleware"/>). All three only answer in Development, to
+/// requests from this machine.
 /// </summary>
 public class AutoLoginComposer : IComposer
 {
@@ -22,6 +23,7 @@ public class AutoLoginComposer : IComposer
                 {
                     app.UseMiddleware<AutoLoginMiddleware>();
                     app.UseMiddleware<SinStatusMiddleware>();
+                    app.UseMiddleware<FrozenNewsMiddleware>();
                 },
             }));
 }

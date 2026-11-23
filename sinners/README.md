@@ -35,6 +35,9 @@ Read this part twice:
   and prunes old versions. With `Sinners:SeedSins` on it also plants hundreds of nodes at boot.
 - `GET /umbraco/sinners/status` answers **without authentication** (Development only, local
   requests only), so the talk's deck can poll it.
+- The "Welcome to Umbraco" dashboard shows **old news** (Development only, local requests only):
+  the cards as they were on 23 November 2026, from a snapshot the package carries, because the
+  feed changed twice in the week of the talk. `"Sinners": { "LiveNews": true }` gives you today's.
 - It is deliberately **not** on NuGet and **not** tagged for the Umbraco Marketplace,
   and it never will be. The only way it gets into a solution is if you put it there
   with your own hands, knowing exactly what it is.
@@ -99,10 +102,13 @@ exhibit pages autofocus their name field.
 While any sin is left, Umbraco itself is a little possessed (`penance/haunt.ts`): names in the
 trees flicker into something else for a second (Recycle Sin, Tongues, Dismember Types), a few
 buttons too (Save and perish), and the "Welcome to Umbraco" dashboard in Content turns, card by
-card, about ten seconds after you arrive: a pawn that ran out of options, a webinar stage its
-speaker has walked off ("where did he go?"), a keynote with three empty stools, and the community
-photo with a rabbit that has seen things. Umbraco's news feed decides which cards there are that
-day; a picture card the package has never seen goes dark and says so. The "A" of your avatar, top right, shakes,
+card, about ten seconds after you arrive: a pawn that ran out of options, a keynote with three
+empty stools, and the community photo with a rabbit that has seen things. The cards are a
+snapshot of Umbraco's news feed (`Umbraco.Community.Sinners.Extension/public/news`, answered by
+`FrozenNewsMiddleware` in Development), so they are the ones the package has versions of and they
+are there without a network. With `LiveNews` on, Umbraco's feed decides which cards there are that
+day: a webinar card finds its stage empty ("where did he go?"), and a picture card the package has
+never seen goes dark and says so. The "A" of your avatar, top right, shakes,
 swells and becomes a glowing pentagram about five seconds after the Board first opens (and a
 letter again at zero sins), and in VII's partial view a comment nobody wrote types itself after
 the lines that walk the tree. Nothing is changed for good, it all stops at
@@ -226,6 +232,8 @@ The clicker won. We do not speak of the walrus.
 
 ## License
 
-[MIT](LICENSE).
+[MIT](LICENSE), for the code. The news cards in `public/news` and `ui/news` (their words and
+pictures) are Umbraco's, copied from the backoffice's news feed so the demo shows the same cards
+every time; they are not covered by this license.
 
 *Built for the talk. Blessed by no one. `git blame` knows what you did.*
