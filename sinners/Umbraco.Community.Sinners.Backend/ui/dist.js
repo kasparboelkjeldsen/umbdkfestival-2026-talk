@@ -261,12 +261,12 @@ var ce = globalThis, le = (e) => e, ue = ce.trustedTypes, de = ue ? ue.createPol
 	_$litType$: e,
 	strings: t,
 	values: n
-}))(1), Ee = Symbol.for("lit-noChange"), C = Symbol.for("lit-nothing"), De = /* @__PURE__ */ new WeakMap(), w = b.createTreeWalker(b, 129);
-function Oe(e, t) {
+}))(1), C = Symbol.for("lit-noChange"), w = Symbol.for("lit-nothing"), Ee = /* @__PURE__ */ new WeakMap(), T = b.createTreeWalker(b, 129);
+function De(e, t) {
 	if (!_e(e) || !e.hasOwnProperty("raw")) throw Error("invalid template strings array");
 	return de === void 0 ? t : de.createHTML(t);
 }
-var ke = (e, t) => {
+var Oe = (e, t) => {
 	let n = e.length - 1, r = [], i, a = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", o = be;
 	for (let t = 0; t < n; t++) {
 		let n = e[t], s, c, l = -1, u = 0;
@@ -274,17 +274,17 @@ var ke = (e, t) => {
 		let d = o === x && e[t + 1].startsWith("/>") ? " " : "";
 		a += o === be ? n + me : l >= 0 ? (r.push(s), n.slice(0, l) + fe + n.slice(l) + y + d) : n + y + (l === -2 ? t : d);
 	}
-	return [Oe(e, a + (e[n] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
-}, Ae = class e {
+	return [De(e, a + (e[n] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
+}, ke = class e {
 	constructor({ strings: t, _$litType$: n }, r) {
 		let i;
 		this.parts = [];
-		let a = 0, o = 0, s = t.length - 1, c = this.parts, [l, u] = ke(t, n);
-		if (this.el = e.createElement(l, r), w.currentNode = this.el.content, n === 2 || n === 3) {
+		let a = 0, o = 0, s = t.length - 1, c = this.parts, [l, u] = Oe(t, n);
+		if (this.el = e.createElement(l, r), T.currentNode = this.el.content, n === 2 || n === 3) {
 			let e = this.el.content.firstChild;
 			e.replaceWith(...e.childNodes);
 		}
-		for (; (i = w.nextNode()) !== null && c.length < s;) {
+		for (; (i = T.nextNode()) !== null && c.length < s;) {
 			if (i.nodeType === 1) {
 				if (i.hasAttributes()) for (let e of i.getAttributeNames()) if (e.endsWith(fe)) {
 					let t = u[o++], n = i.getAttribute(e).split(y), r = /([.?@])?(.*)/.exec(t);
@@ -293,7 +293,7 @@ var ke = (e, t) => {
 						index: a,
 						name: r[2],
 						strings: n,
-						ctor: r[1] === "." ? Pe : r[1] === "?" ? Fe : r[1] === "@" ? Ie : Ne
+						ctor: r[1] === "." ? Ne : r[1] === "?" ? Pe : r[1] === "@" ? Fe : Me
 					}), i.removeAttribute(e);
 				} else e.startsWith(y) && (c.push({
 					type: 6,
@@ -303,7 +303,7 @@ var ke = (e, t) => {
 					let e = i.textContent.split(y), t = e.length - 1;
 					if (t > 0) {
 						i.textContent = ue ? ue.emptyScript : "";
-						for (let n = 0; n < t; n++) i.append(e[n], he()), w.nextNode(), c.push({
+						for (let n = 0; n < t; n++) i.append(e[n], he()), T.nextNode(), c.push({
 							type: 2,
 							index: ++a
 						});
@@ -329,12 +329,12 @@ var ke = (e, t) => {
 		return n.innerHTML = e, n;
 	}
 };
-function T(e, t, n = e, r) {
-	if (t === Ee) return t;
+function E(e, t, n = e, r) {
+	if (t === C) return t;
 	let i = r === void 0 ? n._$Cl : n._$Co?.[r], a = ge(t) ? void 0 : t._$litDirective$;
-	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = T(e, i._$AS(e, t.values), i, r)), t;
+	return i?.constructor !== a && (i?._$AO?.(!1), a === void 0 ? i = void 0 : (i = new a(e), i._$AT(e, n, r)), r === void 0 ? n._$Cl = i : (n._$Co ??= [])[r] = i), i !== void 0 && (t = E(e, i._$AS(e, t.values), i, r)), t;
 }
-var je = class {
+var Ae = class {
 	constructor(e, t) {
 		this._$AV = [], this._$AN = void 0, this._$AD = e, this._$AM = t;
 	}
@@ -346,27 +346,27 @@ var je = class {
 	}
 	u(e) {
 		let { el: { content: t }, parts: n } = this._$AD, r = (e?.creationScope ?? b).importNode(t, !0);
-		w.currentNode = r;
-		let i = w.nextNode(), a = 0, o = 0, s = n[0];
+		T.currentNode = r;
+		let i = T.nextNode(), a = 0, o = 0, s = n[0];
 		for (; s !== void 0;) {
 			if (a === s.index) {
 				let t;
-				s.type === 2 ? t = new Me(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new Le(i, this, e)), this._$AV.push(t), s = n[++o];
+				s.type === 2 ? t = new je(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new Ie(i, this, e)), this._$AV.push(t), s = n[++o];
 			}
-			a !== s?.index && (i = w.nextNode(), a++);
+			a !== s?.index && (i = T.nextNode(), a++);
 		}
-		return w.currentNode = b, r;
+		return T.currentNode = b, r;
 	}
 	p(e) {
 		let t = 0;
 		for (let n of this._$AV) n !== void 0 && (n.strings === void 0 ? n._$AI(e[t]) : (n._$AI(e, n, t), t += n.strings.length - 2)), t++;
 	}
-}, Me = class e {
+}, je = class e {
 	get _$AU() {
 		return this._$AM?._$AU ?? this._$Cv;
 	}
 	constructor(e, t, n, r) {
-		this.type = 2, this._$AH = C, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = n, this.options = r, this._$Cv = r?.isConnected ?? !0;
+		this.type = 2, this._$AH = w, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = n, this.options = r, this._$Cv = r?.isConnected ?? !0;
 	}
 	get parentNode() {
 		let e = this._$AA.parentNode, t = this._$AM;
@@ -379,7 +379,7 @@ var je = class {
 		return this._$AB;
 	}
 	_$AI(e, t = this) {
-		e = T(this, e, t), ge(e) ? e === C || e == null || e === "" ? (this._$AH !== C && this._$AR(), this._$AH = C) : e !== this._$AH && e !== Ee && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? ve(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
+		e = E(this, e, t), ge(e) ? e === w || e == null || e === "" ? (this._$AH !== w && this._$AR(), this._$AH = w) : e !== this._$AH && e !== C && this._(e) : e._$litType$ === void 0 ? e.nodeType === void 0 ? ve(e) ? this.k(e) : this._(e) : this.T(e) : this.$(e);
 	}
 	O(e) {
 		return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -388,19 +388,19 @@ var je = class {
 		this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
 	}
 	_(e) {
-		this._$AH !== C && ge(this._$AH) ? this._$AA.nextSibling.data = e : this.T(b.createTextNode(e)), this._$AH = e;
+		this._$AH !== w && ge(this._$AH) ? this._$AA.nextSibling.data = e : this.T(b.createTextNode(e)), this._$AH = e;
 	}
 	$(e) {
-		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = Ae.createElement(Oe(n.h, n.h[0]), this.options)), n);
+		let { values: t, _$litType$: n } = e, r = typeof n == "number" ? this._$AC(e) : (n.el === void 0 && (n.el = ke.createElement(De(n.h, n.h[0]), this.options)), n);
 		if (this._$AH?._$AD === r) this._$AH.p(t);
 		else {
-			let e = new je(r, this), n = e.u(this.options);
+			let e = new Ae(r, this), n = e.u(this.options);
 			e.p(t), this.T(n), this._$AH = e;
 		}
 	}
 	_$AC(e) {
-		let t = De.get(e.strings);
-		return t === void 0 && De.set(e.strings, t = new Ae(e)), t;
+		let t = Ee.get(e.strings);
+		return t === void 0 && Ee.set(e.strings, t = new ke(e)), t;
 	}
 	k(t) {
 		_e(this._$AH) || (this._$AH = [], this._$AR());
@@ -417,7 +417,7 @@ var je = class {
 	setConnected(e) {
 		this._$AM === void 0 && (this._$Cv = e, this._$AP?.(e));
 	}
-}, Ne = class {
+}, Me = class {
 	get tagName() {
 		return this.element.tagName;
 	}
@@ -425,47 +425,47 @@ var je = class {
 		return this._$AM._$AU;
 	}
 	constructor(e, t, n, r, i) {
-		this.type = 1, this._$AH = C, this._$AN = void 0, this.element = e, this.name = t, this._$AM = r, this.options = i, n.length > 2 || n[0] !== "" || n[1] !== "" ? (this._$AH = Array(n.length - 1).fill(/* @__PURE__ */ new String()), this.strings = n) : this._$AH = C;
+		this.type = 1, this._$AH = w, this._$AN = void 0, this.element = e, this.name = t, this._$AM = r, this.options = i, n.length > 2 || n[0] !== "" || n[1] !== "" ? (this._$AH = Array(n.length - 1).fill(/* @__PURE__ */ new String()), this.strings = n) : this._$AH = w;
 	}
 	_$AI(e, t = this, n, r) {
 		let i = this.strings, a = !1;
-		if (i === void 0) e = T(this, e, t, 0), a = !ge(e) || e !== this._$AH && e !== Ee, a && (this._$AH = e);
+		if (i === void 0) e = E(this, e, t, 0), a = !ge(e) || e !== this._$AH && e !== C, a && (this._$AH = e);
 		else {
 			let r = e, o, s;
-			for (e = i[0], o = 0; o < i.length - 1; o++) s = T(this, r[n + o], t, o), s === Ee && (s = this._$AH[o]), a ||= !ge(s) || s !== this._$AH[o], s === C ? e = C : e !== C && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
+			for (e = i[0], o = 0; o < i.length - 1; o++) s = E(this, r[n + o], t, o), s === C && (s = this._$AH[o]), a ||= !ge(s) || s !== this._$AH[o], s === w ? e = w : e !== w && (e += (s ?? "") + i[o + 1]), this._$AH[o] = s;
 		}
 		a && !r && this.j(e);
 	}
 	j(e) {
-		e === C ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
+		e === w ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
 	}
-}, Pe = class extends Ne {
+}, Ne = class extends Me {
 	constructor() {
 		super(...arguments), this.type = 3;
 	}
 	j(e) {
-		this.element[this.name] = e === C ? void 0 : e;
+		this.element[this.name] = e === w ? void 0 : e;
 	}
-}, Fe = class extends Ne {
+}, Pe = class extends Me {
 	constructor() {
 		super(...arguments), this.type = 4;
 	}
 	j(e) {
-		this.element.toggleAttribute(this.name, !!e && e !== C);
+		this.element.toggleAttribute(this.name, !!e && e !== w);
 	}
-}, Ie = class extends Ne {
+}, Fe = class extends Me {
 	constructor(e, t, n, r, i) {
 		super(e, t, n, r, i), this.type = 5;
 	}
 	_$AI(e, t = this) {
-		if ((e = T(this, e, t, 0) ?? C) === Ee) return;
-		let n = this._$AH, r = e === C && n !== C || e.capture !== n.capture || e.once !== n.once || e.passive !== n.passive, i = e !== C && (n === C || r);
+		if ((e = E(this, e, t, 0) ?? w) === C) return;
+		let n = this._$AH, r = e === w && n !== w || e.capture !== n.capture || e.once !== n.once || e.passive !== n.passive, i = e !== w && (n === w || r);
 		r && this.element.removeEventListener(this.name, this, n), i && this.element.addEventListener(this.name, this, e), this._$AH = e;
 	}
 	handleEvent(e) {
 		typeof this._$AH == "function" ? this._$AH.call(this.options?.host ?? this.element, e) : this._$AH.handleEvent(e);
 	}
-}, Le = class {
+}, Ie = class {
 	constructor(e, t, n) {
 		this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = n;
 	}
@@ -473,18 +473,18 @@ var je = class {
 		return this._$AM._$AU;
 	}
 	_$AI(e) {
-		T(this, e);
+		E(this, e);
 	}
-}, Re = ce.litHtmlPolyfillSupport;
-Re?.(Ae, Me), (ce.litHtmlVersions ??= []).push("3.3.2");
-var ze = (e, t, n) => {
+}, Le = ce.litHtmlPolyfillSupport;
+Le?.(ke, je), (ce.litHtmlVersions ??= []).push("3.3.2");
+var Re = (e, t, n) => {
 	let r = n?.renderBefore ?? t, i = r._$litPart$;
 	if (i === void 0) {
 		let e = n?.renderBefore ?? null;
-		r._$litPart$ = i = new Me(t.insertBefore(he(), e), e, void 0, n ?? {});
+		r._$litPart$ = i = new je(t.insertBefore(he(), e), e, void 0, n ?? {});
 	}
 	return i._$AI(e), i;
-}, Be = globalThis, E = class extends v {
+}, ze = globalThis, D = class extends v {
 	constructor() {
 		super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
 	}
@@ -494,7 +494,7 @@ var ze = (e, t, n) => {
 	}
 	update(e) {
 		let t = this.render();
-		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = ze(t, this.renderRoot, this.renderOptions);
+		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Re(t, this.renderRoot, this.renderOptions);
 	}
 	connectedCallback() {
 		super.connectedCallback(), this._$Do?.setConnected(!0);
@@ -503,25 +503,25 @@ var ze = (e, t, n) => {
 		super.disconnectedCallback(), this._$Do?.setConnected(!1);
 	}
 	render() {
-		return Ee;
+		return C;
 	}
 };
-E._$litElement$ = !0, E.finalized = !0, Be.litElementHydrateSupport?.({ LitElement: E });
-var Ve = Be.litElementPolyfillSupport;
-Ve?.({ LitElement: E }), (Be.litElementVersions ??= []).push("4.2.2");
+D._$litElement$ = !0, D.finalized = !0, ze.litElementHydrateSupport?.({ LitElement: D });
+var Be = ze.litElementPolyfillSupport;
+Be?.({ LitElement: D }), (ze.litElementVersions ??= []).push("4.2.2");
 //#endregion
 //#region node_modules/@lit/reactive-element/decorators/custom-element.js
-var D = (e) => (t, n) => {
+var O = (e) => (t, n) => {
 	n === void 0 ? customElements.define(e, t) : n.addInitializer(() => {
 		customElements.define(e, t);
 	});
-}, He = {
+}, Ve = {
 	attribute: !0,
 	type: String,
 	converter: ae,
 	reflect: !1,
 	hasChanged: oe
-}, Ue = (e = He, t, n) => {
+}, He = (e = Ve, t, n) => {
 	let { kind: r, metadata: i } = n, a = globalThis.litPropertyMetadata.get(i);
 	if (a === void 0 && globalThis.litPropertyMetadata.set(i, a = /* @__PURE__ */ new Map()), r === "setter" && ((e = Object.create(e)).wrapped = !0), a.set(n.name, e), r === "accessor") {
 		let { name: r } = n;
@@ -544,16 +544,16 @@ var D = (e) => (t, n) => {
 	}
 	throw Error("Unsupported decorator location: " + r);
 };
-function We(e) {
-	return (t, n) => typeof n == "object" ? Ue(e, t, n) : ((e, t, n) => {
+function Ue(e) {
+	return (t, n) => typeof n == "object" ? He(e, t, n) : ((e, t, n) => {
 		let r = t.hasOwnProperty(n);
 		return t.constructor.createProperty(n, e), r ? Object.getOwnPropertyDescriptor(t, n) : void 0;
 	})(e, t, n);
 }
 //#endregion
 //#region node_modules/@lit/reactive-element/decorators/state.js
-function O(e) {
-	return We({
+function k(e) {
+	return Ue({
 		...e,
 		state: !0,
 		attribute: !1
@@ -561,12 +561,12 @@ function O(e) {
 }
 //#endregion
 //#region src/penance/spooky-themes.ts
-function Ge(e, t, n) {
+function We(e, t, n) {
 	if (e.length !== 7 || t.length !== 7) return e;
 	let r = parseInt(e.slice(1, 3), 16), i = parseInt(e.slice(3, 5), 16), a = parseInt(e.slice(5, 7), 16), o = parseInt(t.slice(1, 3), 16), s = parseInt(t.slice(3, 5), 16), c = parseInt(t.slice(5, 7), 16);
 	return `#${Math.round(r + (o - r) * n).toString(16).padStart(2, "0")}${Math.round(i + (s - i) * n).toString(16).padStart(2, "0")}${Math.round(a + (c - a) * n).toString(16).padStart(2, "0")}`;
 }
-var Ke = {
+var Ge = {
 	"--uui-color-selected": "#316dca",
 	"--uui-color-selected-emphasis": "#3e79d0",
 	"--uui-color-selected-standalone": "#5b8dd7",
@@ -612,7 +612,7 @@ var Ke = {
 	"--uui-color-positive-emphasis": "#347d39",
 	"--uui-color-positive-standalone": "#347d39",
 	"--uui-color-positive-contrast": "#eeeeef"
-}, qe = {
+}, Ke = {
 	"--uui-color-selected": "#e2440c",
 	"--uui-color-selected-emphasis": "#f45a14",
 	"--uui-color-selected-standalone": "#ff7a22",
@@ -659,17 +659,17 @@ var Ke = {
 	"--uui-color-positive-standalone": "#cfc83a",
 	"--uui-color-positive-contrast": "#1a1500"
 };
-function Je(e) {
-	let t = (e - 1) / 9, n = Object.keys(Ke).map((e) => `    ${e}: ${Ge(Ke[e], qe[e], t)};`);
+function qe(e) {
+	let t = (e - 1) / 9, n = Object.keys(Ge).map((e) => `    ${e}: ${We(Ge[e], Ke[e], t)};`);
 	return n.push("    --uui-color-scheme: dark;"), n.push("    --sinners-action-btn-bg: #e64241;"), n.push("    --sinners-action-btn-color: #ffffff;"), n.push(`    --sinners-on-bright: ${e >= 5 ? "#1d0d00" : "#ffffff"};`), `:root {\n${n.join("\n")}\n}`;
 }
-var Ye = (e) => `sinners-spooky-${e}`;
-function Xe(e) {
+var Je = (e) => `sinners-spooky-${e}`;
+function Ye(e) {
 	for (let t = 1; t <= 10; t++) {
-		let n = Je(t);
+		let n = qe(t);
 		e.register({
 			type: "theme",
-			alias: Ye(t),
+			alias: Je(t),
 			name: `☠ Sinners: Abyss (Level ${t})`,
 			css: () => Promise.resolve({ default: n }),
 			weight: 50 - t
@@ -678,7 +678,7 @@ function Xe(e) {
 }
 //#endregion
 //#region src/penance/bridge.ts
-function Ze(e) {
+function Xe(e) {
 	if (window.parent !== window) try {
 		window.parent.postMessage({
 			source: "sinners",
@@ -686,28 +686,28 @@ function Ze(e) {
 		}, location.origin);
 	} catch {}
 }
-function k(e, t, n = !1) {
-	console.log(`[BRIDGE] absolved commandment=${e} action=${t} pretended=${n}`), Ze({
+function A(e, t, n = !1) {
+	console.log(`[BRIDGE] absolved commandment=${e} action=${t} pretended=${n}`), Xe({
 		type: "absolved",
 		commandment: e,
 		action: t,
 		pretended: n
 	});
 }
+function Ze() {
+	Xe({ type: "board" });
+}
 function Qe() {
-	Ze({ type: "board" });
+	Xe({ type: "hell" });
 }
 function $e() {
-	Ze({ type: "hell" });
-}
-function et() {
-	console.log("[BRIDGE] end of the script"), Ze({ type: "end" });
+	console.log("[BRIDGE] end of the script"), Xe({ type: "end" });
 }
 //#endregion
 //#region src/penance/spotlight.ts
-var tt = (e) => e == null ? [] : Array.isArray(e) ? e : [e];
-function A(e, t, n, r) {
-	let i = tt(n), a = tt(r), o = (e) => (e.textContent ?? "").replace(/\u00a0/g, " "), s = (e) => (!i.length || i.some((t) => o(e).includes(t))) && (!a.length || a.includes(e.getAttribute("label") ?? "")), c = [], l = [e];
+var et = (e) => e == null ? [] : Array.isArray(e) ? e : [e];
+function j(e, t, n, r) {
+	let i = et(n), a = et(r), o = (e) => (e.textContent ?? "").replace(/\u00a0/g, " "), s = (e) => (!i.length || i.some((t) => o(e).includes(t))) && (!a.length || a.includes(e.getAttribute("label") ?? "")), c = [], l = [e];
 	for (; l.length;) {
 		let e = l.pop();
 		for (let n of e.querySelectorAll(t)) s(n) && c.push(n);
@@ -715,8 +715,8 @@ function A(e, t, n, r) {
 	}
 	return c;
 }
-var nt = "#c3f240";
-function rt(e) {
+var tt = "#c3f240";
+function nt(e) {
 	let { selector: t, text: n, label: r, all: i = !1, expand: a = !1, pad: o = 6 } = typeof e == "string" ? { selector: e } : e, s = document.createElement("div");
 	s.setAttribute("data-sinners-spotlight", ""), Object.assign(s.style, {
 		position: "fixed",
@@ -729,13 +729,13 @@ function rt(e) {
 		background: "transparent",
 		overflow: "visible",
 		borderRadius: "10px",
-		boxShadow: `0 0 0 4px ${nt}, 0 0 26px 10px rgba(195, 242, 64, 0.75), 0 0 0 200vmax rgba(6, 11, 30, 0.55)`,
+		boxShadow: `0 0 0 4px ${tt}, 0 0 26px 10px rgba(195, 242, 64, 0.75), 0 0 0 200vmax rgba(6, 11, 30, 0.55)`,
 		opacity: "0",
 		transition: "opacity 0.35s ease-out, left 0.2s, top 0.2s, width 0.2s, height 0.2s"
 	});
 	let c = null, l = !1, u = /* @__PURE__ */ new WeakSet(), d = performance.now();
 	function f() {
-		let e = A(document, t, n, r);
+		let e = j(document, t, n, r);
 		if (a) for (let t of e) u.has(t) || t.hasAttribute("show-children") || (u.add(t), t.shadowRoot?.querySelector("#caret-button")?.click());
 		let f = e.map((e) => e.getBoundingClientRect()).filter((e) => e.width > 0 && e.height > 0), p = i ? f : f.slice(0, 1);
 		if (!p.length) {
@@ -779,17 +779,17 @@ function rt(e) {
 }
 //#endregion
 //#region src/penance/pointer.ts
-var it = 6, j = "255, 221, 51", M = 46, at = 92, ot = `<svg viewBox="0 0 24 24" width="${M}" height="${M}" aria-hidden="true" style="position:absolute;left:0;top:0;display:block;filter:drop-shadow(0 3px 5px rgba(0,0,0,.55))">
+var rt = 6, M = "255, 221, 51", N = 46, it = 92, at = `<svg viewBox="0 0 24 24" width="${N}" height="${N}" aria-hidden="true" style="position:absolute;left:0;top:0;display:block;filter:drop-shadow(0 3px 5px rgba(0,0,0,.55))">
     <path d="M3 2 L3 19.4 L7.7 15.1 L10.8 21.9 L13.7 20.6 L10.7 14 L17 13.7 Z" style="fill:#fff;stroke:#111;stroke-width:1.5;stroke-linejoin:round"/>
-</svg>`, st = {
-	x: 3 / 24 * M,
-	y: 2 / 24 * M
-}, ct = (e) => new Promise((t) => setTimeout(t, e));
-function lt(e) {
+</svg>`, ot = {
+	x: 3 / 24 * N,
+	y: 2 / 24 * N
+}, st = (e) => new Promise((t) => setTimeout(t, e));
+function ct(e) {
 	let t = e.getBoundingClientRect();
 	if (!(t.width <= 0 || t.height <= 0) && !(t.bottom < 8 || t.top > innerHeight - 8 || t.right < 8 || t.left > innerWidth - 8)) return t;
 }
-function ut(e) {
+function lt(e) {
 	let t = e;
 	for (; t;) {
 		if (t = (t instanceof Element ? t.assignedSlot : null) ?? t.parentNode ?? (t instanceof ShadowRoot ? t.host : null), t instanceof ShadowRoot && (t = t.host), !(t instanceof Element)) continue;
@@ -797,7 +797,7 @@ function ut(e) {
 		if ((e === "auto" || e === "scroll") && t.scrollHeight > t.clientHeight + 4) return t;
 	}
 }
-function dt(e, t, n = 480) {
+function ut(e, t, n = 480) {
 	let r = e.scrollTop, i = performance.now();
 	return new Promise((a) => {
 		let o = () => {
@@ -807,7 +807,7 @@ function dt(e, t, n = 480) {
 		o();
 	});
 }
-function ft() {
+function dt() {
 	let e = document.createElement("div");
 	Object.assign(e.style, {
 		position: "fixed",
@@ -826,28 +826,28 @@ function ft() {
 	} catch {}
 	return e;
 }
-function pt(e, t) {
+function ft(e, t) {
 	return e.length <= t ? e : Array.from({ length: t }, (n, r) => e[Math.round(r * (e.length - 1) / (t - 1))]);
 }
-async function mt(e) {
+async function pt(e) {
 	let t = { restore: () => {} }, n = t.restore;
 	if (e = e.filter((e) => e.isConnected), !e.length || document.hidden) return t;
-	let r = e.filter(lt);
+	let r = e.filter(ct);
 	if (!r.length) {
-		let i = ut(e[0]);
+		let i = lt(e[0]);
 		if (!i) return t;
 		let a = i.scrollTop, o = e[0].getBoundingClientRect(), s = i.getBoundingClientRect(), c = Math.max(s.top, 0), l = Math.min(s.bottom, innerHeight);
-		if (n = () => void dt(i, a), await dt(i, a + o.top + o.height / 2 - (c + l) / 2), await ct(150), r = e.filter(lt), !r.length) return { restore: n };
+		if (n = () => void ut(i, a), await ut(i, a + o.top + o.height / 2 - (c + l) / 2), await st(150), r = e.filter(ct), !r.length) return { restore: n };
 	}
-	r = pt(r, it);
-	let i = ft(), a = 0;
+	r = ft(r, rt);
+	let i = dt(), a = 0;
 	return r.forEach((e, t) => {
 		let n = e.getBoundingClientRect(), r = n.left + n.width * (.5 + (t * 37 % 21 - 10) / 100), o = n.top + n.height * (.55 + (t * 53 % 17 - 8) / 100), s = t % 2 ? -1 : 1, c = (28 + t * 47 % 40) * Math.PI / 180, l = 380 + t * 97 % 180, u = Math.max(20, Math.min(innerWidth - 20, r + s * Math.cos(c) * l)), d = Math.min(innerHeight + 60, o + Math.sin(c) * l), f = (u + r) / 2 + s * 46, p = (d + o) / 2 - 30, m = t * 110, h = 640 + t * 71 % 220;
 		a = Math.max(a, m + h);
 		let g = document.createElement("div");
-		g.style.cssText = `position:absolute;left:${-st.x}px;top:${-st.y}px;width:${M}px;height:${M}px;will-change:transform;opacity:0`, g.innerHTML = `
-            <i style="position:absolute;left:${st.x - at / 2}px;top:${st.y - at / 2}px;width:${at}px;height:${at}px;box-sizing:border-box;border-radius:50%;background:rgba(${j},.3);border:3px solid rgba(${j},.95);box-shadow:0 0 18px 4px rgba(${j},.45)"></i>
-            ${ot}`, i.appendChild(g);
+		g.style.cssText = `position:absolute;left:${-ot.x}px;top:${-ot.y}px;width:${N}px;height:${N}px;will-change:transform;opacity:0`, g.innerHTML = `
+            <i style="position:absolute;left:${ot.x - it / 2}px;top:${ot.y - it / 2}px;width:${it}px;height:${it}px;box-sizing:border-box;border-radius:50%;background:rgba(${M},.3);border:3px solid rgba(${M},.95);box-shadow:0 0 18px 4px rgba(${M},.45)"></i>
+            ${at}`, i.appendChild(g);
 		let _ = (e, t, n = 1) => `translate(${e}px, ${t}px) scale(${n})`;
 		g.animate([
 			{
@@ -881,13 +881,13 @@ async function mt(e) {
 			], {
 				duration: 220,
 				easing: "ease-out"
-			}), g.firstElementChild.animate([{ background: `rgba(${j},.95)` }, { background: `rgba(${j},.3)` }], {
+			}), g.firstElementChild.animate([{ background: `rgba(${M},.95)` }, { background: `rgba(${M},.3)` }], {
 				duration: 380,
 				easing: "ease-out"
 			});
 			for (let [e, t] of [0, 140].entries()) {
 				let n = document.createElement("i");
-				n.style.cssText = `position:absolute;left:${r}px;top:${o}px;width:40px;height:40px;margin:-20px 0 0 -20px;box-sizing:border-box;border-radius:50%;border:${e ? 3 : 5}px solid rgba(${j},1);opacity:0`, i.insertBefore(n, i.firstChild), n.animate([{
+				n.style.cssText = `position:absolute;left:${r}px;top:${o}px;width:40px;height:40px;margin:-20px 0 0 -20px;box-sizing:border-box;border-radius:50%;border:${e ? 3 : 5}px solid rgba(${M},1);opacity:0`, i.insertBefore(n, i.firstChild), n.animate([{
 					transform: "scale(0.5)",
 					opacity: 1
 				}, {
@@ -901,11 +901,11 @@ async function mt(e) {
 				});
 			}
 			e.animate([{
-				outline: `4px solid rgba(${j},1)`,
+				outline: `4px solid rgba(${M},1)`,
 				outlineOffset: "2px",
 				filter: "brightness(1.5)"
 			}, {
-				outline: `4px solid rgba(${j},0)`,
+				outline: `4px solid rgba(${M},0)`,
 				outlineOffset: "10px",
 				filter: "none"
 			}], {
@@ -918,36 +918,36 @@ async function mt(e) {
 			duration: 280,
 			fill: "forwards"
 		}), setTimeout(() => i.remove(), 320);
-	}, a + 750), await ct(a + 160), { restore: n };
+	}, a + 750), await st(a + 160), { restore: n };
 }
 //#endregion
 //#region src/penance/haunt.ts
-var N = {
+var P = {
 	welcome: !0,
 	whispers: !0,
 	buttons: !0,
 	avatar: !0,
 	ghost: !0
-}, P = 0, ht = () => {
+}, F = 0, mt = () => {
 	try {
 		return localStorage.getItem("sinners-eggs") === "off";
 	} catch {
 		return !1;
 	}
 };
-function gt(e) {
+function ht(e) {
 	e.consumeContext(t, (t) => {
 		t && e.observe(t.theme, (e) => {
 			let t = /^sinners-spooky-(\d+)$/.exec(e ?? "");
-			P = t ? +t[1] : 0;
+			F = t ? +t[1] : 0;
 		}, "sinnersHaunt");
 	}), setInterval(() => {
 		if (document.hidden) return;
-		let e = P > 0 && !ht(), t = location.pathname;
-		N.welcome && t.includes("/section/content") && Bt(e), N.avatar && tn(e), N.ghost && /\/(partial-view|template)\//.test(t) && cn(e), e && N.whispers && yt(), e && N.buttons && wt();
+		let e = F > 0 && !mt(), t = location.pathname;
+		P.welcome && t.includes("/section/content") && Wt(e), P.avatar && ln(e), P.ghost && /\/(partial-view|template)\//.test(t) && hn(e), e && P.whispers && vt(), e && P.buttons && Ct();
 	}, 200);
 }
-var _t = {
+var gt = {
 	"Recycle Bin": "Recycle Sin",
 	"Log Viewer": "Sin Viewer",
 	Relations: "Blood Relations",
@@ -986,33 +986,33 @@ var _t = {
 	Search: "Seek",
 	Paging: "Raging",
 	Footer: "Cloven Footer"
-}, F = /* @__PURE__ */ new Set(), vt = 0;
-function yt() {
+}, I = /* @__PURE__ */ new Set(), _t = 0;
+function vt() {
 	let e = performance.now();
-	if (e - vt < 4300 - P * 310) return;
-	let t = A(document, "uui-menu-item").filter((e) => {
-		if (F.has(e) || !(e.getAttribute("label") in _t)) return !1;
+	if (e - _t < 4300 - F * 310) return;
+	let t = j(document, "uui-menu-item").filter((e) => {
+		if (I.has(e) || !(e.getAttribute("label") in gt)) return !1;
 		let t = e.getBoundingClientRect();
 		return t.height > 0 && t.bottom > 0 && t.top < innerHeight;
 	});
 	if (!t.length) return;
-	vt = e;
-	let n = t[Math.floor(Math.random() * t.length)], r = n.getAttribute("label"), i = _t[r];
-	F.add(n), n.label = i, setTimeout(() => {
-		n.label === i && (n.label = n.getAttribute("label") ?? r), F.delete(n);
-	}, 900 + P * 140);
+	_t = e;
+	let n = t[Math.floor(Math.random() * t.length)], r = n.getAttribute("label"), i = gt[r];
+	I.add(n), n.label = i, setTimeout(() => {
+		n.label === i && (n.label = n.getAttribute("label") ?? r), I.delete(n);
+	}, 900 + F * 140);
 }
-var bt = {
+var yt = {
 	"Save and publish": "Save and perish",
 	"Save and preview": "Save and repent",
 	Save: "Save us",
 	Create: "Summon"
-}, xt = 0;
-function St(e, t) {
+}, bt = 0;
+function xt(e, t) {
 	for (let n of e.childNodes) if (n.nodeType === Node.TEXT_NODE && n.nodeValue?.trim() === t) return n;
 }
-function Ct(e, t) {
-	let n = (e.textContent ?? "").trim(), r = n ? St(e, n) : void 0;
+function St(e, t) {
+	let n = (e.textContent ?? "").trim(), r = n ? xt(e, n) : void 0;
 	if (r) {
 		let e = r.data;
 		return r.data = t, () => {
@@ -1023,33 +1023,40 @@ function Ct(e, t) {
 		e.label === t && (e.label = e.getAttribute("label") ?? "");
 	};
 }
-function wt() {
+function Ct() {
 	let e = performance.now();
-	if (!(e - xt < 9e3 - P * 500)) for (let t of A(document, "uui-button")) {
-		let n = bt[(t.textContent ?? "").trim() || (t.getAttribute("label") ?? "")];
-		if (!n || F.has(t) || t.getBoundingClientRect().height === 0) continue;
-		let r = Ct(t, n);
+	if (!(e - bt < 9e3 - F * 500)) for (let t of j(document, "uui-button")) {
+		let n = yt[(t.textContent ?? "").trim() || (t.getAttribute("label") ?? "")];
+		if (!n || I.has(t) || t.getBoundingClientRect().height === 0) continue;
+		let r = St(t, n);
 		if (r) {
-			xt = e, F.add(t), setTimeout(() => {
-				r(), F.delete(t);
-			}, 1500 + P * 150);
+			bt = e, I.add(t), setTimeout(() => {
+				r(), I.delete(t);
+			}, 1500 + F * 150);
 			return;
 		}
 	}
 }
-var Tt = 2400, Et = 2300, Dt = 2600, Ot = "sinners-welcome-seen", kt = "sinners-presenter-state", At = 900, jt = () => {
+var wt = 2400, Tt = 2300, Et = 2600, Dt = "sinners-welcome-seen", Ot = "sinners-presenter-state", kt = 900, At = () => {
 	try {
-		return sessionStorage.getItem(Ot) === "1";
+		return sessionStorage.getItem(Dt) === "1";
 	} catch {
 		return !1;
 	}
-}, Mt = () => {
+}, jt = () => {
 	try {
-		return sessionStorage.getItem(kt) != null;
+		return sessionStorage.getItem(Ot) != null;
 	} catch {
 		return !1;
 	}
-}, Nt = [
+}, Mt = Array.from({ length: 28 }, (e, t) => `<rect class="e" x="${(t * 83 + 17) % 600}" y="-8" width="${4 + t % 3}" height="3" fill="${t % 3 ? "#ff7a1a" : "#ffd24a"}" style="animation-delay:${(-(t * .43) % 4).toFixed(2)}s;animation-duration:${(2.6 + t % 5 * .55).toFixed(2)}s"/>`).join(""), Nt = (e) => `
+    <g transform="translate(${e} 0)" fill="#0b0b0f" stroke="#ff5a1f" stroke-opacity="0.45" stroke-width="1.2">
+        <path d="M17 119 v-27 h8 v30 z"/>
+        <rect x="-24" y="118" width="48" height="9" rx="4"/>
+        <rect x="-3" y="127" width="6" height="74"/>
+        <path d="M-17 170 h34" fill="none" stroke-width="3"/>
+        <ellipse cx="0" cy="204" rx="24" ry="5"/>
+    </g>`, Pt = [
 	{
 		match: "g2",
 		title: "Write an honest review. Or else.",
@@ -1065,19 +1072,60 @@ var Tt = 2400, Et = 2300, Dt = 2600, Ot = "sinners-welcome-seen", kt = "sinners-
 		over: "\n            <svg class=\"gallows\" viewBox=\"0 0 600 300\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\">\n                <defs>\n                    <radialGradient id=\"sky\" cx=\"50%\" cy=\"38%\" r=\"75%\">\n                        <stop offset=\"0\" stop-color=\"#5a0f0a\"/><stop offset=\"1\" stop-color=\"#0c0202\"/>\n                    </radialGradient>\n                    <linearGradient id=\"wood\" x1=\"0\" x2=\"1\"><stop offset=\"0\" stop-color=\"#6b4a2c\"/><stop offset=\"1\" stop-color=\"#3a2614\"/></linearGradient>\n                </defs>\n                <rect width=\"600\" height=\"300\" fill=\"url(#sky)\"/>\n                <g fill=\"url(#wood)\" stroke=\"#1c1108\" stroke-width=\"2\">\n                    <rect x=\"150\" y=\"262\" width=\"230\" height=\"16\"/>\n                    <rect x=\"186\" y=\"34\" width=\"18\" height=\"230\"/>\n                    <rect x=\"186\" y=\"34\" width=\"190\" height=\"16\"/>\n                    <path d=\"M204 96 L250 50 L262 50 L204 110 Z\"/>\n                </g>\n                <g class=\"drop\"><g class=\"swing\">\n                    <line x1=\"346\" y1=\"-80\" x2=\"346\" y2=\"128\" stroke=\"#c9b48a\" stroke-width=\"5\"/>\n                    <ellipse cx=\"346\" cy=\"152\" rx=\"15\" ry=\"6\" fill=\"none\" stroke=\"#c9b48a\" stroke-width=\"5\"/>\n                    <g fill=\"#2a3fa0\" stroke=\"#111a4d\" stroke-width=\"2\">\n                        <circle cx=\"346\" cy=\"128\" r=\"21\"/>\n                        <path d=\"M333 150 L359 150 L372 216 L320 216 Z\"/>\n                        <rect x=\"312\" y=\"214\" width=\"68\" height=\"13\" rx=\"6\"/>\n                    </g>\n                    <path d=\"M338 123 l8 8 m0 -8 l-8 8 M350 123 l8 8 m0 -8 l-8 8\" stroke=\"#0b0f2a\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n                </g></g>\n                <g fill=\"url(#wood)\" stroke=\"#1c1108\" stroke-width=\"2\">\n                    <rect x=\"452\" y=\"226\" width=\"96\" height=\"52\"/>\n                    <rect x=\"470\" y=\"182\" width=\"70\" height=\"46\"/>\n                </g>\n                <g fill=\"#2a3fa0\" stroke=\"#111a4d\" stroke-width=\"2\">\n                    <circle cx=\"505\" cy=\"140\" r=\"15\"/>\n                    <path d=\"M496 154 L514 154 L522 182 L488 182 Z\"/>\n                </g>\n            </svg>"
 	},
 	{
+		match: "cloud-webinar",
+		title: "The Umbraco Cloud Webinar has lost its speaker",
+		text: "He was right here. He saw what you keep in your root, put down the clicker, and left. He is fine. He is the only one who is. The live Q&A goes ahead. Nobody answers.",
+		button: "Find him",
+		over: "\n            <svg class=\"gone\" viewBox=\"0 0 600 230\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\">\n                <defs>\n                    <radialGradient id=\"dim\" cx=\"34%\" cy=\"100%\" r=\"95%\">\n                        <stop offset=\"0\" stop-color=\"#000\" stop-opacity=\"0\"/><stop offset=\"1\" stop-color=\"#000\" stop-opacity=\"0.72\"/>\n                    </radialGradient>\n                    <linearGradient id=\"cone\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n                        <stop offset=\"0\" stop-color=\"#ffe9c2\" stop-opacity=\"0.36\"/><stop offset=\"1\" stop-color=\"#ffe9c2\" stop-opacity=\"0.05\"/>\n                    </linearGradient>\n                </defs>\n                <rect width=\"600\" height=\"230\" fill=\"#070817\"/>\n                <g transform=\"translate(205 262)\">\n                    <circle r=\"400\" fill=\"#3d3542\"/><circle r=\"330\" fill=\"#0b0d26\"/><circle r=\"268\" fill=\"#64262c\"/>\n                    <circle r=\"205\" fill=\"#0b0d26\"/><circle r=\"150\" fill=\"#1b2460\"/><circle r=\"92\" fill=\"#05060f\"/>\n                </g>\n                <rect width=\"600\" height=\"230\" fill=\"url(#dim)\"/>\n                <g fill=\"#f4f1ea\" font-family=\"Lato, sans-serif\" font-size=\"21\">\n                    <text x=\"38\" y=\"66\">From Running</text><text x=\"38\" y=\"93\">Projects to</text><text x=\"38\" y=\"120\">Running Away</text>\n                </g>\n                <path d=\"M456 -10 L370 214 L542 214 Z\" fill=\"url(#cone)\"/>\n                <ellipse cx=\"456\" cy=\"214\" rx=\"86\" ry=\"10\" fill=\"#ffe9c2\" opacity=\"0.24\"/>\n                <g class=\"clicker\"><g transform=\"translate(486 208) rotate(-14)\">\n                    <rect x=\"-17\" y=\"-5\" width=\"34\" height=\"10\" rx=\"5\" fill=\"#15161c\" stroke=\"#5a5c6e\"/>\n                    <circle cx=\"8\" r=\"2.4\" fill=\"#ff2a12\"/>\n                </g></g>\n                <g class=\"scrawl\" transform=\"rotate(-5 460 100)\">\n                    <text class=\"l1\" x=\"338\" y=\"84\" textLength=\"236\" lengthAdjust=\"spacingAndGlyphs\">WHERE DID</text>\n                    <text class=\"l2\" x=\"372\" y=\"132\" textLength=\"164\" lengthAdjust=\"spacingAndGlyphs\">HE GO?</text>\n                </g>\n            </svg>"
+	},
+	{
+		match: "winter-keynote",
+		title: "Winter is cancelled in 2027 🔥",
+		text: "Join our Winter Keynote, live from down here on Tuesday 2 February 2027 at 16:30 CET. It will not be winter. Get news, live demos and our roadmap. The road goes one way. Can't make it live? You will.",
+		button: "Save your soul",
+		over: `
+            <svg class="stools" viewBox="0 0 600 230" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                    <linearGradient id="drape" x1="0" x2="1">
+                        <stop offset="0" stop-color="#2c0707"/><stop offset="0.5" stop-color="#641611"/><stop offset="1" stop-color="#2c0707"/>
+                    </linearGradient>
+                    <pattern id="curtain" width="27" height="230" patternUnits="userSpaceOnUse"><rect width="27" height="230" fill="url(#drape)"/></pattern>
+                    <radialGradient id="pit" cx="62%" cy="105%" r="80%">
+                        <stop offset="0" stop-color="#ff5a1f" stop-opacity="0.6"/><stop offset="1" stop-color="#ff5a1f" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <rect width="600" height="184" fill="url(#curtain)"/>
+                <rect y="184" width="600" height="46" fill="#120404"/>
+                <ellipse cx="390" cy="212" rx="250" ry="18" fill="#3b0d0d"/>
+                <rect width="600" height="230" fill="url(#pit)"/>
+                <text class="neon" x="44" y="62">it's warm here</text>
+                ${Nt(300)}${Nt(400)}${Nt(500)}
+                <g transform="translate(232 206) rotate(8)"><rect x="-22" y="-5" width="44" height="10" rx="2" fill="#16161b" stroke="#ffd24a" stroke-opacity="0.6"/></g>
+                <g class="embers">${Mt}</g>
+            </svg>`
+	},
+	{
 		match: "one-story-community",
+		photo: !0,
 		title: "Be part of the Umbraco Community. Forever.",
 		text: "The Umbraco Community is at the heart of everything we do. There is a place for you here. There has always been a place for you here. Ready to join in? You already have.",
 		button: "Join us",
 		over: "<div class=\"vignette\"></div><i class=\"eye\" style=\"left:56.15%;top:31.1%\"></i><i class=\"eye\" style=\"left:57.45%;top:31.1%\"></i>"
 	}
-], Pt = "\n    .card { position: relative; }\n    .sinners-over {\n        position: absolute; left: 0; top: 0; width: 100%; overflow: hidden; container-type: inline-size;\n        opacity: 0; pointer-events: none; border-radius: 16px 16px 0 0;\n    }\n    /* it stutters between the two before it settles: that's what makes a room look */\n    .card.possessed .sinners-over { animation: sinners-in 1s steps(1, end) both; }\n    .card.possessed.at-once .sinners-over { animation: none; opacity: 1; }\n    @keyframes sinners-in {\n        0% { opacity: 0; } 8% { opacity: 1; } 16% { opacity: 0; } 30% { opacity: 1; } 38% { opacity: 0; }\n        52% { opacity: 0.9; } 60% { opacity: 0.15; } 74%, 100% { opacity: 1; }\n    }\n    .card-title { transition: color 0.3s; }\n    .card.possessed .card-title { color: #e64241; }\n    .card.possessed:not(.at-once) .card-title { animation: sinners-shiver 0.45s steps(2, end) 2; }\n    @keyframes sinners-shiver { 0% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 100% { transform: none; } }\n\n    .crave { position: absolute; inset: 0; display: flex; align-items: center; gap: 6%; padding: 0 7%;\n        background: radial-gradient(circle at 70% 40%, #7a120c, #1a0303 75%); color: #fff; }\n    .crave .badge { flex: none; width: 30%; aspect-ratio: 0.82; background: #f3ece2; color: #160303;\n        clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%); transform: rotate(-11deg);\n        display: grid; place-items: center; align-content: center; gap: 4%; text-align: center; }\n    .crave .badge i { width: 22%; aspect-ratio: 1; border-radius: 50%; background: #c8140c; box-shadow: 0 0 12px #c8140c; }\n    .crave .badge b { font: 900 clamp(18px, 4.6cqw, 54px)/0.98 Lato, sans-serif; letter-spacing: -0.01em; }\n    .crave p { margin: 0; display: grid; gap: 0.5em; }\n    .crave strong { font: 700 clamp(22px, 5.4cqw, 64px)/1.08 Lato, sans-serif; text-shadow: 0 0 18px #ff3b1f; }\n    .crave span { font: 400 clamp(13px, 2.6cqw, 30px)/1.2 Lato, sans-serif; opacity: 0.8; }\n\n    .gallows { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }\n    /* the pawn drops once the picture has settled, jerks, and swings */\n    .gallows .drop { transform: translateY(-260px); }\n    .card.possessed .gallows .drop { animation: sinners-drop 0.5s cubic-bezier(0.6, 0, 0.9, 0.5) 1s both; }\n    .card.possessed.at-once .gallows .drop { animation: none; transform: none; }\n    @keyframes sinners-drop { 0% { transform: translateY(-260px); } 78% { transform: translateY(10px); } 100% { transform: none; } }\n    .gallows .swing { transform-origin: 346px 50px; animation: sinners-swing 3.4s ease-in-out infinite; }\n    @keyframes sinners-swing { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }\n\n    /* the photo doesn't stutter: it goes dark, slowly, and then the eyes */\n    .card-img { transition: filter 1.8s ease-in; }\n    .card.at-once .card-img { transition: none; }\n    .card.possessed.scary .card-img { filter: grayscale(0.85) sepia(0.6) hue-rotate(-28deg) saturate(1.9) contrast(1.35) brightness(0.5); }\n    .card.scary .sinners-over { animation: none !important; opacity: 1; }\n    .vignette { position: absolute; inset: 0; box-shadow: inset 0 0 70px 22px #1a0000; opacity: 0; transition: opacity 1.8s ease-in; }\n    .card.possessed .vignette { opacity: 1; }\n    .eye { position: absolute; width: 0.42%; aspect-ratio: 1; margin: -0.21% 0 0 -0.21%; border-radius: 50%;\n        background: #ff2a12; box-shadow: 0 0 5px 2px #ff2a12, 0 0 14px 5px rgba(255, 30, 0, 0.75); opacity: 0; }\n    .card.eyes .eye { animation: sinners-ignite 0.7s ease-out both, sinners-eye 2.6s ease-in-out 0.7s infinite; }\n    @keyframes sinners-ignite { 0% { opacity: 0; transform: scale(0.2); } 35% { opacity: 1; transform: scale(3.2); } 100% { opacity: 1; transform: none; } }\n    @keyframes sinners-eye { 0%, 46%, 54%, 100% { opacity: 1; } 50% { opacity: 0.1; } }\n", Ft = /* @__PURE__ */ new WeakMap();
-function It(e) {
-	if (Ft.has(e)) return Ft.get(e);
-	let t = e.shadowRoot, n = t?.querySelector(".card"), r = t?.querySelector("img.card-img"), i = r && Nt.find((e) => r.src.includes(e.match));
-	if (!t || !n || !r || !i) return t && n && Ft.set(e, null), null;
-	let a = document.createElement("style");
-	a.textContent = Pt, t.appendChild(a);
+], Ft = "one-story-community", It = {
+	match: "",
+	photo: !0,
+	title: "This card is new.",
+	text: "It arrived after the others. There was no time to curse it properly. Consider it cursed.",
+	button: "Fine",
+	over: "<div class=\"vignette\"></div>"
+}, Lt = (e) => e === It ? Pt.length - 1.5 : Pt.indexOf(e), Rt = "\n    .card { position: relative; }\n    .sinners-over {\n        position: absolute; left: 0; top: 0; width: 100%; overflow: hidden; container-type: inline-size;\n        opacity: 0; pointer-events: none; border-radius: 16px 16px 0 0;\n    }\n    /* it stutters between the two before it settles: that's what makes a room look */\n    .card.possessed .sinners-over { animation: sinners-in 1s steps(1, end) both; }\n    .card.possessed.at-once .sinners-over { animation: none; opacity: 1; }\n    @keyframes sinners-in {\n        0% { opacity: 0; } 8% { opacity: 1; } 16% { opacity: 0; } 30% { opacity: 1; } 38% { opacity: 0; }\n        52% { opacity: 0.9; } 60% { opacity: 0.15; } 74%, 100% { opacity: 1; }\n    }\n    /* (an emoji the feed's editors pasted in as a picture) */\n    .card.possessed .card-text img { display: none; }\n    .card-title { transition: color 0.3s; }\n    .card.possessed .card-title { color: #e64241; }\n    .card.possessed:not(.at-once) .card-title { animation: sinners-shiver 0.45s steps(2, end) 2; }\n    @keyframes sinners-shiver { 0% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 100% { transform: none; } }\n\n    .crave { position: absolute; inset: 0; display: flex; align-items: center; gap: 6%; padding: 0 7%;\n        background: radial-gradient(circle at 70% 40%, #7a120c, #1a0303 75%); color: #fff; }\n    .crave .badge { flex: none; width: 30%; aspect-ratio: 0.82; background: #f3ece2; color: #160303;\n        clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%); transform: rotate(-11deg);\n        display: grid; place-items: center; align-content: center; gap: 4%; text-align: center; }\n    .crave .badge i { width: 22%; aspect-ratio: 1; border-radius: 50%; background: #c8140c; box-shadow: 0 0 12px #c8140c; }\n    .crave .badge b { font: 900 clamp(18px, 4.6cqw, 54px)/0.98 Lato, sans-serif; letter-spacing: -0.01em; }\n    .crave p { margin: 0; display: grid; gap: 0.5em; }\n    .crave strong { font: 700 clamp(22px, 5.4cqw, 64px)/1.08 Lato, sans-serif; text-shadow: 0 0 18px #ff3b1f; }\n    .crave span { font: 400 clamp(13px, 2.6cqw, 30px)/1.2 Lato, sans-serif; opacity: 0.8; }\n\n    .gallows { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }\n    /* the pawn drops once the picture has settled, jerks, and swings */\n    .gallows .drop { transform: translateY(-260px); }\n    .card.possessed .gallows .drop { animation: sinners-drop 0.5s cubic-bezier(0.6, 0, 0.9, 0.5) 1s both; }\n    .card.possessed.at-once .gallows .drop { animation: none; transform: none; }\n    @keyframes sinners-drop { 0% { transform: translateY(-260px); } 78% { transform: translateY(10px); } 100% { transform: none; } }\n    .gallows .swing { transform-origin: 346px 50px; animation: sinners-swing 3.4s ease-in-out infinite; }\n    @keyframes sinners-swing { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }\n\n    .gone, .stools { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }\n    /* the clicker lands once the picture has settled; then the writing, a line at a time */\n    .gone .clicker { transform: translateY(-240px); }\n    .card.possessed .gone .clicker { animation: sinners-clicker 0.55s cubic-bezier(0.6, 0, 0.9, 0.5) 1s both; }\n    .card.possessed.at-once .gone .clicker { animation: none; transform: none; }\n    @keyframes sinners-clicker { 0% { transform: translateY(-240px); } 70% { transform: none; } 84% { transform: translateY(-9px); } 100% { transform: none; } }\n    .gone .scrawl text { font: 700 44px 'Segoe Script', 'Bradley Hand', 'Chalkduster', 'Comic Sans MS', cursive; fill: #ff3b24;\n        filter: drop-shadow(0 0 5px rgba(255, 40, 10, 0.85)); opacity: 0; }\n    .card.possessed .gone .scrawl .l1 { animation: sinners-scrawl 0.5s steps(3, end) 1.7s both; }\n    .card.possessed .gone .scrawl .l2 { animation: sinners-scrawl 0.5s steps(3, end) 2.4s both; }\n    .card.possessed.at-once .gone .scrawl text { animation: none; opacity: 1; }\n    @keyframes sinners-scrawl { 0% { opacity: 0; } 40% { opacity: 0.9; } 60% { opacity: 0.3; } 100% { opacity: 1; } }\n\n    .stools .neon { font: 700 30px 'Segoe Script', 'Bradley Hand', 'Comic Sans MS', cursive; fill: #ff8a5c;\n        filter: drop-shadow(0 0 6px #ff3b1f); animation: sinners-neon 3.1s steps(1, end) infinite; }\n    @keyframes sinners-neon { 0%, 61%, 65%, 100% { opacity: 1; } 62%, 64% { opacity: 0.25; } 88% { opacity: 0.6; } }\n    .stools .e { animation: sinners-ember 3s linear infinite; }\n    @keyframes sinners-ember { 0% { transform: translate(0, 0); opacity: 1; } 100% { transform: translate(-26px, 250px); opacity: 0.25; } }\n\n    /* the photo doesn't stutter: it goes dark, slowly, and then the eyes */\n    .card-img { transition: filter 1.8s ease-in; }\n    .card.at-once .card-img { transition: none; }\n    .card.possessed.scary .card-img { filter: grayscale(0.85) sepia(0.6) hue-rotate(-28deg) saturate(1.9) contrast(1.35) brightness(0.5); }\n    .card.scary .sinners-over { animation: none !important; opacity: 1; }\n    .vignette { position: absolute; inset: 0; box-shadow: inset 0 0 70px 22px #1a0000; opacity: 0; transition: opacity 1.8s ease-in; }\n    .card.possessed .vignette { opacity: 1; }\n    .eye { position: absolute; width: 0.42%; aspect-ratio: 1; margin: -0.21% 0 0 -0.21%; border-radius: 50%;\n        background: #ff2a12; box-shadow: 0 0 5px 2px #ff2a12, 0 0 14px 5px rgba(255, 30, 0, 0.75); opacity: 0; }\n    .card.eyes .eye { animation: sinners-ignite 0.7s ease-out both, sinners-eye 2.6s ease-in-out 0.7s infinite; }\n    @keyframes sinners-ignite { 0% { opacity: 0; transform: scale(0.2); } 35% { opacity: 1; transform: scale(3.2); } 100% { opacity: 1; transform: none; } }\n    @keyframes sinners-eye { 0%, 46%, 54%, 100% { opacity: 1; } 50% { opacity: 0.1; } }\n", zt = /* @__PURE__ */ new WeakMap();
+function Bt(e) {
+	if (zt.has(e)) return zt.get(e);
+	let t = e.shadowRoot, n = t?.querySelector(".card"), r = t?.querySelector("img.card-img");
+	if (!t || !n || !r) return t && n && zt.set(e, null), null;
+	let i = Pt.find((e) => r.src.includes(e.match)) ?? It, a = document.createElement("style");
+	a.textContent = Rt, t.appendChild(a);
 	let o = document.createElement("div");
 	o.className = "sinners-over", o.innerHTML = i.over, n.appendChild(o);
 	let s = [], c = (e) => {
@@ -1093,7 +1141,13 @@ function It(e) {
 		u.data,
 		i.text
 	]);
-	let d = {
+	let d = document.createTreeWalker(t.querySelector(".card-text") ?? document.createElement("i"), NodeFilter.SHOW_TEXT), f;
+	for (; f = d.nextNode();) f !== u && f.nodeValue?.trim() && s.push([
+		f,
+		f.data,
+		""
+	]);
+	let p = {
 		card: n,
 		img: r,
 		over: o,
@@ -1102,61 +1156,68 @@ function It(e) {
 		button: t.querySelector("uui-button") ?? void 0,
 		on: !1
 	};
-	return Ft.set(e, d), d;
+	return zt.set(e, p), p;
 }
-function Lt(e, t, n, r) {
+function Vt(e, t, n, r) {
 	if (t && (e.over.style.height = `${e.img.offsetHeight}px`), e.on === t) return;
 	e.on = t;
-	let i = e.is.match === "one-story-community";
+	let i = !!e.is.photo;
 	e.card.classList.toggle("at-once", t && n), e.card.classList.toggle("scary", i), e.card.classList.toggle("possessed", t), t || e.card.classList.remove("eyes");
 	let a = () => {
 		if (e.on === t) {
 			for (let [n, r, i] of e.words) n.data = t ? i : r;
-			t ? e.unbutton = e.button && Ct(e.button, e.is.button) : e.unbutton?.();
+			t ? e.unbutton = e.button && St(e.button, e.is.button) : e.unbutton?.();
 		}
 	};
 	t && !n ? setTimeout(a, r ?? (i ? 900 : 700)) : a();
 }
-var Rt = 0, zt;
-function Bt(e) {
-	let t = A(document, "umb-news-card").map(It).filter((e) => !!e);
+var Ht = 0, Ut;
+function Wt(e) {
+	let t = j(document, "umb-news-card").map(Bt).filter((e) => !!e);
 	if (!t.length) return;
 	if (!e) {
-		for (let e of t) Lt(e, !1, !0);
+		for (let e of t) Vt(e, !1, !0);
 		return;
 	}
 	if (!t.every((e) => e.img.complete && e.img.naturalWidth > 0)) return;
 	let n = performance.now();
-	zt !== t[0].card && (zt = t[0].card, Rt = n);
-	let r = jt();
-	if (!r && Mt()) {
-		for (let e of t) e.on && Lt(e, !0, !1);
+	Ut !== t[0].card && (Ut = t[0].card, Ht = n);
+	let r = At();
+	if (!r && jt()) {
+		for (let e of t) e.on && Vt(e, !0, !1);
 		return;
 	}
-	t.forEach((e, t) => {
-		let i = r ? 500 + t * 200 : Tt + t * Et, a = n - Rt - i;
-		if (!(a < 0) && (Lt(e, !0, r), e.is.match === "one-story-community" && a >= (r ? 300 : Dt))) {
-			e.card.classList.add("eyes");
+	let i = [...t].sort((e, t) => Lt(e.is) - Lt(t.is));
+	i.forEach((e, t) => {
+		let a = r ? 500 + t * 200 : wt + t * Tt, o = n - Ht - a;
+		if (!(o < 0) && (Vt(e, !0, r), t === i.length - 1 && o >= (r ? 300 : Et))) {
+			e.is.match === Ft && e.card.classList.add("eyes");
 			try {
-				sessionStorage.setItem(Ot, "1");
+				sessionStorage.setItem(Dt, "1");
 			} catch {}
 		}
 	});
 }
-var Vt = 0;
-function Ht() {
-	if (!N.welcome || P <= 0 || ht() || !location.pathname.includes("/section/content") || jt()) return !1;
-	let e = A(document, "umb-news-card").map(It).filter((e) => !!e && e.img.complete && e.img.naturalWidth > 0).sort((e, t) => Nt.indexOf(e.is) - Nt.indexOf(t.is)).find((e) => !e.on);
-	if (!e) return !1;
-	let t = performance.now();
-	return t - Vt < 600 ? !0 : (Vt = t, Ut(), Lt(e, !0, !1, At + 150), e.is.match === "one-story-community" && setTimeout(() => {
-		e.card.classList.add("eyes");
+var Gt = 0, Kt = 3, qt = 0, Jt;
+function Yt() {
+	if (!P.welcome || F <= 0 || mt() || !location.pathname.includes("/section/content") || At()) return !1;
+	let e = j(document, "umb-news-card").map(Bt).filter((e) => !!e && e.img.complete && e.img.naturalWidth > 0).sort((e, t) => Lt(e.is) - Lt(t.is)), t = e.filter((e) => !e.on);
+	if (!t.length) return !1;
+	let n = performance.now();
+	if (n - Gt < 600) return !0;
+	Gt = n, Jt !== e[0].card && (Jt = e[0].card, qt = 0), qt++;
+	let r = qt >= Kt ? t : t.slice(0, 1);
+	return Xt(), r.forEach((e, t) => {
+		let n = t * 380;
+		setTimeout(() => Vt(e, !0, !1, Math.max(700, kt + 150 - n)), n);
+	}), r.length === t.length && setTimeout(() => {
+		for (let e of r) e.is.match === Ft && e.card.classList.add("eyes");
 		try {
-			sessionStorage.setItem(Ot, "1");
+			sessionStorage.setItem(Dt, "1");
 		} catch {}
-	}, 1500), !0);
+	}, 1500 + (r.length - 1) * 380), !0;
 }
-function Ut() {
+function Xt() {
 	let e = [], t = (n) => {
 		for (let r of n.childNodes) if (r.nodeType === Node.TEXT_NODE) {
 			let t = r, n = t.data.trim();
@@ -1179,7 +1240,7 @@ function Ut() {
 	for (let [t, , n] of e) t.data = n;
 	setTimeout(() => {
 		for (let [t, n, r] of e) t.data === r && (t.data = n);
-	}, At), document.body.animate([
+	}, kt), document.body.animate([
 		0,
 		-14,
 		12,
@@ -1204,30 +1265,30 @@ function Ut() {
 		},
 		{ opacity: 0 }
 	], {
-		duration: At,
+		duration: kt,
 		easing: "ease-out",
 		fill: "forwards"
-	}), setTimeout(() => n.remove(), At + 60);
+	}), setTimeout(() => n.remove(), kt + 60);
 }
-var Wt = 5e3, Gt = "sinners-avatar-turned", I = "255, 42, 18", Kt = `<svg class="sinners-pentagram" viewBox="0 0 32 32" aria-hidden="true"
+var Zt = 5e3, Qt = "sinners-avatar-turned", L = "255, 42, 18", $t = `<svg class="sinners-pentagram" viewBox="0 0 32 32" aria-hidden="true"
     style="position:absolute;inset:0;width:100%;height:100%;display:block;border-radius:50%">
     <circle cx="16" cy="16" r="15.2" fill="#140303"/>
-    <circle cx="16" cy="16" r="13.4" fill="none" stroke="rgb(${I})" stroke-width="1.5"/>
-    <path d="M16 28.5 L8.65 5.89 L27.89 19.86 L4.11 19.86 L23.35 5.89 Z" fill="none" stroke="rgb(${I})" stroke-width="1.5" stroke-linejoin="round"/>
-</svg>`, qt, Jt = 0, Yt = 0, L = !1, Xt = !1, Zt, Qt = 0;
-function $t(e) {
-	e.querySelector(".sinners-pentagram") || e.insertAdjacentHTML("beforeend", Kt), e.style.color = "transparent", e.style.borderRadius = "50%", e.style.zIndex = "10", e.style.transform = "scale(1.35)", Zt ??= e.animate([
-		{ boxShadow: `0 0 8px 2px rgba(${I}, 0.55)` },
-		{ boxShadow: `0 0 16px 6px rgba(${I}, 0.9)` },
-		{ boxShadow: `0 0 8px 2px rgba(${I}, 0.55)` }
+    <circle cx="16" cy="16" r="13.4" fill="none" stroke="rgb(${L})" stroke-width="1.5"/>
+    <path d="M16 28.5 L8.65 5.89 L27.89 19.86 L4.11 19.86 L23.35 5.89 Z" fill="none" stroke="rgb(${L})" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>`, en, tn = 0, nn = 0, R = !1, rn = !1, an, on = 0;
+function sn(e) {
+	e.querySelector(".sinners-pentagram") || e.insertAdjacentHTML("beforeend", $t), e.style.color = "transparent", e.style.borderRadius = "50%", e.style.zIndex = "10", e.style.transform = "scale(1.35)", an ??= e.animate([
+		{ boxShadow: `0 0 8px 2px rgba(${L}, 0.55)` },
+		{ boxShadow: `0 0 16px 6px rgba(${L}, 0.9)` },
+		{ boxShadow: `0 0 8px 2px rgba(${L}, 0.55)` }
 	], {
 		duration: 2400,
 		iterations: Infinity,
 		easing: "ease-in-out"
 	});
 }
-function en(e) {
-	Zt?.cancel(), Zt = void 0, e.querySelector(".sinners-pentagram")?.remove();
+function cn(e) {
+	an?.cancel(), an = void 0, e.querySelector(".sinners-pentagram")?.remove();
 	for (let t of [
 		"color",
 		"border-radius",
@@ -1235,26 +1296,26 @@ function en(e) {
 		"transform"
 	]) e.style.removeProperty(t);
 }
-function tn(e) {
+function ln(e) {
 	let t = performance.now();
-	if (!qt?.isConnected) {
-		if (t - Yt < 1500 || (Yt = t, qt = A(document, "uui-avatar").find((e) => {
+	if (!en?.isConnected) {
+		if (t - nn < 1500 || (nn = t, en = j(document, "uui-avatar").find((e) => {
 			let t = e.getBoundingClientRect();
 			return t.width > 0 && t.top < 70;
-		}), !qt)) return;
-		Jt = t, L = Xt = !1, Zt = void 0;
+		}), !en)) return;
+		tn = t, R = rn = !1, an = void 0;
 	}
-	let n = qt;
+	let n = en;
 	if (!e) {
-		L && en(n), L = !1, Jt = t;
+		R && cn(n), R = !1, tn = t;
 		try {
-			sessionStorage.removeItem(Gt);
+			sessionStorage.removeItem(Qt);
 		} catch {}
 		return;
 	}
-	if (Xt) return;
-	if (L) {
-		t - Qt > 14e3 && (Qt = t, n.animate([
+	if (rn) return;
+	if (R) {
+		t - on > 14e3 && (on = t, n.animate([
 			0,
 			-9,
 			8,
@@ -1269,14 +1330,14 @@ function tn(e) {
 	}
 	let r = !1;
 	try {
-		r = sessionStorage.getItem(Gt) === "1";
+		r = sessionStorage.getItem(Qt) === "1";
 	} catch {}
 	if (r) {
-		$t(n), L = !0, Qt = t;
+		sn(n), R = !0, on = t;
 		return;
 	}
-	if (t - Jt < Wt) return;
-	Xt = !0, n.style.borderRadius = "50%", n.style.zIndex = "10";
+	if (t - tn < Zt) return;
+	rn = !0, n.style.borderRadius = "50%", n.style.zIndex = "10";
 	let i = [
 		0,
 		-14,
@@ -1292,59 +1353,59 @@ function tn(e) {
 		return {
 			offset: n * .55,
 			transform: `scale(${1 + n * 1.7}) rotate(${e}deg)`,
-			boxShadow: `0 0 ${n * 26}px ${n * 10}px rgba(${I}, ${n * .95})`
+			boxShadow: `0 0 ${n * 26}px ${n * 10}px rgba(${L}, ${n * .95})`
 		};
 	});
 	a.push({
 		offset: .78,
 		transform: "scale(2.7) rotate(0deg)",
-		boxShadow: `0 0 30px 12px rgba(${I}, 1)`
+		boxShadow: `0 0 30px 12px rgba(${L}, 1)`
 	}, {
 		offset: 1,
 		transform: "scale(1.35) rotate(0deg)",
-		boxShadow: `0 0 12px 4px rgba(${I}, 0.7)`
+		boxShadow: `0 0 12px 4px rgba(${L}, 0.7)`
 	});
 	let o = n.animate(a, {
 		duration: 2600,
 		easing: "ease-in-out"
 	});
 	setTimeout(() => {
-		n.querySelector(".sinners-pentagram") || n.insertAdjacentHTML("beforeend", Kt), n.style.color = "transparent";
+		n.querySelector(".sinners-pentagram") || n.insertAdjacentHTML("beforeend", $t), n.style.color = "transparent";
 	}, 2600 * .55), o.onfinish = () => {
-		$t(n), Xt = !1, L = !0, Qt = performance.now();
+		sn(n), rn = !1, R = !0, on = performance.now();
 		try {
-			sessionStorage.setItem(Gt, "1");
+			sessionStorage.setItem(Qt, "1");
 		} catch {}
 	};
 }
-var nn = 3200, rn = 55, an = [{
+var un = 3200, dn = 55, fn = [{
 	after: "CountDescendants",
 	says: "// every node. on every request. it never stops counting."
 }, {
 	after: "DescendantsOrSelf",
 	says: "// …and again."
-}], on = 0, sn;
-function cn(e) {
-	let t = sn?.isConnected ? sn : A(document, ".view-lines")[0];
+}], pn = 0, mn;
+function hn(e) {
+	let t = mn?.isConnected ? mn : j(document, ".view-lines")[0];
 	if (!t) return;
-	sn !== t && (sn = t, on = performance.now());
-	let n = performance.now() - on - nn;
-	for (let r of an) {
-		let i = [...t.querySelectorAll(".view-line")].find((e) => (e.textContent ?? "").includes(r.after)), a = e && n > 0 ? Math.min(r.says.length, Math.floor(n / rn)) : 0;
-		if (n -= r.says.length * rn + 1400, !i) continue;
+	mn !== t && (mn = t, pn = performance.now());
+	let n = performance.now() - pn - un;
+	for (let r of fn) {
+		let i = [...t.querySelectorAll(".view-line")].find((e) => (e.textContent ?? "").includes(r.after)), a = e && n > 0 ? Math.min(r.says.length, Math.floor(n / dn)) : 0;
+		if (n -= r.says.length * dn + 1400, !i) continue;
 		let o = i.querySelector(".sinners-ghost");
 		if (!a) {
 			o?.remove();
 			continue;
 		}
-		o || (o = document.createElement("span"), o.className = "sinners-ghost", o.style.cssText = `color:#b3121f;font-style:italic;white-space:pre;pointer-events:none;text-shadow:0 0 7px rgba(${I},0.55)`, (i.firstElementChild ?? i).appendChild(o));
+		o || (o = document.createElement("span"), o.className = "sinners-ghost", o.style.cssText = `color:#b3121f;font-style:italic;white-space:pre;pointer-events:none;text-shadow:0 0 7px rgba(${L},0.55)`, (i.firstElementChild ?? i).appendChild(o));
 		let s = "  " + r.says.slice(0, a) + (a < r.says.length ? "▌" : "");
 		o.textContent !== s && (o.textContent = s);
 	}
 }
 //#endregion
 //#region src/penance/presenter.ts
-var ln = [
+var gn = [
 	"I",
 	"II",
 	"III",
@@ -1355,10 +1416,10 @@ var ln = [
 	"VIII",
 	"IX",
 	"X"
-], un = "sinners-presenter-state", dn = "sinners-forget-pretences", fn = "sinners-fast-forward";
-function pn() {
+], _n = "sinners-presenter-state", vn = "sinners-forget-pretences", yn = "sinners-fast-forward";
+function bn() {
 	try {
-		let e = sessionStorage.getItem(un);
+		let e = sessionStorage.getItem(_n);
 		if (e) return JSON.parse(e);
 	} catch {}
 	return {
@@ -1366,47 +1427,47 @@ function pn() {
 		indices: {}
 	};
 }
-var mn = pn(), hn = /* @__PURE__ */ new Map(), R = new Map(Object.entries(mn.indices ?? {})), z = new Map(Object.entries(mn.exhibits ?? {})), B = mn.activeTab, gn = [], V = !1, _n = /* @__PURE__ */ new Set(), vn = () => [..._n].some((e) => e.isConnected), yn = !1;
-function H() {
+var xn = bn(), Sn = /* @__PURE__ */ new Map(), z = new Map(Object.entries(xn.indices ?? {})), B = new Map(Object.entries(xn.exhibits ?? {})), V = xn.activeTab, Cn = [], H = !1, wn = /* @__PURE__ */ new Set(), Tn = () => [...wn].some((e) => e.isConnected), En = !1;
+function U() {
 	try {
-		sessionStorage.setItem(un, JSON.stringify({
-			activeTab: B,
-			indices: Object.fromEntries(R),
-			exhibits: Object.fromEntries(z)
+		sessionStorage.setItem(_n, JSON.stringify({
+			activeTab: V,
+			indices: Object.fromEntries(z),
+			exhibits: Object.fromEntries(B)
 		}));
 	} catch {}
 }
-var bn = "/umbraco/section/settings/dashboard/penance", U = (e, t = {}) => ({
+var Dn = "/umbraco/section/settings/dashboard/penance", W = (e, t = {}) => ({
 	selector: "uui-menu-item",
 	label: e,
 	...t
-}), xn = "/umbraco/section/settings/workspace/document-type-root", Sn = "/umbraco/section/content/workspace/document/edit/704a66de-b213-44fe-815a-f988c0707bbf/invariant/view/info/modal/umb-modal-workspace/invariant/general/document-type/edit/b871f83c-2395-4894-be0f-5422c1a71e48/tab/content", Cn = {
+}), On = "/umbraco/section/settings/workspace/document-type-root", kn = "/umbraco/section/content/workspace/document/edit/704a66de-b213-44fe-815a-f988c0707bbf/invariant/view/info/modal/umb-modal-workspace/invariant/general/document-type/edit/b871f83c-2395-4894-be0f-5422c1a71e48/tab/content", An = {
 	I: [{
-		url: Sn,
+		url: kn,
 		highlight: "umb-content-type-design-editor-property"
 	}, {
-		url: Sn,
+		url: kn,
 		at: 1,
 		highlight: "umb-content-type-design-editor-property"
 	}],
 	II: [{
-		url: xn,
-		highlight: U("Document Types", { expand: !0 })
+		url: On,
+		highlight: W("Document Types", { expand: !0 })
 	}, {
-		url: xn,
+		url: On,
 		at: 3,
-		highlight: U("Document Types", { expand: !0 })
+		highlight: W("Document Types", { expand: !0 })
 	}],
 	III: [
 		{
 			url: "/umbraco/section/settings/workspace/data-type/edit/b5922818-d8d8-43df-88ed-4582a24c0fa6",
 			at: 0,
-			highlight: U("Data Types")
+			highlight: W("Data Types")
 		},
 		{
 			url: "/umbraco/section/settings/workspace/data-type-root",
 			at: 1,
-			highlight: U("Data Types", { expand: !0 })
+			highlight: W("Data Types", { expand: !0 })
 		},
 		{
 			url: "/umbraco/section/translation",
@@ -1416,7 +1477,7 @@ var bn = "/umbraco/section/settings/dashboard/penance", U = (e, t = {}) => ({
 		{
 			url: "/umbraco/section/translation",
 			at: 2,
-			highlight: U("ContactForm", { expand: !0 })
+			highlight: W("ContactForm", { expand: !0 })
 		},
 		{
 			url: "/umbraco/section/media/collection",
@@ -1441,30 +1502,30 @@ var bn = "/umbraco/section/settings/dashboard/penance", U = (e, t = {}) => ({
 	}],
 	IX: [{
 		url: "/umbraco/section/content",
-		highlight: U("Home")
+		highlight: W("Home")
 	}, {
 		url: "/umbraco/section/content",
 		at: 1,
-		highlight: U("Site", { expand: !0 })
+		highlight: W("Site", { expand: !0 })
 	}]
-}, wn = {
+}, jn = {
 	III: [
 		"data-types",
 		"dictionary",
 		"media"
 	],
 	VI: ["aliases", "keys"]
-}, Tn = [];
-function En(e) {
+}, Mn = [];
+function Nn(e) {
 	let t = e.filter((e) => e.host.isConnected);
 	return (t.length ? t : e).at(-1)?.steps ?? [];
 }
-function Dn(e) {
-	let t = hn.get(e);
-	return t ? (wn[e] ?? [...t.keys()]).flatMap((e) => En(t.get(e) ?? [])) : [];
+function Pn(e) {
+	let t = Sn.get(e);
+	return t ? (jn[e] ?? [...t.keys()]).flatMap((e) => Nn(t.get(e) ?? [])) : [];
 }
-function On(e) {
-	return (Cn[e] ?? []).map((e, t) => typeof e == "string" ? {
+function Fn(e) {
+	return (An[e] ?? []).map((e, t) => typeof e == "string" ? {
 		url: e,
 		at: t
 	} : {
@@ -1472,117 +1533,117 @@ function On(e) {
 		at: e.at ?? t
 	});
 }
-function kn() {
-	let e = z.get(B) ?? 0, t = On(B)[e - 1];
+function In() {
+	let e = B.get(V) ?? 0, t = Fn(V)[e - 1];
 	return t && window.location.pathname.startsWith(t.url) ? t : void 0;
 }
-function An() {
+function Ln() {
 	return window.location.pathname.includes("/dashboard/penance");
 }
-var W = {
+var G = {
 	get activeTab() {
-		return B;
+		return V;
 	},
 	setActiveTab(e) {
-		B = e, H();
+		V = e, U();
 	},
 	hold(e, t) {
-		t ? _n.add(e) : _n.delete(e);
+		t ? wn.add(e) : wn.delete(e);
 	},
 	dot() {
 		let e = window.location.pathname;
-		if (An()) {
-			let e = On(B), t = z.get(B) ?? 0, n = e.length ? e[Math.min(t, e.length - 1)].url : bn;
-			e.length && t < e.length && (z.set(B, t + 1), H()), console.log(`[PRESENTER] dot() on penance tab="${B}" → ${n}`), window.location.href = n;
+		if (Ln()) {
+			let e = Fn(V), t = B.get(V) ?? 0, n = e.length ? e[Math.min(t, e.length - 1)].url : Dn;
+			e.length && t < e.length && (B.set(V, t + 1), U()), console.log(`[PRESENTER] dot() on penance tab="${V}" → ${n}`), window.location.href = n;
 			return;
 		}
-		let t = Tn.find((t) => e === t.match), n = t ? t.target : bn;
+		let t = Mn.find((t) => e === t.match), n = t ? t.target : Dn;
 		console.log(`[PRESENTER] dot() elsewhere path="${e}" → ${n}`), window.location.href = n;
 	},
 	onNextTab(e, t) {
-		gn = [...gn.filter((t) => t.host !== e && t.host.isConnected), {
+		Cn = [...Cn.filter((t) => t.host !== e && t.host.isConnected), {
 			host: e,
 			fn: t
 		}];
 	},
 	nextTab() {
 		console.log("[PRESENTER] nextTab()");
-		let e = gn.filter((e) => e.host.isConnected);
-		(e.length ? e : gn).at(-1)?.fn();
+		let e = Cn.filter((e) => e.host.isConnected);
+		(e.length ? e : Cn).at(-1)?.fn();
 	},
 	registerSteps(e, t, n, r = "main") {
-		let i = hn.get(e) ?? /* @__PURE__ */ new Map(), a = (i.get(r) ?? []).filter((e) => e.host !== t && e.host.isConnected);
+		let i = Sn.get(e) ?? /* @__PURE__ */ new Map(), a = (i.get(r) ?? []).filter((e) => e.host !== t && e.host.isConnected);
 		i.set(r, [...a, {
 			host: t,
 			steps: n
-		}]), hn.set(e, i);
+		}]), Sn.set(e, i);
 	},
 	get fastForwardTo() {
 		try {
-			let e = Number(sessionStorage.getItem(fn));
-			return Number.isInteger(e) && e >= 1 && e <= ln.length ? ln[e - 1] : void 0;
+			let e = Number(sessionStorage.getItem(yn));
+			return Number.isInteger(e) && e >= 1 && e <= gn.length ? gn[e - 1] : void 0;
 		} catch {
 			return;
 		}
 	},
 	async fastForward(e, t, n) {
-		if (!V) {
-			V = !0;
+		if (!H) {
+			H = !0;
 			try {
-				for (let r of ln) {
+				for (let r of gn) {
 					if (r === e) break;
-					z.set(r, On(r).length);
-					let i = Dn(r);
+					B.set(r, Fn(r).length);
+					let i = Pn(r);
 					if (t(r) > 0) {
 						n?.(r);
-						for (let e = Math.min(R.get(r) ?? 0, i.length); e < i.length; e++) console.log(`[PRESENTER] fast-forward — ${r} "${i[e].label}"`), await i[e].run(), R.set(r, e + 1), H();
+						for (let e = Math.min(z.get(r) ?? 0, i.length); e < i.length; e++) console.log(`[PRESENTER] fast-forward — ${r} "${i[e].label}"`), await i[e].run(), z.set(r, e + 1), U();
 					}
-					R.set(r, i.length), H();
+					z.set(r, i.length), U();
 				}
-				B = e, H();
+				V = e, U();
 			} finally {
-				V = !1;
+				H = !1;
 				try {
-					sessionStorage.removeItem(fn);
+					sessionStorage.removeItem(yn);
 				} catch {}
 			}
 		}
 	},
 	async next() {
-		if (V || vn()) return;
-		let e = Dn(B), t = R.get(B) ?? 0;
-		if (console.log(`[PRESENTER] next() — tab="${B}" step=${t + 1}/${e.length}`), t >= e.length) {
-			console.log(`[PRESENTER] no more steps on tab "${B}"`);
+		if (H || Tn()) return;
+		let e = Pn(V), t = z.get(V) ?? 0;
+		if (console.log(`[PRESENTER] next() — tab="${V}" step=${t + 1}/${e.length}`), t >= e.length) {
+			console.log(`[PRESENTER] no more steps on tab "${V}"`);
 			return;
 		}
-		V = !0;
+		H = !0;
 		try {
 			let n = { restore: () => {} };
 			try {
-				n = await mt(e[t].clicks?.() ?? []);
+				n = await pt(e[t].clicks?.() ?? []);
 			} catch (e) {
 				console.warn("[PRESENTER] no pointers for this step", e);
 			}
 			await e[t].run(), n.restore();
 		} finally {
-			V = !1;
+			H = !1;
 		}
-		R.set(B, t + 1), H(), console.log(`[PRESENTER] step ${t + 1} "${e[t].label}" done`);
+		z.set(V, t + 1), U(), console.log(`[PRESENTER] step ${t + 1} "${e[t].label}" done`);
 	},
 	async forward() {
-		if (V || vn()) return;
-		if (!An()) {
-			let e = kn()?.highlight;
-			if (e && !yn) {
-				if (Ht()) return;
-				yn = !0, rt(e);
+		if (H || Tn()) return;
+		if (!Ln()) {
+			let e = In()?.highlight;
+			if (e && !En) {
+				if (Yt()) return;
+				En = !0, nt(e);
 				return;
 			}
 			this.dot();
 			return;
 		}
-		if (!B || !gn.some((e) => e.host.isConnected)) return;
-		let e = Dn(B), t = Math.min(R.get(B) ?? 0, e.length), n = z.get(B) ?? 0, r = On(B);
+		if (!V || !Cn.some((e) => e.host.isConnected)) return;
+		let e = Pn(V), t = Math.min(z.get(V) ?? 0, e.length), n = B.get(V) ?? 0, r = Fn(V);
 		if (n < r.length && r[n].at <= t) {
 			this.dot();
 			return;
@@ -1591,20 +1652,20 @@ var W = {
 			await this.next();
 			return;
 		}
-		if (B === ln[ln.length - 1]) {
-			console.log("[PRESENTER] forward() — all ten commandments atoned, handing the clicker back"), et();
+		if (V === gn[gn.length - 1]) {
+			console.log("[PRESENTER] forward() — all ten commandments atoned, handing the clicker back"), $e();
 			return;
 		}
 		this.nextTab();
 	},
 	reset() {
 		try {
-			sessionStorage.removeItem(un), sessionStorage.removeItem("sinners-welcome-seen"), sessionStorage.removeItem("sinners-avatar-turned"), sessionStorage.setItem(dn, "1"), localStorage.removeItem("sinners-media-pretend");
+			sessionStorage.removeItem(_n), sessionStorage.removeItem("sinners-welcome-seen"), sessionStorage.removeItem("sinners-avatar-turned"), sessionStorage.setItem(vn, "1"), localStorage.removeItem("sinners-media-pretend");
 		} catch {}
-		window.location.href = bn;
+		window.location.href = Dn;
 	}
-}, jn = 900, Mn = 520, Nn = 170, Pn = 760, Fn = (e) => new Promise((t) => setTimeout(t, e)), In = (e, t) => `radial-gradient(${e / 2}px ${t}px at 50% 100%, #000 98%, #0000 100%) 0 0 / ${e}px ${t}px repeat-x, linear-gradient(#000, #000) 0 ${t - 1}px / 100% 100% no-repeat`;
-async function Ln(e) {
+}, Rn = 900, zn = 520, Bn = 170, Vn = 760, Hn = (e) => new Promise((t) => setTimeout(t, e)), Un = (e, t) => `radial-gradient(${e / 2}px ${t}px at 50% 100%, #000 98%, #0000 100%) 0 0 / ${e}px ${t}px repeat-x, linear-gradient(#000, #000) 0 ${t - 1}px / 100% 100% no-repeat`;
+async function Wn(e) {
 	if (document.hidden) {
 		e();
 		return;
@@ -1626,10 +1687,10 @@ async function Ln(e) {
         <div class="red" style="position:absolute;inset:0;background:radial-gradient(circle at 50% 60%, #ff2a12 0%, #7a0500 55%, #1a0000 100%);mix-blend-mode:multiply;opacity:0"></div>
         <div class="fire back" style="position:absolute;left:-4%;width:108%;top:100%;height:190vh;
             background:linear-gradient(to top, #0000 0%, #1a0000 10%, #5a0803 42%, #b3200a 66%, #ff6a12 82%, #ffb02e 94%, #ffd45a 100%);
-            -webkit-mask:${In(180, 240)};mask:${In(180, 240)}"></div>
+            -webkit-mask:${Un(180, 240)};mask:${Un(180, 240)}"></div>
         <div class="fire front" style="position:absolute;left:-9%;width:118%;top:100%;height:190vh;
             background:linear-gradient(to top, #0000 0%, #140000 14%, #6e0c04 46%, #d9360b 68%, #ff8a1e 80%, #ffd45a 92%, #ffe9a0 100%);
-            -webkit-mask:${In(104, 180)};mask:${In(104, 180)}"></div>
+            -webkit-mask:${Un(104, 180)};mask:${Un(104, 180)}"></div>
         <div class="flash" style="position:absolute;inset:0;background:radial-gradient(circle at 50% 70%, #fff3c4, #ff7a1a 60%, #c8140c);opacity:0"></div>`, document.body.appendChild(t);
 	try {
 		t.setAttribute("popover", "manual"), t.showPopover();
@@ -1648,7 +1709,7 @@ async function Ln(e) {
 		.35,
 		.75
 	].map((e) => ({ opacity: e })), {
-		duration: jn,
+		duration: Rn,
 		easing: "steps(1, end)",
 		fill: "forwards"
 	}), n(".red").animate([
@@ -1664,7 +1725,7 @@ async function Ln(e) {
 		1,
 		1
 	].map((e) => ({ opacity: e })), {
-		duration: jn,
+		duration: Rn,
 		easing: "steps(1, end)",
 		fill: "forwards"
 	});
@@ -1672,8 +1733,8 @@ async function Ln(e) {
 		duration: t,
 		easing: "steps(12, end)"
 	});
-	r(5, jn), await Fn(jn - 120);
-	let i = Mn + Nn + Pn, a = (e, t) => e.animate([
+	r(5, Rn), await Hn(Rn - 120);
+	let i = zn + Bn + Vn, a = (e, t) => e.animate([
 		{
 			transform: "translateY(0)",
 			offset: 0,
@@ -1681,12 +1742,12 @@ async function Ln(e) {
 		},
 		{
 			transform: `translateY(${-118 + t}vh)`,
-			offset: Mn / i,
+			offset: zn / i,
 			easing: "linear"
 		},
 		{
 			transform: `translateY(${-124 + t}vh)`,
-			offset: (Mn + Nn) / i,
+			offset: (zn + Bn) / i,
 			easing: "cubic-bezier(0.5, 0, 0.9, 0.6)"
 		},
 		{
@@ -1720,7 +1781,7 @@ async function Ln(e) {
 			fill: "forwards"
 		});
 	}
-	await Fn(Mn + Nn * .4), n(".dark").getAnimations().forEach((e) => e.cancel()), n(".red").getAnimations().forEach((e) => e.cancel());
+	await Hn(zn + Bn * .4), n(".dark").getAnimations().forEach((e) => e.cancel()), n(".red").getAnimations().forEach((e) => e.cancel());
 	try {
 		e();
 	} catch (e) {
@@ -1736,11 +1797,11 @@ async function Ln(e) {
 	], {
 		duration: 900,
 		easing: "ease-out"
-	}), await Fn(Nn * .6 + Pn + 900), t.remove();
+	}), await Hn(Bn * .6 + Vn + 900), t.remove();
 }
 //#endregion
 //#region \0@oxc-project+runtime@0.128.0/helpers/decorate.js
-function G(e, t, n, r) {
+function K(e, t, n, r) {
 	var i = arguments.length, a = i < 3 ? t : r === null ? r = Object.getOwnPropertyDescriptor(t, n) : r, o;
 	if (typeof Reflect == "object" && typeof Reflect.decorate == "function") a = Reflect.decorate(e, t, n, r);
 	else for (var s = e.length - 1; s >= 0; s--) (o = e[s]) && (a = (i < 3 ? o(a) : i > 3 ? o(t, n, a) : o(t, n)) || a);
@@ -1748,11 +1809,11 @@ function G(e, t, n, r) {
 }
 //#endregion
 //#region src/penance/commandments/content-not-composable.element.ts
-var K = "/umbraco/management/api/v1/sinners", Rn = {
+var q = "/umbraco/management/api/v1/sinners", Gn = {
 	"Umbraco.BlockList": "Block List",
 	"Umbraco.BlockGrid": "Block Grid",
 	"Umbraco.RichText": "Rich Text"
-}, q = class extends e(E) {
+}, J = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._items = [], this._emptyItems = [], this._loading = !0, this._folding = /* @__PURE__ */ new Set(), this._blessing = /* @__PURE__ */ new Set(), this._deleting = /* @__PURE__ */ new Set(), this._lastResult = null;
 	}
@@ -1958,7 +2019,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("I", this, [{
+		super.connectedCallback(), G.registerSteps("I", this, [{
 			label: "Fold In & bless everything",
 			clicks: () => [...this.renderRoot.querySelectorAll(".prop-chip")].flatMap((e) => {
 				let t = e.querySelector("code")?.textContent?.trim() ?? "", n = e.querySelectorAll(".fold-btn"), r = ["contentRows", "socialIconLinks"].includes(t) ? 0 : [
@@ -1989,7 +2050,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
 	async #n() {
 		this._loading = !0;
 		try {
-			let [e, t] = await Promise.all([this.#t(`${K}/sinful-compositions`), this.#t(`${K}/empty-compositions`)]);
+			let [e, t] = await Promise.all([this.#t(`${q}/sinful-compositions`), this.#t(`${q}/empty-compositions`)]);
 			e.ok && (this._items = await e.json()), t.ok && (this._emptyItems = await t.json());
 			let n = this._items.reduce((e, t) => e + t.sinfulProperties.filter((e) => !e.isBlessed).length, 0);
 			this.dispatchEvent(new CustomEvent("sinners-status", {
@@ -2032,7 +2093,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
 		let n = `${e.contentTypeAlias}:${t.propertyAlias}`;
 		this._folding = new Set([...this._folding, n]), this._lastResult = null;
 		try {
-			let r = await (await this.#t(`${K}/fold-in`, {
+			let r = await (await this.#t(`${q}/fold-in`, {
 				method: "POST",
 				body: JSON.stringify({
 					compositionAlias: e.contentTypeAlias,
@@ -2042,7 +2103,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
 			this._lastResult = {
 				key: n,
 				result: r
-			}, r.success && (await this.#n(), k(1, "fold-in"));
+			}, r.success && (await this.#n(), A(1, "fold-in"));
 		} catch (e) {
 			this._lastResult = {
 				key: n,
@@ -2062,7 +2123,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
 		if (window.confirm(`Fold "${t.propertyAlias}" from "${e.contentTypeName}" into: ${e.usedOn.join(", ")}?\n\nThis will:\n  1. Add "${t.propertyAlias}_fold_tmp" to each target doc type\n  2. Copy all content values across\n  3. Remove the property from the composition\n  4. Rename the temp property back to "${t.propertyAlias}"\n\nContent nodes will be saved as drafts. This cannot be undone.`)) {
 			this._folding = new Set([...this._folding, n]), this._lastResult = null;
 			try {
-				let r = await (await this.#t(`${K}/fold-in`, {
+				let r = await (await this.#t(`${q}/fold-in`, {
 					method: "POST",
 					body: JSON.stringify({
 						compositionAlias: e.contentTypeAlias,
@@ -2072,7 +2133,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
 				this._lastResult = {
 					key: n,
 					result: r
-				}, r.success && (await this.#n(), k(1, "fold-in"));
+				}, r.success && (await this.#n(), A(1, "fold-in"));
 			} catch (e) {
 				this._lastResult = {
 					key: n,
@@ -2092,7 +2153,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
 		if (window.confirm(`Delete "${e.contentTypeName}" (${e.contentTypeAlias})?\n\nThis cannot be undone.`)) {
 			this._deleting = new Set([...this._deleting, e.contentTypeAlias]);
 			try {
-				await this.#t(`${K}/empty-compositions/${encodeURIComponent(e.contentTypeAlias)}`, { method: "DELETE" }), await this.#n();
+				await this.#t(`${q}/empty-compositions/${encodeURIComponent(e.contentTypeAlias)}`, { method: "DELETE" }), await this.#n();
 			} finally {
 				this._deleting = new Set([...this._deleting].filter((t) => t !== e.contentTypeAlias));
 			}
@@ -2102,14 +2163,14 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
 		let r = `${e.contentTypeAlias}:${t.propertyAlias}`;
 		this._blessing = new Set([...this._blessing, r]);
 		try {
-			await this.#t(`${K}/bless`, {
+			await this.#t(`${q}/bless`, {
 				method: "POST",
 				body: JSON.stringify({
 					compositionAlias: e.contentTypeAlias,
 					propertyAlias: t.propertyAlias,
 					blessed: n
 				})
-			}), await this.#n(), n && k(1, "bless");
+			}), await this.#n(), n && A(1, "bless");
 		} finally {
 			this._blessing = new Set([...this._blessing].filter((e) => e !== r));
 		}
@@ -2125,7 +2186,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
 			let n = `${e.contentTypeAlias}:${t.propertyAlias}`, r = this._folding.has(n), i = this._blessing.has(n);
 			return S`
                                 <span class="prop-chip ${t.isBlessed ? "blessed" : ""}">
-                                    ${Rn[t.editorAlias] ?? t.editorAlias}
+                                    ${Gn[t.editorAlias] ?? t.editorAlias}
                                     <code>${t.propertyAlias}</code>
                                     <button
                                         class="fold-btn"
@@ -2155,7 +2216,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
         `;
 	}
 	#u() {
-		return this._emptyItems.length === 0 ? C : S`
+		return this._emptyItems.length === 0 ? w : S`
             <div class="section-divider">Empty compositions</div>
             ${this._emptyItems.map((e) => S`
                 <div class="empty-comp-row">
@@ -2181,7 +2242,7 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
                           <div class="result-banner ${e.result.success ? "success" : "error"}">
                               ${e.result.message}
                           </div>
-                      ` : C}
+                      ` : w}
                 ${this._loading ? S`<uui-loader-bar></uui-loader-bar>` : S`
                           ${this._items.length === 0 ? S`<div class="clean">✓ No compositions expose block lists, block grids, or rich text editors.</div>` : S`${this._items.map((e) => this.#l(e))}`}
                           ${this.#u()}
@@ -2190,15 +2251,15 @@ var K = "/umbraco/management/api/v1/sinners", Rn = {
         `;
 	}
 };
-G([O()], q.prototype, "_items", void 0), G([O()], q.prototype, "_emptyItems", void 0), G([O()], q.prototype, "_loading", void 0), G([O()], q.prototype, "_folding", void 0), G([O()], q.prototype, "_blessing", void 0), G([O()], q.prototype, "_deleting", void 0), G([O()], q.prototype, "_lastResult", void 0), q = G([D("sinners-content-not-composable")], q);
+K([k()], J.prototype, "_items", void 0), K([k()], J.prototype, "_emptyItems", void 0), K([k()], J.prototype, "_loading", void 0), K([k()], J.prototype, "_folding", void 0), K([k()], J.prototype, "_blessing", void 0), K([k()], J.prototype, "_deleting", void 0), K([k()], J.prototype, "_lastResult", void 0), J = K([O("sinners-content-not-composable")], J);
 //#endregion
 //#region src/penance/commandments/four-sacred-types.element.ts
-var zn = [
+var Kn = [
 	"Page",
 	"Block",
 	"Data",
 	"Composition"
-], Bn = "/umbraco/management/api/v1/sinners", J = class extends e(E) {
+], qn = "/umbraco/management/api/v1/sinners", Y = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._items = [], this._loading = !0, this._saving = !1, this._categorizing = !1, this._pendingChanges = /* @__PURE__ */ new Map();
 	}
@@ -2377,7 +2438,7 @@ var zn = [
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("II", this, [
+		super.connectedCallback(), G.registerSteps("II", this, [
 			{
 				label: "Autofill classifications",
 				clicks: () => [...this.renderRoot.querySelectorAll("select")],
@@ -2411,7 +2472,7 @@ var zn = [
 	async #n() {
 		this._loading = !0;
 		try {
-			let e = await this.#t(`${Bn}/content-type-classifications`);
+			let e = await this.#t(`${qn}/content-type-classifications`);
 			e.ok && (this._items = await e.json()), this.#r();
 		} finally {
 			this._loading = !1;
@@ -2448,7 +2509,7 @@ var zn = [
 	async #s() {
 		this._categorizing = !0;
 		try {
-			(await this.#t(`${Bn}/auto-categorize`, { method: "POST" })).ok && (await this.#n(), k(2, "auto-categorize"));
+			(await this.#t(`${qn}/auto-categorize`, { method: "POST" })).ok && (await this.#n(), A(2, "auto-categorize"));
 		} finally {
 			this._categorizing = !1;
 		}
@@ -2458,7 +2519,7 @@ var zn = [
 			this._saving = !0;
 			try {
 				let e = 0;
-				for (let [t, n] of this._pendingChanges) if ((await this.#t(`${Bn}/content-type-classifications`, {
+				for (let [t, n] of this._pendingChanges) if ((await this.#t(`${qn}/content-type-classifications`, {
 					method: "POST",
 					body: JSON.stringify({
 						contentTypeAlias: t,
@@ -2473,7 +2534,7 @@ var zn = [
 					let r = new Map(this._pendingChanges);
 					r.delete(t), this._pendingChanges = r;
 				}
-				e > 0 && (this.#r(), k(2, "classify"));
+				e > 0 && (this.#r(), A(2, "classify"));
 			} finally {
 				this._saving = !1;
 			}
@@ -2501,19 +2562,19 @@ var zn = [
                         @change=${(t) => this.#i(e.contentTypeAlias, t.target.value)}
                     >
                         <option value="">— Unclassified —</option>
-                        ${zn.map((e) => S`<option value=${e} ?selected=${t === e}>${e}</option>`)}
+                        ${Kn.map((e) => S`<option value=${e} ?selected=${t === e}>${e}</option>`)}
                     </select>
                     ${e.suggestedClassification && !n ? S`<span
                               class="suggestion"
                               @click=${() => this.#a(e.contentTypeAlias, e.suggestedClassification)}
                               >Suggest: ${e.suggestedClassification}</span
-                          >` : C}
+                          >` : w}
                 </div>
             </div>
         `;
 	}
 	#d(e, t, n = !1) {
-		return t.length === 0 ? C : S`
+		return t.length === 0 ? w : S`
             <details ?open=${n}>
                 <summary>
                     <span class=${e === "Unclassified" ? "sinful-label" : ""}>${e}</span>
@@ -2537,14 +2598,14 @@ var zn = [
                                     ${this._categorizing ? "Categorizing…" : "Auto Categorize"}
                                 </uui-button>
                                 ${n > 0 ? S`<span class="stat-chip sinful">⚠ ${n} unclassified</span>` : S`<span class="stat-chip clean">✓ All classified</span>`}
-                                ${zn.map((e) => {
+                                ${Kn.map((e) => {
 			let n = t(e).length;
-			return n > 0 ? S`<span class="stat-chip">${e}: ${n}</span>` : C;
+			return n > 0 ? S`<span class="stat-chip">${e}: ${n}</span>` : w;
 		})}
                             </div>
 
                             ${this.#d("Unclassified", e, !0)}
-                            ${zn.map((e) => this.#d(e, t(e)))}
+                            ${Kn.map((e) => this.#d(e, t(e)))}
                             <div class="save-bar">
                                 <uui-button
                                     look="primary"
@@ -2559,10 +2620,10 @@ var zn = [
         `;
 	}
 };
-G([O()], J.prototype, "_items", void 0), G([O()], J.prototype, "_loading", void 0), G([O()], J.prototype, "_saving", void 0), G([O()], J.prototype, "_categorizing", void 0), G([O()], J.prototype, "_pendingChanges", void 0), J = G([D("sinners-four-sacred-types")], J);
+K([k()], Y.prototype, "_items", void 0), K([k()], Y.prototype, "_loading", void 0), K([k()], Y.prototype, "_saving", void 0), K([k()], Y.prototype, "_categorizing", void 0), K([k()], Y.prototype, "_pendingChanges", void 0), Y = K([O("sinners-four-sacred-types")], Y);
 //#endregion
 //#region src/penance/commandments/data-types-in-folders.element.ts
-var Vn = "/umbraco/management/api/v1/sinners", Y = class extends e(E) {
+var Jn = "/umbraco/management/api/v1/sinners", Yn = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._items = [], this._loading = !0, this._organizing = !1, this._lastMessage = null;
 	}
@@ -2673,7 +2734,7 @@ var Vn = "/umbraco/management/api/v1/sinners", Y = class extends e(E) {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("III", this, [{
+		super.connectedCallback(), G.registerSteps("III", this, [{
 			label: "Organize data types",
 			clicks: () => [...this.renderRoot.querySelectorAll(".organize-btn")],
 			run: () => this.#r()
@@ -2695,7 +2756,7 @@ var Vn = "/umbraco/management/api/v1/sinners", Y = class extends e(E) {
 	async #n() {
 		this._loading = !0;
 		try {
-			let e = await this.#t(`${Vn}/unorganized-data-types`);
+			let e = await this.#t(`${Jn}/unorganized-data-types`);
 			e.ok && (this._items = await e.json());
 			let t = this._items.length;
 			this.dispatchEvent(new CustomEvent("sinners-status", {
@@ -2713,13 +2774,13 @@ var Vn = "/umbraco/management/api/v1/sinners", Y = class extends e(E) {
 	async #r() {
 		this._organizing = !0, this._lastMessage = null;
 		try {
-			let e = await this.#t(`${Vn}/organize-data-types`, { method: "POST" });
+			let e = await this.#t(`${Jn}/organize-data-types`, { method: "POST" });
 			if (e.ok) {
 				let t = await e.json();
 				this._lastMessage = {
 					success: !0,
 					text: `Organized ${t.organizedCount} data type(s) into folders.`
-				}, await this.#n(), k(3, "organize-data-types");
+				}, await this.#n(), A(3, "organize-data-types");
 			} else this._lastMessage = {
 				success: !1,
 				text: `Failed to organize data types (HTTP ${e.status}).`
@@ -2745,7 +2806,7 @@ var Vn = "/umbraco/management/api/v1/sinners", Y = class extends e(E) {
 		let e = this._lastMessage;
 		return S`
             <uui-box headline="III — The root is bare: data types live in folders">
-                ${e ? S`<div class="result-banner ${e.success ? "success" : "error"}">${e.text}</div>` : C}
+                ${e ? S`<div class="result-banner ${e.success ? "success" : "error"}">${e.text}</div>` : w}
                 ${this._loading ? S`<uui-loader-bar></uui-loader-bar>` : this._items.length === 0 ? S`<div class="clean">✓ All data types are in folders.</div>` : S`
                             <div class="toolbar">
                                 <span class="count">${this._items.length} data type(s) need organizing</span>
@@ -2762,7 +2823,7 @@ var Vn = "/umbraco/management/api/v1/sinners", Y = class extends e(E) {
                                     ${t.map((e) => S`
                                         <div class="dt-row">
                                             <span class="dt-name">${e.name}</span>
-                                            ${e.isBuiltIn ? S`<span class="built-in-badge">built-in</span>` : C}
+                                            ${e.isBuiltIn ? S`<span class="built-in-badge">built-in</span>` : w}
                                         </div>
                                     `)}
                                 </div>
@@ -2772,17 +2833,17 @@ var Vn = "/umbraco/management/api/v1/sinners", Y = class extends e(E) {
         `;
 	}
 };
-G([O()], Y.prototype, "_items", void 0), G([O()], Y.prototype, "_loading", void 0), G([O()], Y.prototype, "_organizing", void 0), G([O()], Y.prototype, "_lastMessage", void 0), Y = G([D("sinners-data-types-in-folders")], Y);
+K([k()], Yn.prototype, "_items", void 0), K([k()], Yn.prototype, "_loading", void 0), K([k()], Yn.prototype, "_organizing", void 0), K([k()], Yn.prototype, "_lastMessage", void 0), Yn = K([O("sinners-data-types-in-folders")], Yn);
 //#endregion
 //#region src/penance/magic.ts
-var Hn = !1;
-function Un() {
-	if (Hn) return;
+var Xn = !1;
+function Zn() {
+	if (Xn) return;
 	let e = document.createElement("style");
-	e.textContent = "\n        @keyframes sinners-magic-fade {\n            0%   { opacity: 0; }\n            20%  { opacity: 1; }\n            80%  { opacity: 1; }\n            100% { opacity: 0; }\n        }\n        .sinners-magic-overlay {\n            position: fixed !important;\n            top: 0 !important;\n            left: 0 !important;\n            width: 100vw !important;\n            height: 100vh !important;\n            z-index: 2147483647 !important;\n            background: rgba(0, 0, 0, 0.85) !important;\n            display: flex !important;\n            align-items: center !important;\n            justify-content: center !important;\n            pointer-events: none !important;\n            animation: sinners-magic-fade 1.8s ease forwards !important;\n        }\n        .sinners-magic-word {\n            font-size: 96px !important;\n            font-weight: 900 !important;\n            font-style: italic !important;\n            background: linear-gradient(90deg, #ff6b35, #f7c59f, #efefd0, #00b4d8, #9b5de5) !important;\n            -webkit-background-clip: text !important;\n            -webkit-text-fill-color: transparent !important;\n            background-clip: text !important;\n            white-space: nowrap !important;\n        }\n    ", document.head.appendChild(e), Hn = !0;
+	e.textContent = "\n        @keyframes sinners-magic-fade {\n            0%   { opacity: 0; }\n            20%  { opacity: 1; }\n            80%  { opacity: 1; }\n            100% { opacity: 0; }\n        }\n        .sinners-magic-overlay {\n            position: fixed !important;\n            top: 0 !important;\n            left: 0 !important;\n            width: 100vw !important;\n            height: 100vh !important;\n            z-index: 2147483647 !important;\n            background: rgba(0, 0, 0, 0.85) !important;\n            display: flex !important;\n            align-items: center !important;\n            justify-content: center !important;\n            pointer-events: none !important;\n            animation: sinners-magic-fade 1.8s ease forwards !important;\n        }\n        .sinners-magic-word {\n            font-size: 96px !important;\n            font-weight: 900 !important;\n            font-style: italic !important;\n            background: linear-gradient(90deg, #ff6b35, #f7c59f, #efefd0, #00b4d8, #9b5de5) !important;\n            -webkit-background-clip: text !important;\n            -webkit-text-fill-color: transparent !important;\n            background-clip: text !important;\n            white-space: nowrap !important;\n        }\n    ", document.head.appendChild(e), Xn = !0;
 }
-function Wn(e) {
-	Un();
+function Qn(e) {
+	Zn();
 	let t = document.createElement("div");
 	t.className = "sinners-magic-overlay";
 	let n = document.createElement("span");
@@ -2792,7 +2853,7 @@ function Wn(e) {
 }
 //#endregion
 //#region src/penance/commandments/program-cs-clean.element.ts
-var Gn = "/umbraco/management/api/v1/sinners", Kn = "var i̸̖l̷̼l̴̮i̵̗g̸̫a̷̮l̶̼ = app.UseUmbraco();\n\ni̸̖l̷̼l̴̮i̵̗g̸̫a̷̮l̶̼.WithMiddleware(u =>\n    {\n        u.UseBackOffice();\n        u.UseWebsite();\n    })\n    .WithEndpoints(u =>\n    {\n        u.UseBackOfficeEndpoints();\n        u.UseWebsiteEndpoints();\n    });", qn = "app.UseUmbraco()\n    .WithMiddleware(u =>\n    {\n        u.UseBackOffice();\n        u.UseWebsite();\n    })\n    .WithEndpoints(u =>\n    {\n        u.UseBackOfficeEndpoints();\n        u.UseWebsiteEndpoints();\n    });\n\nawait app.RunAsync();", Jn = class extends e(E) {
+var $n = "/umbraco/management/api/v1/sinners", er = "var i̸̖l̷̼l̴̮i̵̗g̸̫a̷̮l̶̼ = app.UseUmbraco();\n\ni̸̖l̷̼l̴̮i̵̗g̸̫a̷̮l̶̼.WithMiddleware(u =>\n    {\n        u.UseBackOffice();\n        u.UseWebsite();\n    })\n    .WithEndpoints(u =>\n    {\n        u.UseBackOfficeEndpoints();\n        u.UseWebsiteEndpoints();\n    });", tr = "app.UseUmbraco()\n    .WithMiddleware(u =>\n    {\n        u.UseBackOffice();\n        u.UseWebsite();\n    })\n    .WithEndpoints(u =>\n    {\n        u.UseBackOfficeEndpoints();\n        u.UseWebsiteEndpoints();\n    });\n\nawait app.RunAsync();", nr = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._result = null, this._loading = !0;
 	}
@@ -2912,7 +2973,7 @@ var Gn = "/umbraco/management/api/v1/sinners", Kn = "var i̸̖l̷̼l̴̮i̵̗g̸
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("IV", this, [{
+		super.connectedCallback(), G.registerSteps("IV", this, [{
 			label: "Cleanse Program.cs",
 			clicks: () => [...this.renderRoot.querySelectorAll(".fix-btn")],
 			run: () => this.#n()
@@ -2923,7 +2984,7 @@ var Gn = "/umbraco/management/api/v1/sinners", Kn = "var i̸̖l̷̼l̴̮i̵̗g̸
 	async #t() {
 		this._loading = !0;
 		try {
-			let e = await this.#e?.getLatestToken(), t = await fetch(`${Gn}/program-cs-audit`, { headers: e ? { Authorization: `Bearer ${e}` } : {} });
+			let e = await this.#e?.getLatestToken(), t = await fetch(`${$n}/program-cs-audit`, { headers: e ? { Authorization: `Bearer ${e}` } : {} });
 			t.ok && (this._result = await t.json());
 			let n = this._result ? +!!this._result.useUmbracoSavedToVariable + this._result.extraMiddleware.length + this._result.extraEndpoints.length : 0;
 			this.dispatchEvent(new CustomEvent("sinners-status", {
@@ -2940,11 +3001,11 @@ var Gn = "/umbraco/management/api/v1/sinners", Kn = "var i̸̖l̷̼l̴̮i̵̗g̸
 	}
 	async #n() {
 		let e = await this.#e?.getLatestToken();
-		await fetch(`${Gn}/fix-program-cs`, {
+		await fetch(`${$n}/fix-program-cs`, {
 			method: "POST",
 			headers: e ? { Authorization: `Bearer ${e}` } : {}
-		}), Wn(() => {
-			k(4, "cleanse-program-cs"), this.#t();
+		}), Qn(() => {
+			A(4, "cleanse-program-cs"), this.#t();
 		});
 	}
 	#r(e) {
@@ -2962,12 +3023,12 @@ var Gn = "/umbraco/management/api/v1/sinners", Kn = "var i̸̖l̷̼l̴̮i̵̗g̸
                 <div class="diff-block">
                     <div class="diff-side">
                         <div class="diff-label before">Before — thy sin</div>
-                        <pre class="before">${Kn}</pre>
+                        <pre class="before">${er}</pre>
                     </div>
                     <div class="diff-arrow">→</div>
                     <div class="diff-side">
                         <div class="diff-label after">After — absolved</div>
-                        <pre class="after">${qn}</pre>
+                        <pre class="after">${tr}</pre>
                     </div>
                 </div>
                 <uui-button class="fix-btn" look="secondary" @click=${() => void this.#n()}>
@@ -2998,10 +3059,10 @@ var Gn = "/umbraco/management/api/v1/sinners", Kn = "var i̸̖l̷̼l̴̮i̵̗g̸
         `;
 	}
 };
-G([O()], Jn.prototype, "_result", void 0), G([O()], Jn.prototype, "_loading", void 0), Jn = G([D("sinners-program-cs-clean")], Jn);
+K([k()], nr.prototype, "_result", void 0), K([k()], nr.prototype, "_loading", void 0), nr = K([O("sinners-program-cs-clean")], nr);
 //#endregion
 //#region src/penance/commandments/production-settings.element.ts
-var Yn = "/umbraco/management/api/v1/sinners", Xn = class extends e(E) {
+var rr = "/umbraco/management/api/v1/sinners", ir = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._result = null, this._loading = !0, this._blessing = /* @__PURE__ */ new Set();
 	}
@@ -3109,7 +3170,7 @@ var Yn = "/umbraco/management/api/v1/sinners", Xn = class extends e(E) {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("V", this, [{
+		super.connectedCallback(), G.registerSteps("V", this, [{
 			label: "Bless all settings",
 			clicks: () => [...this.renderRoot.querySelectorAll(".bless-btn:not(.blessed)")],
 			run: () => this.#t()
@@ -3138,7 +3199,7 @@ var Yn = "/umbraco/management/api/v1/sinners", Xn = class extends e(E) {
 	async #r() {
 		this._loading = !0;
 		try {
-			let e = await this.#n(`${Yn}/production-readiness`);
+			let e = await this.#n(`${rr}/production-readiness`);
 			e.ok && (this._result = await e.json());
 			let t = this._result?.missingSettings.filter((e) => !e.isBlessed).length ?? 0;
 			this.dispatchEvent(new CustomEvent("sinners-status", {
@@ -3156,13 +3217,13 @@ var Yn = "/umbraco/management/api/v1/sinners", Xn = class extends e(E) {
 	async #i(e, t) {
 		this._blessing = new Set([...this._blessing, e.key]);
 		try {
-			await this.#n(`${Yn}/bless-production-setting`, {
+			await this.#n(`${rr}/bless-production-setting`, {
 				method: "POST",
 				body: JSON.stringify({
 					settingKey: e.key,
 					blessed: t
 				})
-			}), await this.#r(), t && k(5, "bless");
+			}), await this.#r(), t && A(5, "bless");
 		} finally {
 			this._blessing = new Set([...this._blessing].filter((t) => t !== e.key));
 		}
@@ -3202,10 +3263,10 @@ var Yn = "/umbraco/management/api/v1/sinners", Xn = class extends e(E) {
         `;
 	}
 };
-G([O()], Xn.prototype, "_result", void 0), G([O()], Xn.prototype, "_loading", void 0), G([O()], Xn.prototype, "_blessing", void 0), Xn = G([D("sinners-production-settings")], Xn);
+K([k()], ir.prototype, "_result", void 0), K([k()], ir.prototype, "_loading", void 0), K([k()], ir.prototype, "_blessing", void 0), ir = K([O("sinners-production-settings")], ir);
 //#endregion
 //#region src/penance/commandments/alias-audit.element.ts
-var Zn = "/umbraco/management/api/v1/sinners", Qn = class extends e(E) {
+var ar = "/umbraco/management/api/v1/sinners", or = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._items = [], this._loading = !0, this._blessing = /* @__PURE__ */ new Set();
 	}
@@ -3323,7 +3384,7 @@ var Zn = "/umbraco/management/api/v1/sinners", Qn = class extends e(E) {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("VI", this, [{
+		super.connectedCallback(), G.registerSteps("VI", this, [{
 			label: "Bless first alias",
 			clicks: () => [...this.renderRoot.querySelectorAll(".bless-btn:not(.blessed)")].slice(0, 1),
 			run: () => {
@@ -3348,7 +3409,7 @@ var Zn = "/umbraco/management/api/v1/sinners", Qn = class extends e(E) {
 	async #n() {
 		this._loading = !0;
 		try {
-			let e = await this.#t(`${Zn}/alias-issues`);
+			let e = await this.#t(`${ar}/alias-issues`);
 			e.ok && (this._items = await e.json());
 			let t = this._items.filter((e) => !e.isBlessed && !e.isCamelCase).length, n = this._items.filter((e) => !e.isBlessed && e.isCamelCase && e.unrecognizedWords.length > 0).length, r = t + n, i = t > 0 ? "error" : n > 0 ? "warning" : "ok";
 			this.dispatchEvent(new CustomEvent("sinners-status", {
@@ -3366,13 +3427,13 @@ var Zn = "/umbraco/management/api/v1/sinners", Qn = class extends e(E) {
 	async #r(e, t) {
 		this._blessing = new Set([...this._blessing, e.contentTypeAlias]);
 		try {
-			await this.#t(`${Zn}/bless-alias`, {
+			await this.#t(`${ar}/bless-alias`, {
 				method: "POST",
 				body: JSON.stringify({
 					contentTypeAlias: e.contentTypeAlias,
 					blessed: t
 				})
-			}), await this.#n(), t && k(6, "bless");
+			}), await this.#n(), t && A(6, "bless");
 		} finally {
 			this._blessing = new Set([...this._blessing].filter((t) => t !== e.contentTypeAlias));
 		}
@@ -3386,7 +3447,7 @@ var Zn = "/umbraco/management/api/v1/sinners", Qn = class extends e(E) {
                     <span class="alias">${e.contentTypeAlias}</span>
                     <span class="path">${e.folderPath}</span>
                     <div class="tags">
-                        ${e.isCamelCase ? C : S`<span class="tag error">✕ Not camelCase</span>`}
+                        ${e.isCamelCase ? w : S`<span class="tag error">✕ Not camelCase</span>`}
                         ${e.unrecognizedWords.map((e) => S`
                             <span class="tag warning">? <code>${e}</code></span>
                         `)}
@@ -3410,10 +3471,10 @@ var Zn = "/umbraco/management/api/v1/sinners", Qn = class extends e(E) {
         `;
 	}
 };
-G([O()], Qn.prototype, "_items", void 0), G([O()], Qn.prototype, "_loading", void 0), G([O()], Qn.prototype, "_blessing", void 0), Qn = G([D("sinners-alias-audit")], Qn);
+K([k()], or.prototype, "_items", void 0), K([k()], or.prototype, "_loading", void 0), K([k()], or.prototype, "_blessing", void 0), or = K([O("sinners-alias-audit")], or);
 //#endregion
 //#region src/penance/commandments/translation-audit.element.ts
-var $n = "/umbraco/management/api/v1/sinners", X = class extends e(E) {
+var sr = "/umbraco/management/api/v1/sinners", X = class extends e(D) {
 	constructor(...e) {
 		super(...e), this.mode = "naming", this._result = null, this._loading = !0, this._blessing = /* @__PURE__ */ new Set(), this._grouping = /* @__PURE__ */ new Set();
 	}
@@ -3560,7 +3621,7 @@ var $n = "/umbraco/management/api/v1/sinners", X = class extends e(E) {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), this.mode === "grouping" && W.registerSteps("III", this, [{
+		super.connectedCallback(), this.mode === "grouping" && G.registerSteps("III", this, [{
 			label: "Group all dictionary keys",
 			clicks: () => [...this.renderRoot.querySelectorAll(".group-btn")],
 			run: () => this.#i()
@@ -3582,7 +3643,7 @@ var $n = "/umbraco/management/api/v1/sinners", X = class extends e(E) {
 	async #n() {
 		this._loading = !0;
 		try {
-			let e = await this.#t(`${$n}/translation-audit`);
+			let e = await this.#t(`${sr}/translation-audit`);
 			e.ok && (this._result = await e.json());
 			let t = this._result, n = t?.issues.filter((e) => !e.isBlessed && !e.isPascalCase).length ?? 0, r = t?.issues.filter((e) => !e.isBlessed && e.isPascalCase && e.unrecognizedWords.length > 0).length ?? 0, i = t?.groupSuggestions.length ?? 0, a = this.mode === "grouping" ? i : n + r, o = this.mode === "grouping" ? i > 0 ? "warning" : "ok" : n > 0 ? "error" : a > 0 ? "warning" : "ok";
 			this.dispatchEvent(new CustomEvent("sinners-status", {
@@ -3600,13 +3661,13 @@ var $n = "/umbraco/management/api/v1/sinners", X = class extends e(E) {
 	async #r(e, t) {
 		this._blessing = new Set([...this._blessing, e.itemKey]);
 		try {
-			await this.#t(`${$n}/bless-translation`, {
+			await this.#t(`${sr}/bless-translation`, {
 				method: "POST",
 				body: JSON.stringify({
 					itemKey: e.itemKey,
 					blessed: t
 				})
-			}), await this.#n(), t && k(6, "bless");
+			}), await this.#n(), t && A(6, "bless");
 		} finally {
 			this._blessing = new Set([...this._blessing].filter((t) => t !== e.itemKey));
 		}
@@ -3617,24 +3678,24 @@ var $n = "/umbraco/management/api/v1/sinners", X = class extends e(E) {
 			if (!e) break;
 			await this.#a(e, !1);
 		}
-		k(3, "group-dictionary");
+		A(3, "group-dictionary");
 	}
 	async #a(e, t = !0) {
 		this._grouping = new Set([...this._grouping, e.proposedParentKey]);
 		try {
-			await this.#t(`${$n}/create-translation-group`, {
+			await this.#t(`${sr}/create-translation-group`, {
 				method: "POST",
 				body: JSON.stringify({
 					parentKey: e.proposedParentKey,
 					childIds: e.children.map((e) => e.id)
 				})
-			}), await this.#n(), t && k(3, "group-dictionary");
+			}), await this.#n(), t && A(3, "group-dictionary");
 		} finally {
 			this._grouping = new Set([...this._grouping].filter((t) => t !== e.proposedParentKey));
 		}
 	}
 	#o(e) {
-		return e.length === 0 ? C : S`
+		return e.length === 0 ? w : S`
             ${e.map((e) => {
 			let t = this._blessing.has(e.itemKey);
 			return S`
@@ -3642,7 +3703,7 @@ var $n = "/umbraco/management/api/v1/sinners", X = class extends e(E) {
                         <div>
                             <span class="key">${e.itemKey}</span>
                             <div class="tags">
-                                ${e.isPascalCase ? C : S`<span class="tag error">✕ Not PascalCase</span>`}
+                                ${e.isPascalCase ? w : S`<span class="tag error">✕ Not PascalCase</span>`}
                                 ${e.unrecognizedWords.map((e) => S`
                                     <span class="tag warning">? <code>${e}</code></span>
                                 `)}
@@ -3661,7 +3722,7 @@ var $n = "/umbraco/management/api/v1/sinners", X = class extends e(E) {
         `;
 	}
 	#s(e) {
-		return e.length === 0 ? C : S`
+		return e.length === 0 ? w : S`
             <div class="section-divider">Ungrouped keys</div>
             ${e.map((e) => {
 			let t = this._grouping.has(e.proposedParentKey);
@@ -3694,10 +3755,10 @@ var $n = "/umbraco/management/api/v1/sinners", X = class extends e(E) {
         `;
 	}
 };
-G([We()], X.prototype, "mode", void 0), G([O()], X.prototype, "_result", void 0), G([O()], X.prototype, "_loading", void 0), G([O()], X.prototype, "_blessing", void 0), G([O()], X.prototype, "_grouping", void 0), X = G([D("sinners-translation-audit")], X);
+K([Ue()], X.prototype, "mode", void 0), K([k()], X.prototype, "_result", void 0), K([k()], X.prototype, "_loading", void 0), K([k()], X.prototype, "_blessing", void 0), K([k()], X.prototype, "_grouping", void 0), X = K([O("sinners-translation-audit")], X);
 //#endregion
 //#region src/penance/commandments/root-media.element.ts
-var er = "/umbraco/management/api/v1/sinners", tr = class extends e(E) {
+var cr = "/umbraco/management/api/v1/sinners", lr = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._items = [], this._loading = !0, this._pretending = !1;
 	}
@@ -3759,7 +3820,7 @@ var er = "/umbraco/management/api/v1/sinners", tr = class extends e(E) {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("III", this, [{
+		super.connectedCallback(), G.registerSteps("III", this, [{
 			label: "Pretend to fix the media root ✨",
 			clicks: () => [...this.renderRoot.querySelectorAll(".pretend-btn")],
 			run: () => this.#i()
@@ -3782,15 +3843,15 @@ var er = "/umbraco/management/api/v1/sinners", tr = class extends e(E) {
 		try {
 			let e = !1;
 			try {
-				e = sessionStorage.getItem(dn) === "1";
+				e = sessionStorage.getItem(vn) === "1";
 			} catch {}
 			if (e) {
-				await this.#t(`${er}/forget-pretences`, { method: "POST" });
+				await this.#t(`${cr}/forget-pretences`, { method: "POST" });
 				try {
-					sessionStorage.removeItem(dn);
+					sessionStorage.removeItem(vn);
 				} catch {}
 			}
-			let t = await this.#t(`${er}/root-media`);
+			let t = await this.#t(`${cr}/root-media`);
 			if (t.ok) {
 				let e = await t.json();
 				this._items = e.items, this._pretending = e.pretending;
@@ -3812,8 +3873,8 @@ var er = "/umbraco/management/api/v1/sinners", tr = class extends e(E) {
 		}));
 	}
 	async #i() {
-		this._items.length !== 0 && (await this.#t(`${er}/pretend-root-media`, { method: "POST" })).ok && Wn(() => {
-			this._pretending = !0, this.#r(), k(3, "pretend-media", !0);
+		this._items.length !== 0 && (await this.#t(`${cr}/pretend-root-media`, { method: "POST" })).ok && Qn(() => {
+			this._pretending = !0, this.#r(), A(3, "pretend-media", !0);
 		});
 	}
 	render() {
@@ -3840,10 +3901,10 @@ var er = "/umbraco/management/api/v1/sinners", tr = class extends e(E) {
         `;
 	}
 };
-G([O()], tr.prototype, "_items", void 0), G([O()], tr.prototype, "_loading", void 0), G([O()], tr.prototype, "_pretending", void 0), tr = G([D("sinners-root-media")], tr);
+K([k()], lr.prototype, "_items", void 0), K([k()], lr.prototype, "_loading", void 0), K([k()], lr.prototype, "_pretending", void 0), lr = K([O("sinners-root-media")], lr);
 //#endregion
 //#region src/penance/commandments/views-confession.element.ts
-var nr = "/umbraco/management/api/v1/sinners", rr = class extends e(E) {
+var ur = "/umbraco/management/api/v1/sinners", dr = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._result = null, this._loading = !0, this._confessing = !1;
 	}
@@ -3936,7 +3997,7 @@ var nr = "/umbraco/management/api/v1/sinners", rr = class extends e(E) {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("VII", this, [{
+		super.connectedCallback(), G.registerSteps("VII", this, [{
 			label: "Confess",
 			clicks: () => [...this.renderRoot.querySelectorAll(".confess-btn")],
 			run: () => this.#i()
@@ -3957,7 +4018,7 @@ var nr = "/umbraco/management/api/v1/sinners", rr = class extends e(E) {
 	async #n() {
 		this._loading = !0;
 		try {
-			let e = await this.#t(`${nr}/views-confession`);
+			let e = await this.#t(`${ur}/views-confession`);
 			e.ok && (this._result = await e.json()), this.#r();
 		} finally {
 			this._loading = !1;
@@ -3978,8 +4039,8 @@ var nr = "/umbraco/management/api/v1/sinners", rr = class extends e(E) {
 		if (this._result?.hits.some((e) => !e.isConfessed)) {
 			this._confessing = !0;
 			try {
-				let e = await this.#t(`${nr}/confess`, { method: "POST" });
-				e.ok && (this._result = await e.json(), this.#r(), k(7, "confess"));
+				let e = await this.#t(`${ur}/confess`, { method: "POST" });
+				e.ok && (this._result = await e.json(), this.#r(), A(7, "confess"));
 			} finally {
 				this._confessing = !1;
 			}
@@ -4020,21 +4081,21 @@ var nr = "/umbraco/management/api/v1/sinners", rr = class extends e(E) {
             <uui-box headline="VII — Views render; they don’t search">
                 ${this._loading && !e ? S`<uui-loader-bar></uui-loader-bar>` : e?.viewsFound ? t.length === 0 ? S`<div class="clean">✓ No view searcheth the tree. Thy views render what they are given.</div>` : n.length > 0 && n.length === t.length ? this.#a(t) : S`
                                 <div class="info">
-                                    ${n.length === 0 ? S`Thou hast confessed. The code is as sinful as before; thy conscience is not.` : C}
+                                    ${n.length === 0 ? S`Thou hast confessed. The code is as sinful as before; thy conscience is not.` : w}
                                 </div>
                                 ${this.#o(t)}
                                 ${n.length > 0 ? S`<uui-button class="confess-btn" look="primary" color="danger"
                                             ?disabled=${this._confessing}
-                                            @click=${() => void this.#i()}>🕯 Confess the rest</uui-button>` : C}
+                                            @click=${() => void this.#i()}>🕯 Confess the rest</uui-button>` : w}
                             ` : S`<div class="info">No Views folder at the content root — nothing to confess.</div>`}
             </uui-box>
         `;
 	}
 };
-G([O()], rr.prototype, "_result", void 0), G([O()], rr.prototype, "_loading", void 0), G([O()], rr.prototype, "_confessing", void 0), rr = G([D("sinners-views-confession")], rr);
+K([k()], dr.prototype, "_result", void 0), K([k()], dr.prototype, "_loading", void 0), K([k()], dr.prototype, "_confessing", void 0), dr = K([O("sinners-views-confession")], dr);
 //#endregion
 //#region src/penance/commandments/exodus.element.ts
-var ir = "/umbraco/management/api/v1/sinners", Z = class extends e(E) {
+var fr = "/umbraco/management/api/v1/sinners", Z = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._audit = null, this._loading = !0, this._leading = !1, this._result = null, this._error = null;
 	}
@@ -4115,7 +4176,7 @@ var ir = "/umbraco/management/api/v1/sinners", Z = class extends e(E) {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("VIII", this, [{
+		super.connectedCallback(), G.registerSteps("VIII", this, [{
 			label: "Exodus",
 			clicks: () => [...this.renderRoot.querySelectorAll(".exodus-btn")],
 			run: () => this.#r()
@@ -4136,7 +4197,7 @@ var ir = "/umbraco/management/api/v1/sinners", Z = class extends e(E) {
 	async #n() {
 		this._loading = !0;
 		try {
-			let e = await this.#t(`${ir}/exodus-audit`);
+			let e = await this.#t(`${fr}/exodus-audit`);
 			e.ok && (this._audit = await e.json());
 			let t = this._audit?.sinners.length ?? 0;
 			this.dispatchEvent(new CustomEvent("sinners-status", {
@@ -4155,12 +4216,12 @@ var ir = "/umbraco/management/api/v1/sinners", Z = class extends e(E) {
 		if (this._audit?.sinners.length) {
 			this._leading = !0, this._error = null;
 			try {
-				let e = await this.#t(`${ir}/exodus`, { method: "POST" });
+				let e = await this.#t(`${fr}/exodus`, { method: "POST" });
 				if (!e.ok) {
 					this._error = `The sea did not part (HTTP ${e.status}).`;
 					return;
 				}
-				this._result = await e.json(), await this.#n(), k(8, "exodus");
+				this._result = await e.json(), await this.#n(), A(8, "exodus");
 			} catch (e) {
 				this._error = String(e);
 			} finally {
@@ -4195,8 +4256,8 @@ var ir = "/umbraco/management/api/v1/sinners", Z = class extends e(E) {
 		let e = this._audit;
 		return S`
             <uui-box headline="VIII — Umbraco is not thy database">
-                ${this._result ? this.#a(this._result) : C}
-                ${this._error ? S`<div class="banner error">${this._error}</div>` : C}
+                ${this._result ? this.#a(this._result) : w}
+                ${this._error ? S`<div class="banner error">${this._error}</div>` : w}
                 ${this._loading && !e ? S`<uui-loader-bar></uui-loader-bar>` : !e || e.sinners.length === 0 ? S`<div class="clean">✓ No warehouses, no log tables. Thy content tree holdeth only content.</div>` : S`
                             <div class="info">
                                 More than ${e.childThreshold} children of one type under one parent, or more than
@@ -4213,10 +4274,10 @@ var ir = "/umbraco/management/api/v1/sinners", Z = class extends e(E) {
         `;
 	}
 };
-G([O()], Z.prototype, "_audit", void 0), G([O()], Z.prototype, "_loading", void 0), G([O()], Z.prototype, "_leading", void 0), G([O()], Z.prototype, "_result", void 0), G([O()], Z.prototype, "_error", void 0), Z = G([D("sinners-exodus")], Z);
+K([k()], Z.prototype, "_audit", void 0), K([k()], Z.prototype, "_loading", void 0), K([k()], Z.prototype, "_leading", void 0), K([k()], Z.prototype, "_result", void 0), K([k()], Z.prototype, "_error", void 0), Z = K([O("sinners-exodus")], Z);
 //#endregion
 //#region src/penance/commandments/root-content.element.ts
-var ar = "/umbraco/management/api/v1/sinners", or = class extends e(E) {
+var pr = "/umbraco/management/api/v1/sinners", mr = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._result = null, this._loading = !0, this._seeking = !1, this._sanctuaryMessage = null;
 	}
@@ -4332,7 +4393,7 @@ var ar = "/umbraco/management/api/v1/sinners", or = class extends e(E) {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("IX", this, [{
+		super.connectedCallback(), G.registerSteps("IX", this, [{
 			label: "Seek Root Sanctuary",
 			clicks: () => [...this.renderRoot.querySelectorAll(".sanctuary-btn")],
 			run: () => this.#r()
@@ -4354,7 +4415,7 @@ var ar = "/umbraco/management/api/v1/sinners", or = class extends e(E) {
 	async #n() {
 		this._loading = !0;
 		try {
-			let e = await this.#t(`${ar}/root-content-audit`);
+			let e = await this.#t(`${pr}/root-content-audit`);
 			e.ok && (this._result = await e.json());
 			let t = this._result?.rootNodes.filter((e) => e.hasTemplate).length ?? 0;
 			this.dispatchEvent(new CustomEvent("sinners-status", {
@@ -4372,10 +4433,10 @@ var ar = "/umbraco/management/api/v1/sinners", or = class extends e(E) {
 	async #r() {
 		this._seeking = !0, this._sanctuaryMessage = null;
 		try {
-			let e = await this.#t(`${ar}/seek-root-sanctuary`, { method: "POST" });
+			let e = await this.#t(`${pr}/seek-root-sanctuary`, { method: "POST" });
 			if (e.ok) {
 				let t = await e.json();
-				this._sanctuaryMessage = t.success ? t.message : `⚠ ${t.message}`, t.success && (await this.#n(), k(9, "root-sanctuary"));
+				this._sanctuaryMessage = t.success ? t.message : `⚠ ${t.message}`, t.success && (await this.#n(), A(9, "root-sanctuary"));
 			}
 		} finally {
 			this._seeking = !1;
@@ -4423,10 +4484,10 @@ var ar = "/umbraco/management/api/v1/sinners", or = class extends e(E) {
         `;
 	}
 };
-G([O()], or.prototype, "_result", void 0), G([O()], or.prototype, "_loading", void 0), G([O()], or.prototype, "_seeking", void 0), G([O()], or.prototype, "_sanctuaryMessage", void 0), or = G([D("sinners-root-content")], or);
+K([k()], mr.prototype, "_result", void 0), K([k()], mr.prototype, "_loading", void 0), K([k()], mr.prototype, "_seeking", void 0), K([k()], mr.prototype, "_sanctuaryMessage", void 0), mr = K([O("sinners-root-content")], mr);
 //#endregion
 //#region src/penance/commandments/usync-audit.element.ts
-var sr = "/umbraco/management/api/v1/sinners", cr = class extends e(E) {
+var hr = "/umbraco/management/api/v1/sinners", gr = class extends e(D) {
 	constructor(...e) {
 		super(...e), this._result = null, this._loading = !0;
 	}
@@ -4483,7 +4544,7 @@ var sr = "/umbraco/management/api/v1/sinners", cr = class extends e(E) {
     `;
 	}
 	connectedCallback() {
-		super.connectedCallback(), W.registerSteps("X", this, [{
+		super.connectedCallback(), G.registerSteps("X", this, [{
 			label: "Pretend to uSync ✨",
 			clicks: () => [...this.renderRoot.querySelectorAll(".pretend-btn")],
 			run: () => this.#n()
@@ -4494,7 +4555,7 @@ var sr = "/umbraco/management/api/v1/sinners", cr = class extends e(E) {
 	async #t() {
 		this._loading = !0;
 		try {
-			let e = await this.#e?.getLatestToken(), t = await fetch(`${sr}/usync-audit`, { headers: e ? { Authorization: `Bearer ${e}` } : {} });
+			let e = await this.#e?.getLatestToken(), t = await fetch(`${hr}/usync-audit`, { headers: e ? { Authorization: `Bearer ${e}` } : {} });
 			t.ok && (this._result = await t.json());
 			let n = this._result, r = n?.csprojFound && !n.hasUSync && !n.hasUmbracoDeploy ? 1 : 0;
 			this.dispatchEvent(new CustomEvent("sinners-status", {
@@ -4510,11 +4571,11 @@ var sr = "/umbraco/management/api/v1/sinners", cr = class extends e(E) {
 		}
 	}
 	async #n() {
-		let e = await this.#e?.getLatestToken(), t = await fetch(`${sr}/inject-usync`, {
+		let e = await this.#e?.getLatestToken(), t = await fetch(`${hr}/inject-usync`, {
 			method: "POST",
 			headers: e ? { Authorization: `Bearer ${e}` } : {}
 		});
-		t.ok || console.warn(`[SINNERS] inject-usync answered ${t.status}`), await new Promise((e) => Wn(e)), await this.#t(), k(10, "pretend-usync", !0);
+		t.ok || console.warn(`[SINNERS] inject-usync answered ${t.status}`), await new Promise((e) => Qn(e)), await this.#t(), A(10, "pretend-usync", !0);
 	}
 	render() {
 		let e = this._result;
@@ -4541,7 +4602,7 @@ var sr = "/umbraco/management/api/v1/sinners", cr = class extends e(E) {
         `;
 	}
 };
-G([O()], cr.prototype, "_result", void 0), G([O()], cr.prototype, "_loading", void 0), cr = G([D("sinners-usync-audit")], cr);
+K([k()], gr.prototype, "_result", void 0), K([k()], gr.prototype, "_loading", void 0), gr = K([O("sinners-usync-audit")], gr);
 //#endregion
 //#region src/penance/penance-dashboard.element.ts
 var Q = [
@@ -4599,11 +4660,11 @@ var Q = [
 		label: "X — uSync when not on Umbraco Cloud",
 		parts: ["X"]
 	}
-], lr = {
+], _r = {
 	ok: 0,
 	warning: 1,
 	error: 2
-}, ur = Q.flatMap((e) => e.parts), dr = 1700, fr = 1300, pr = "umb-theme-alias", mr = (e) => !!e?.startsWith("sinners-spooky-"), hr = {
+}, vr = Q.flatMap((e) => e.parts), yr = 1700, br = 1300, xr = "umb-theme-alias", Sr = (e) => !!e?.startsWith("sinners-spooky-"), Cr = {
 	0: "Righteous — thy backoffice is clean",
 	1: "A whisper of darkness",
 	2: "The shadows stir",
@@ -4615,7 +4676,7 @@ var Q = [
 	8: "The damned rejoice",
 	9: "All is lost",
 	10: "THOU ART BEYOND ALL REDEMPTION"
-}, $ = class extends e(E) {
+}, $ = class extends e(D) {
 	constructor(...e) {
 		super(...e), this.#t = new URLSearchParams(window.location.search).has("debug"), this._activeTab = "I", this._statuses = /* @__PURE__ */ new Map(), this._spookyFactor = 0, this._fastForward = "", this.#n = !1, this.#r = !1, this._landing = "no", this._counting = null, this._slam = !1, this.#i = null, this.#a = !1, this.#o = !1;
 	}
@@ -4846,23 +4907,23 @@ var Q = [
 	}
 	connectedCallback() {
 		super.connectedCallback();
-		let e = W.activeTab;
-		e && Q.some((t) => t.id === e) && (this._activeTab = e, this.#r = !0), W.setActiveTab(this._activeTab);
+		let e = G.activeTab;
+		e && Q.some((t) => t.id === e) && (this._activeTab = e, this.#r = !0), G.setActiveTab(this._activeTab);
 		try {
-			this.#i = localStorage.getItem(pr);
+			this.#i = localStorage.getItem(xr);
 		} catch {}
-		!mr(this.#i) && !W.fastForwardTo && !this.#t && (this._landing = "pure", W.hold(this, !0)), W.onNextTab(this, () => {
+		!Sr(this.#i) && !G.fastForwardTo && !this.#t && (this._landing = "pure", G.hold(this, !0)), G.onNextTab(this, () => {
 			this.#r = !0;
 			let e = Q.map((e) => e.id), t = e[(e.indexOf(this._activeTab) + 1) % e.length];
-			this._activeTab = t, W.setActiveTab(t);
+			this._activeTab = t, G.setActiveTab(t);
 		}), this.consumeContext(t, (e) => {
 			this.#e = e, e && this.observe(e.theme, (e) => {
 				this.#i = e ?? this.#i;
 			}, "sinnersBoardTheme"), this.#u();
-		}), Qe();
+		}), Ze();
 	}
 	disconnectedCallback() {
-		super.disconnectedCallback(), W.hold(this, !1);
+		super.disconnectedCallback(), G.hold(this, !1);
 	}
 	#s(e) {
 		let t = e.parts.map((e) => this._statuses.get(e));
@@ -4870,7 +4931,7 @@ var Q = [
 		let n = t;
 		return {
 			issueCount: n.reduce((e, t) => e + t.issueCount, 0),
-			severity: n.filter((e) => e.issueCount > 0).reduce((e, t) => lr[t.severity] > lr[e] ? t.severity : e, "ok")
+			severity: n.filter((e) => e.issueCount > 0).reduce((e, t) => _r[t.severity] > _r[e] ? t.severity : e, "ok")
 		};
 	}
 	get #c() {
@@ -4880,34 +4941,34 @@ var Q = [
 		return this._spookyFactor > 0 ? this._spookyFactor : this.#c;
 	}
 	#u() {
-		if (this._spookyFactor === 0 && !ur.every((e) => this._statuses.has(e))) return;
+		if (this._spookyFactor === 0 && !vr.every((e) => this._statuses.has(e))) return;
 		let e = this.#l;
 		if (this._landing !== "falling") {
 			if (this._landing === "pure") {
-				if (e > 0 && !mr(this.#i) && this.#e) {
-					this.#a || (this.#a = !0, setTimeout(() => void this.#d(), dr));
+				if (e > 0 && !Sr(this.#i) && this.#e) {
+					this.#a || (this.#a = !0, setTimeout(() => void this.#d(), yr));
 					return;
 				}
-				this._landing = "no", W.hold(this, !1);
+				this._landing = "no", G.hold(this, !1);
 			}
-			this.#e?.setThemeByAlias(e > 0 ? Ye(e) : "umb-light-theme"), e > 0 && this.#e && !this.#o && (this.#o = !0, $e());
+			this.#e?.setThemeByAlias(e > 0 ? Je(e) : "umb-light-theme"), e > 0 && this.#e && !this.#o && (this.#o = !0, Qe());
 		}
 	}
 	async #d() {
 		if (!(!this.isConnected || this._landing !== "pure")) {
 			this._landing = "falling";
 			try {
-				await Ln(() => {
+				await Wn(() => {
 					this._landing = "no", this._slam = !0, this.#u(), this.#f();
 				});
 			} finally {
-				this._landing !== "no" && (this._landing = "no", this.#u()), W.hold(this, !1);
+				this._landing !== "no" && (this._landing = "no", this.#u()), G.hold(this, !1);
 			}
 		}
 	}
 	#f() {
 		let e = performance.now(), t = () => {
-			let n = Math.min(1, (performance.now() - e) / fr);
+			let n = Math.min(1, (performance.now() - e) / br);
 			if (n >= 1 || !this.isConnected) {
 				this._counting = null;
 				return;
@@ -4920,18 +4981,18 @@ var Q = [
 		this._spookyFactor = +e.target.value, this.#u();
 	}
 	#m(e, t) {
-		if (this._statuses = new Map(this._statuses).set(e, t), this._spookyFactor === 0 && this.#u(), this.#h(), !this.#r && ur.every((e) => this._statuses.has(e))) {
+		if (this._statuses = new Map(this._statuses).set(e, t), this._spookyFactor === 0 && this.#u(), this.#h(), !this.#r && vr.every((e) => this._statuses.has(e))) {
 			this.#r = !0;
 			let e = Q.find((e) => (this.#s(e)?.issueCount ?? 0) > 0);
-			e && (this._activeTab = e.id, W.setActiveTab(e.id));
+			e && (this._activeTab = e.id, G.setActiveTab(e.id));
 		}
 	}
 	#h() {
-		let e = W.fastForwardTo;
-		!e || this.#n || !ur.every((e) => this._statuses.has(e)) || (this.#n = !0, this.#r = !0, this._fastForward = e, W.fastForward(e, (e) => this.#s(Q.find((t) => t.id === e))?.issueCount ?? 0, (e) => {
+		let e = G.fastForwardTo;
+		!e || this.#n || !vr.every((e) => this._statuses.has(e)) || (this.#n = !0, this.#r = !0, this._fastForward = e, G.fastForward(e, (e) => this.#s(Q.find((t) => t.id === e))?.issueCount ?? 0, (e) => {
 			this._activeTab = e;
 		}).catch((e) => console.error("[PRESENTER] fast-forward failed", e)).finally(() => {
-			this._fastForward = "", this._activeTab = e, W.setActiveTab(e);
+			this._fastForward = "", this._activeTab = e, G.setActiveTab(e);
 		}));
 	}
 	get #g() {
@@ -4942,7 +5003,7 @@ var Q = [
 		return t ? t.issueCount === 0 || this.#g ? S`<span class="status-badge ok">✓</span>` : S`<span class="status-badge ${t.severity}">${t.issueCount}</span>` : S`<span class="status-badge pending"></span>`;
 	}
 	#v() {
-		if (!ur.every((e) => this._statuses.has(e))) return C;
+		if (!vr.every((e) => this._statuses.has(e))) return w;
 		let e = [...this._statuses.values()].reduce((e, t) => e + t.issueCount, 0), t = this.#g ? 0 : this._counting == null ? e : Math.round(e * this._counting);
 		return S`<div class="tally ${t === 0 ? "clean" : ""} ${this._slam ? "slam" : ""}"><b>${t}</b><span>${t === 1 ? "sin" : "sins"}</span></div>`;
 	}
@@ -4954,11 +5015,11 @@ var Q = [
 	}
 	render() {
 		return S`
-            ${this._fastForward ? S`<div class="fast-forward">⏩ Absolving everything before ${this._fastForward}… <span>(now: ${this._activeTab})</span></div>` : C}
+            ${this._fastForward ? S`<div class="fast-forward">⏩ Absolving everything before ${this._fastForward}… <span>(now: ${this._activeTab})</span></div>` : w}
             <div class="hero">
                 <div>
                     <h1>Penance Board</h1>
-                    ${ur.every((e) => this._statuses.has(e)) ? S`<p class="verdict ${this._slam ? "slam" : ""}">${hr[this.#g ? 0 : this.#l]}</p>` : C}
+                    ${vr.every((e) => this._statuses.has(e)) ? S`<p class="verdict ${this._slam ? "slam" : ""}">${Cr[this.#g ? 0 : this.#l]}</p>` : w}
                 </div>
                 ${this.#v()}
             </div>
@@ -4969,7 +5030,7 @@ var Q = [
                         class="tab-btn ${this._activeTab === e.id && !this.#g ? "active" : ""} ${this.#s(e)?.issueCount === 0 || this.#g && this.#s(e) ? "absolved" : ""}"
                         title=${e.label}
                         @click=${() => {
-			this.#r = !0, this._activeTab = e.id, W.setActiveTab(e.id);
+			this.#r = !0, this._activeTab = e.id, G.setActiveTab(e.id);
 		}}>
                         <span class="numeral">${e.id}</span>
                         ${this.#_(e)}
@@ -5006,21 +5067,21 @@ var Q = [
             ${this.#t ? S`
                 <div class="debug-strip">
                     <label>Debug — Spooky Factor Override (auto: ${this.#c})</label>
-                    <div class="spooky-label">${this.#l} — ${hr[this.#l]}</div>
+                    <div class="spooky-label">${this.#l} — ${Cr[this.#l]}</div>
                     <input
                         type="range"
                         min="0"
                         max="10"
                         .value=${String(this._spookyFactor)}
                         @input=${this.#p}>
-                </div>` : C}
+                </div>` : w}
         `;
 	}
 };
-G([O()], $.prototype, "_activeTab", void 0), G([O()], $.prototype, "_statuses", void 0), G([O()], $.prototype, "_spookyFactor", void 0), G([O()], $.prototype, "_fastForward", void 0), G([O()], $.prototype, "_landing", void 0), G([O()], $.prototype, "_counting", void 0), G([O()], $.prototype, "_slam", void 0), $ = G([D("sinners-penance-dashboard")], $);
+K([k()], $.prototype, "_activeTab", void 0), K([k()], $.prototype, "_statuses", void 0), K([k()], $.prototype, "_spookyFactor", void 0), K([k()], $.prototype, "_fastForward", void 0), K([k()], $.prototype, "_landing", void 0), K([k()], $.prototype, "_counting", void 0), K([k()], $.prototype, "_slam", void 0), $ = K([O("sinners-penance-dashboard")], $);
 //#endregion
 //#region src/index.ts
-var gr = [
+var wr = [
 	"̀",
 	"́",
 	"̂",
@@ -5040,7 +5101,7 @@ var gr = [
 	"ͦ",
 	"ͬ",
 	"ͯ"
-], _r = [
+], Tr = [
 	"̖",
 	"̗",
 	"̘",
@@ -5061,58 +5122,58 @@ var gr = [
 	"͓",
 	"͚"
 ];
-function vr(e) {
+function Er(e) {
 	return [...e].map((e, t) => {
 		if (e === " ") return e;
 		let n = t * 7 + e.charCodeAt(0) * 13, r = 3 + n % 3, i = e;
-		for (let e = 0; e < r; e++) i += gr[(n + e * 3) % gr.length], i += _r[(n + e * 5 + 2) % _r.length];
+		for (let e = 0; e < r; e++) i += wr[(n + e * 3) % wr.length], i += Tr[(n + e * 5 + 2) % Tr.length];
 		return i;
 	}).join("");
 }
-var yr = [{
+var Dr = [{
 	type: "dashboard",
 	alias: "Sinners.PenanceDashboard",
 	name: "Penance",
 	element: $,
 	weight: 100,
 	meta: {
-		label: vr("Penance"),
+		label: Er("Penance"),
 		pathname: "penance"
 	},
 	conditions: [{
 		alias: "Umb.Condition.SectionAlias",
 		match: "Umb.Section.Settings"
 	}]
-}], br = new Set(["PageDown", "ArrowRight"]), xr = new Set([
+}], Or = new Set(["PageDown", "ArrowRight"]), kr = new Set([
 	"PageUp",
 	"ArrowLeft",
 	"Escape"
-]), Sr = new Set([
+]), Ar = new Set([
 	"1",
 	"2",
 	"3",
 	"4",
 	"0"
 ]);
-function Cr() {
+function jr() {
 	window.addEventListener("keydown", (e) => {
-		document.documentElement.dataset.sinnersKeys !== "off" && (!br.has(e.key) && !xr.has(e.key) && e.key !== "." && !Sr.has(e.key) || (e.preventDefault(), e.stopPropagation(), !e.repeat && (console.log(`[CLICKER] key="${e.key}"`), br.has(e.key) ? W.forward() : e.key === "." || e.key === "3" ? W.dot() : e.key === "1" ? W.next() : e.key === "2" ? W.nextTab() : e.key === "4" ? window.location.reload() : e.key === "0" && W.reset())));
+		document.documentElement.dataset.sinnersKeys !== "off" && (!Or.has(e.key) && !kr.has(e.key) && e.key !== "." && !Ar.has(e.key) || (e.preventDefault(), e.stopPropagation(), !e.repeat && (console.log(`[CLICKER] key="${e.key}"`), Or.has(e.key) ? G.forward() : e.key === "." || e.key === "3" ? G.dot() : e.key === "1" ? G.next() : e.key === "2" ? G.nextTab() : e.key === "4" ? window.location.reload() : e.key === "0" && G.reset())));
 	}, !0);
 }
-var wr = "umb-theme-alias";
-function Tr(e) {
+var Mr = "umb-theme-alias";
+function Nr(e) {
 	e.consumeContext(t, (t) => {
 		t && e.observe(t.theme, (e) => {
 			if (e?.startsWith("sinners-spooky-")) try {
-				localStorage.setItem(wr, e);
+				localStorage.setItem(Mr, e);
 			} catch {}
 		}, "sinnersKeepTheme");
 	});
 }
-var Er = (e, t) => {
-	t.registerMany(yr), Xe(t), Tr(e), gt(e), Cr();
+var Pr = (e, t) => {
+	t.registerMany(Dr), Ye(t), Nr(e), ht(e), jr();
 };
 //#endregion
-export { Er as onInit };
+export { Pr as onInit };
 
 //# sourceMappingURL=dist.js.map

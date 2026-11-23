@@ -2,9 +2,11 @@
 // zero), the rest of Umbraco is a little possessed too. Nothing here changes data or Umbraco's own
 // elements for good: every swap is put back, every overlay is ours, and at sin level 0 it all stops.
 //
-//   welcome   the "Welcome to Umbraco" dashboard in Content: its three news cards turn, one after the
-//             other, into darker versions of themselves (Users CRAVE Us, the pawn that ran out of
-//             options, the community photo with a rabbit that has seen things), and stay that way.
+//   welcome   the "Welcome to Umbraco" dashboard in Content: its news cards turn, one after the
+//             other, into darker versions of themselves (the pawn that ran out of options, the
+//             webinar stage its speaker has walked off, the keynote with empty stools, the community
+//             photo with a rabbit that has seen things), and stay that way. Umbraco's news feed
+//             decides which cards there are; a picture card we have no version of goes dark and says so.
 //             With the talk's clicker driving, each card turns on a press that was meant to light the
 //             exhibit's spotlight: the page refuses ("NO", for a moment, where every word was) and
 //             turns a card instead. Three refusals, then the press gets its spotlight (refuse())
@@ -220,8 +222,28 @@ interface Possession {
     button: string;
     /** what goes over the picture */
     over: string;
+    /** the picture stays and goes dark, slowly (a photo of people: nobody in it is redrawn) */
+    photo?: boolean;
 }
 
+// Embers where the confetti was: a handful of flakes, each falling at its own pace
+const EMBERS = Array.from({ length: 28 }, (_, i) => {
+    const x = (i * 83 + 17) % 600;
+    const w = 4 + (i % 3);
+    const fill = i % 3 ? '#ff7a1a' : '#ffd24a';
+    return `<rect class="e" x="${x}" y="-8" width="${w}" height="3" fill="${fill}" style="animation-delay:${(-(i * 0.43) % 4).toFixed(2)}s;animation-duration:${(2.6 + (i % 5) * 0.55).toFixed(2)}s"/>`;
+}).join('');
+const STOOL = (x: number) => `
+    <g transform="translate(${x} 0)" fill="#0b0b0f" stroke="#ff5a1f" stroke-opacity="0.45" stroke-width="1.2">
+        <path d="M17 119 v-27 h8 v30 z"/>
+        <rect x="-24" y="118" width="48" height="9" rx="4"/>
+        <rect x="-3" y="127" width="6" height="74"/>
+        <path d="M-17 170 h34" fill="none" stroke-width="3"/>
+        <ellipse cx="0" cy="204" rx="24" ry="5"/>
+    </g>`;
+
+// The order is the order they turn in. The feed changes (it did, two days before the talk): a card
+// that is no longer in it is simply never found, and a picture card we have never seen gets UNKNOWN.
 const POSSESSIONS: Possession[] = [
     {
         match: 'g2',
@@ -276,7 +298,75 @@ const POSSESSIONS: Possession[] = [
             </svg>`,
     },
     {
+        // A webinar card with its speaker on it. He is not redrawn, darkened or given eyes: in the
+        // turned version he simply isn't there. The stage is (its rings, the light still on his
+        // spot, the clicker he put down), and somebody has written on the wall.
+        match: 'cloud-webinar',
+        title: 'The Umbraco Cloud Webinar has lost its speaker',
+        text: 'He was right here. He saw what you keep in your root, put down the clicker, and left. He is fine. He is the only one who is. The live Q&A goes ahead. Nobody answers.',
+        button: 'Find him',
+        over: `
+            <svg class="gone" viewBox="0 0 600 230" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                    <radialGradient id="dim" cx="34%" cy="100%" r="95%">
+                        <stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.72"/>
+                    </radialGradient>
+                    <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#ffe9c2" stop-opacity="0.36"/><stop offset="1" stop-color="#ffe9c2" stop-opacity="0.05"/>
+                    </linearGradient>
+                </defs>
+                <rect width="600" height="230" fill="#070817"/>
+                <g transform="translate(205 262)">
+                    <circle r="400" fill="#3d3542"/><circle r="330" fill="#0b0d26"/><circle r="268" fill="#64262c"/>
+                    <circle r="205" fill="#0b0d26"/><circle r="150" fill="#1b2460"/><circle r="92" fill="#05060f"/>
+                </g>
+                <rect width="600" height="230" fill="url(#dim)"/>
+                <g fill="#f4f1ea" font-family="Lato, sans-serif" font-size="21">
+                    <text x="38" y="66">From Running</text><text x="38" y="93">Projects to</text><text x="38" y="120">Running Away</text>
+                </g>
+                <path d="M456 -10 L370 214 L542 214 Z" fill="url(#cone)"/>
+                <ellipse cx="456" cy="214" rx="86" ry="10" fill="#ffe9c2" opacity="0.24"/>
+                <g class="clicker"><g transform="translate(486 208) rotate(-14)">
+                    <rect x="-17" y="-5" width="34" height="10" rx="5" fill="#15161c" stroke="#5a5c6e"/>
+                    <circle cx="8" r="2.4" fill="#ff2a12"/>
+                </g></g>
+                <g class="scrawl" transform="rotate(-5 460 100)">
+                    <text class="l1" x="338" y="84" textLength="236" lengthAdjust="spacingAndGlyphs">WHERE DID</text>
+                    <text class="l2" x="372" y="132" textLength="164" lengthAdjust="spacingAndGlyphs">HE GO?</text>
+                </g>
+            </svg>`,
+    },
+    {
+        // The keynote's three hosts with their confetti: in the turned version the stools are
+        // empty, the curtains are the wrong colour and what falls is not confetti.
+        match: 'winter-keynote',
+        title: 'Winter is cancelled in 2027 🔥',
+        text: "Join our Winter Keynote, live from down here on Tuesday 2 February 2027 at 16:30 CET. It will not be winter. Get news, live demos and our roadmap. The road goes one way. Can't make it live? You will.",
+        button: 'Save your soul',
+        over: `
+            <svg class="stools" viewBox="0 0 600 230" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                    <linearGradient id="drape" x1="0" x2="1">
+                        <stop offset="0" stop-color="#2c0707"/><stop offset="0.5" stop-color="#641611"/><stop offset="1" stop-color="#2c0707"/>
+                    </linearGradient>
+                    <pattern id="curtain" width="27" height="230" patternUnits="userSpaceOnUse"><rect width="27" height="230" fill="url(#drape)"/></pattern>
+                    <radialGradient id="pit" cx="62%" cy="105%" r="80%">
+                        <stop offset="0" stop-color="#ff5a1f" stop-opacity="0.6"/><stop offset="1" stop-color="#ff5a1f" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <rect width="600" height="184" fill="url(#curtain)"/>
+                <rect y="184" width="600" height="46" fill="#120404"/>
+                <ellipse cx="390" cy="212" rx="250" ry="18" fill="#3b0d0d"/>
+                <rect width="600" height="230" fill="url(#pit)"/>
+                <text class="neon" x="44" y="62">it's warm here</text>
+                ${STOOL(300)}${STOOL(400)}${STOOL(500)}
+                <g transform="translate(232 206) rotate(8)"><rect x="-22" y="-5" width="44" height="10" rx="2" fill="#16161b" stroke="#ffd24a" stroke-opacity="0.6"/></g>
+                <g class="embers">${EMBERS}</g>
+            </svg>`,
+    },
+    {
         match: 'one-story-community',
+        photo: true,
         title: 'Be part of the Umbraco Community. Forever.',
         text: 'The Umbraco Community is at the heart of everything we do. There is a place for you here. There has always been a place for you here. Ready to join in? You already have.',
         button: 'Join us',
@@ -284,6 +374,23 @@ const POSSESSIONS: Possession[] = [
         over: `<div class="vignette"></div><i class="eye" style="left:56.15%;top:31.1%"></i><i class="eye" style="left:57.45%;top:31.1%"></i>`,
     },
 ];
+
+/** The card with the rabbit: the last to turn, and the one whose eyes open. */
+const RABBIT = 'one-story-community';
+
+// A picture card the feed has that we have never seen (it changes without notice): the picture goes
+// dark and the card says so itself. Nothing is drawn on whoever is in it.
+const UNKNOWN: Possession = {
+    match: '',
+    photo: true,
+    title: 'This card is new.',
+    text: 'It arrived after the others. There was no time to curse it properly. Consider it cursed.',
+    button: 'Fine',
+    over: `<div class="vignette"></div>`,
+};
+
+/** The order the cards turn in: as listed, a card we don't know just before the rabbit. */
+const rank = (p: Possession) => (p === UNKNOWN ? POSSESSIONS.length - 1.5 : POSSESSIONS.indexOf(p));
 
 const STYLE = `
     .card { position: relative; }
@@ -298,6 +405,8 @@ const STYLE = `
         0% { opacity: 0; } 8% { opacity: 1; } 16% { opacity: 0; } 30% { opacity: 1; } 38% { opacity: 0; }
         52% { opacity: 0.9; } 60% { opacity: 0.15; } 74%, 100% { opacity: 1; }
     }
+    /* (an emoji the feed's editors pasted in as a picture) */
+    .card.possessed .card-text img { display: none; }
     .card-title { transition: color 0.3s; }
     .card.possessed .card-title { color: #e64241; }
     .card.possessed:not(.at-once) .card-title { animation: sinners-shiver 0.45s steps(2, end) 2; }
@@ -322,6 +431,25 @@ const STYLE = `
     @keyframes sinners-drop { 0% { transform: translateY(-260px); } 78% { transform: translateY(10px); } 100% { transform: none; } }
     .gallows .swing { transform-origin: 346px 50px; animation: sinners-swing 3.4s ease-in-out infinite; }
     @keyframes sinners-swing { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+
+    .gone, .stools { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    /* the clicker lands once the picture has settled; then the writing, a line at a time */
+    .gone .clicker { transform: translateY(-240px); }
+    .card.possessed .gone .clicker { animation: sinners-clicker 0.55s cubic-bezier(0.6, 0, 0.9, 0.5) 1s both; }
+    .card.possessed.at-once .gone .clicker { animation: none; transform: none; }
+    @keyframes sinners-clicker { 0% { transform: translateY(-240px); } 70% { transform: none; } 84% { transform: translateY(-9px); } 100% { transform: none; } }
+    .gone .scrawl text { font: 700 44px 'Segoe Script', 'Bradley Hand', 'Chalkduster', 'Comic Sans MS', cursive; fill: #ff3b24;
+        filter: drop-shadow(0 0 5px rgba(255, 40, 10, 0.85)); opacity: 0; }
+    .card.possessed .gone .scrawl .l1 { animation: sinners-scrawl 0.5s steps(3, end) 1.7s both; }
+    .card.possessed .gone .scrawl .l2 { animation: sinners-scrawl 0.5s steps(3, end) 2.4s both; }
+    .card.possessed.at-once .gone .scrawl text { animation: none; opacity: 1; }
+    @keyframes sinners-scrawl { 0% { opacity: 0; } 40% { opacity: 0.9; } 60% { opacity: 0.3; } 100% { opacity: 1; } }
+
+    .stools .neon { font: 700 30px 'Segoe Script', 'Bradley Hand', 'Comic Sans MS', cursive; fill: #ff8a5c;
+        filter: drop-shadow(0 0 6px #ff3b1f); animation: sinners-neon 3.1s steps(1, end) infinite; }
+    @keyframes sinners-neon { 0%, 61%, 65%, 100% { opacity: 1; } 62%, 64% { opacity: 0.25; } 88% { opacity: 0.6; } }
+    .stools .e { animation: sinners-ember 3s linear infinite; }
+    @keyframes sinners-ember { 0% { transform: translate(0, 0); opacity: 1; } 100% { transform: translate(-26px, 250px); opacity: 0.25; } }
 
     /* the photo doesn't stutter: it goes dark, slowly, and then the eyes */
     .card-img { transition: filter 1.8s ease-in; }
@@ -356,12 +484,12 @@ function hold(host: Element): Held | null {
     const root = host.shadowRoot;
     const card = root?.querySelector<HTMLElement>('.card');
     const img = root?.querySelector<HTMLImageElement>('img.card-img');
-    const is = img && POSSESSIONS.find((p) => img.src.includes(p.match));
-    if (!root || !card || !img || !is) {
-        // (a card without a picture, or news we have no darker version of: left alone)
+    if (!root || !card || !img) {
+        // (a card without a picture: left alone)
         if (root && card) held.set(host, null);
         return null;
     }
+    const is = POSSESSIONS.find((p) => img.src.includes(p.match)) ?? UNKNOWN;
     const style = document.createElement('style');
     style.textContent = STYLE;
     root.appendChild(style);
@@ -381,6 +509,10 @@ function hold(host: Element): Held | null {
     const text = first(root.querySelector('.card-text'));
     if (title) words.push([title, title.data, is.title]);
     if (text) words.push([text, text.data, is.text]);
+    // whatever else the card says after that (a second paragraph) goes quiet while it is turned
+    const rest = document.createTreeWalker(root.querySelector('.card-text') ?? document.createElement('i'), NodeFilter.SHOW_TEXT);
+    let more: Node | null;
+    while ((more = rest.nextNode())) if (more !== text && more.nodeValue?.trim()) words.push([more as Text, (more as Text).data, '']);
 
     const h: Held = { card, img, over, is, words, button: root.querySelector<Labelled>('uui-button') ?? undefined, on: false };
     held.set(host, h);
@@ -392,7 +524,7 @@ function possess(h: Held, on: boolean, atOnce: boolean, wordsAfter?: number) {
     if (on) h.over.style.height = `${h.img.offsetHeight}px`;
     if (h.on === on) return;
     h.on = on;
-    const scary = h.is.match === 'one-story-community';
+    const scary = !!h.is.photo;
     h.card.classList.toggle('at-once', on && atOnce);
     h.card.classList.toggle('scary', scary);
     h.card.classList.toggle('possessed', on);
@@ -434,13 +566,15 @@ function welcome(on: boolean) {
         return;
     }
 
-    mine.forEach((h, k) => {
+    const order = [...mine].sort((a, b) => rank(a.is) - rank(b.is));
+    order.forEach((h, k) => {
         const at = again ? 500 + k * 200 : BEAT + k * GAP;
         const t = now - born - at;
         if (t < 0) return;
         possess(h, true, again);
-        if (h.is.match === 'one-story-community' && t >= (again ? 300 : EYES)) {
-            h.card.classList.add('eyes');
+        // the last one is the punchline (the rabbit, when the feed has it: then its eyes open)
+        if (k === order.length - 1 && t >= (again ? 300 : EYES)) {
+            if (h.is.match === RABBIT) h.card.classList.add('eyes');
             try {
                 sessionStorage.setItem(SEEN_KEY, '1'); // the punchline has landed
             } catch { /* fine */ }
@@ -451,36 +585,52 @@ function welcome(on: boolean) {
 // ------------------------------------------------------------------------------------ the refusals
 
 let lastRefusal = 0;
+// The talk's script has three refusals, however many picture cards the feed has that day: the first
+// two presses turn a card each, the third turns everything that is left.
+const REFUSALS = 3;
+let refusals = 0;
+let refusalsFor: Element | undefined;
 
 /**
  * The clicker pressed for the spotlight on the Welcome dashboard. While there is a card left to turn
- * the page refuses: it says NO, turns the next card (the review, the pawn, the photo and its rabbit),
- * and this returns true, so the press does nothing else. With no card left (or none to begin with:
- * no news, no pictures, eggs off, no sin) it returns false and the press lights the spotlight.
+ * the page refuses: it says NO, turns the next card (the pawn, then the stage its speaker has left,
+ * then the rest at once: the keynote without its hosts, the photo and its rabbit), and this returns
+ * true, so the press does nothing else. With no card left (or none to begin with: no news, no
+ * pictures, eggs off, no sin) it returns false and the press lights the spotlight.
  */
 export function refuse(): boolean {
     if (!EGGS.welcome || level <= 0 || off() || !location.pathname.includes('/section/content') || seen()) return false;
     const mine = deepQueryAll(document, 'umb-news-card')
         .map(hold)
         .filter((h): h is Held => !!h && h.img.complete && h.img.naturalWidth > 0)
-        .sort((a, b) => POSSESSIONS.indexOf(a.is) - POSSESSIONS.indexOf(b.is));
-    const next = mine.find((h) => !h.on);
-    if (!next) return false;
+        .sort((a, b) => rank(a.is) - rank(b.is));
+    const left = mine.filter((h) => !h.on);
+    if (!left.length) return false;
     const now = performance.now();
     if (now - lastRefusal < 600) return true; // a double click isn't two refusals
     lastRefusal = now;
+    if (refusalsFor !== mine[0].card) {
+        // (the page was loaded again: its cards are as Umbraco made them, so the count starts over)
+        refusalsFor = mine[0].card;
+        refusals = 0;
+    }
+    refusals++;
+    const turning = refusals >= REFUSALS ? left : left.slice(0, 1);
 
     sayNo();
-    // (its words turn once the page has stopped saying NO)
-    possess(next, true, false, NO_FOR + 150);
-    if (next.is.match === 'one-story-community') {
-        // the photo is the last: it darkens, and then the rabbit opens its eyes
+    turning.forEach((h, k) => {
+        // one after the other, a beat apart; their words turn once the page has stopped saying NO
+        const after = k * 380;
+        setTimeout(() => possess(h, true, false, Math.max(700, NO_FOR + 150 - after)), after);
+    });
+    if (turning.length === left.length) {
+        // that was the last of them: the rabbit (if the feed has it) opens its eyes
         setTimeout(() => {
-            next.card.classList.add('eyes');
+            for (const h of turning) if (h.is.match === RABBIT) h.card.classList.add('eyes');
             try {
                 sessionStorage.setItem(SEEN_KEY, '1'); // a later visit finds them turned
             } catch { /* fine */ }
-        }, 1500);
+        }, 1500 + (turning.length - 1) * 380);
     }
     return true;
 }

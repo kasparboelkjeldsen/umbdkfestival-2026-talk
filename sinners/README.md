@@ -99,8 +99,10 @@ exhibit pages autofocus their name field.
 While any sin is left, Umbraco itself is a little possessed (`penance/haunt.ts`): names in the
 trees flicker into something else for a second (Recycle Sin, Tongues, Dismember Types), a few
 buttons too (Save and perish), and the "Welcome to Umbraco" dashboard in Content turns, card by
-card, about ten seconds after you arrive: Users CRAVE Us, a pawn that ran out of options, and the
-community photo with a rabbit that has seen things. The "A" of your avatar, top right, shakes,
+card, about ten seconds after you arrive: a pawn that ran out of options, a webinar stage its
+speaker has walked off ("where did he go?"), a keynote with three empty stools, and the community
+photo with a rabbit that has seen things. Umbraco's news feed decides which cards there are that
+day; a picture card the package has never seen goes dark and says so. The "A" of your avatar, top right, shakes,
 swells and becomes a glowing pentagram about five seconds after the Board first opens (and a
 letter again at zero sins), and in VII's partial view a comment nobody wrote types itself after
 the lines that walk the tree. Nothing is changed for good, it all stops at
